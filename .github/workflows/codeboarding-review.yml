@@ -33,4 +33,4 @@ jobs:
         with:
           mode: review
           llm: hosted
-          depth_level: 3
+          depth_cap: 3
