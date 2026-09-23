@@ -1,0 +1,1385 @@
+{
+  "repository_name": ".codeboarding-target",
+  "timestamp": "2026-09-23T23:46:44.347479+00:00",
+  "overall_score": 0.8729889589905363,
+  "check_summaries": [
+    {
+      "check_name": "function_size",
+      "description": "Checks that functions/methods do not exceed line count thresholds",
+      "languages": [
+        "csharp"
+      ],
+      "check_type": "standard",
+      "total_entities_checked": 1031,
+      "findings_count": 12,
+      "warning_count": 12,
+      "score": 0.988360814742968,
+      "finding_groups": [
+        {
+          "severity": "warning",
+          "threshold": 150,
+          "description": "Functions exceeding 150.0 lines",
+          "entities": [
+            {
+              "entity_name": "src.Ordering.Infrastructure.Migrations.20231026091055_Outbox.Designer.Outbox.BuildTargetModel(ModelBuilder modelBuilder)",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20231026091055_Outbox.Designer.cs",
+              "line_start": 19,
+              "line_end": 359,
+              "metric_value": 340
+            },
+            {
+              "entity_name": "src.Ordering.Infrastructure.Migrations.20240106121712_UseEnumForOrderStatus.Designer.UseEnumForOrderStatus.BuildTargetModel(ModelBuilder modelBuilder)",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20240106121712_UseEnumForOrderStatus.Designer.cs",
+              "line_start": 19,
+              "line_end": 335,
+              "metric_value": 316
+            },
+            {
+              "entity_name": "src.Ordering.Infrastructure.Migrations.OrderingContextModelSnapshot.BuildModel(ModelBuilder modelBuilder)",
+              "file_path": "src/Ordering.Infrastructure/Migrations/OrderingContextModelSnapshot.cs",
+              "line_start": 16,
+              "line_end": 332,
+              "metric_value": 316
+            },
+            {
+              "entity_name": "src.Ordering.Infrastructure.Migrations.20230925222426_Initial.Designer.Initial.BuildTargetModel(ModelBuilder modelBuilder)",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20230925222426_Initial.Designer.cs",
+              "line_start": 19,
+              "line_end": 331,
+              "metric_value": 312
+            },
+            {
+              "entity_name": "src.Ordering.Infrastructure.Migrations.20231021004633_FixOrderitemseqSchema.Designer.FixOrderitemseqSchema.BuildTargetModel(ModelBuilder modelBuilder)",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20231021004633_FixOrderitemseqSchema.Designer.cs",
+              "line_start": 19,
+              "line_end": 328,
+              "metric_value": 309
+            },
+            {
+              "entity_name": "src.Identity.API.Data.Migrations.20230925223402_InitialMigration.Designer.InitialMigration.BuildTargetModel(ModelBuilder modelBuilder)",
+              "file_path": "src/Identity.API/Data/Migrations/20230925223402_InitialMigration.Designer.cs",
+              "line_start": 19,
+              "line_end": 323,
+              "metric_value": 304
+            },
+            {
+              "entity_name": "src.Identity.API.Data.Migrations.ApplicationDbContextModelSnapshot.BuildModel(ModelBuilder modelBuilder)",
+              "file_path": "src/Identity.API/Data/Migrations/ApplicationDbContextModelSnapshot.cs",
+              "line_start": 16,
+              "line_end": 320,
+              "metric_value": 304
+            },
+            {
+              "entity_name": "src.Ordering.Infrastructure.Migrations.20230925222426_Initial.Initial.Up(MigrationBuilder migrationBuilder)",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20230925222426_Initial.cs",
+              "line_start": 12,
+              "line_end": 233,
+              "metric_value": 221
+            },
+            {
+              "entity_name": "src.Identity.API.Data.Migrations.20230925223402_InitialMigration.InitialMigration.Up(MigrationBuilder migrationBuilder)",
+              "file_path": "src/Identity.API/Data/Migrations/20230925223402_InitialMigration.cs",
+              "line_start": 13,
+              "line_end": 209,
+              "metric_value": 196
+            },
+            {
+              "entity_name": "src.Catalog.API.Infrastructure.Migrations.20231026091140_Outbox.Designer.Outbox.BuildTargetModel(ModelBuilder modelBuilder)",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231026091140_Outbox.Designer.cs",
+              "line_start": 20,
+              "line_end": 171,
+              "metric_value": 151
+            },
+            {
+              "entity_name": "src.Catalog.API.Infrastructure.Migrations.CatalogContextModelSnapshot.BuildModel(ModelBuilder modelBuilder)",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/CatalogContextModelSnapshot.cs",
+              "line_start": 17,
+              "line_end": 168,
+              "metric_value": 151
+            },
+            {
+              "entity_name": "src.Identity.API.Configuration.Config.GetClients(IConfiguration configuration)",
+              "file_path": "src/Identity.API/Configuration/Config.cs",
+              "line_start": 40,
+              "line_end": 191,
+              "metric_value": 151
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "check_name": "circular_dependencies",
+      "description": "Detects circular dependencies between packages",
+      "languages": [
+        "csharp"
+      ],
+      "check_type": "circular_dependencies",
+      "cycles": [
+        "src.WebApp.Services -> src.WebAppComponents.Services -> src.WebApp.Services",
+        "src.OrderProcessor -> src.OrderProcessor.Extensions -> src.OrderProcessor",
+        "src.Identity.API.Quickstart.Account -> src.Identity.API.Quickstart -> src.Identity.API.Quickstart.Account",
+        "src.ClientApp.ViewModels -> src.ClientApp.ViewModels.Base -> src.ClientApp.ViewModels",
+        "src.ClientApp.Animations.Base -> src.ClientApp.Animations -> src.ClientApp.Animations.Base",
+        "src.Catalog.API.Extensions -> src.Catalog.API -> src.Catalog.API.Extensions",
+        "src.Catalog.API.IntegrationEvents -> src.EventBus.Abstractions -> src.Catalog.API.IntegrationEvents.EventHandling -> src.Catalog.API.IntegrationEvents",
+        "src.Catalog.API.IntegrationEvents -> src.EventBusRabbitMQ -> src.EventBus.Abstractions -> src.Catalog.API.IntegrationEvents.EventHandling -> src.Catalog.API.IntegrationEvents",
+        "src.EventBusRabbitMQ -> src.EventBus.Abstractions -> src.Ordering.API.Application.IntegrationEvents.EventHandling -> src.Ordering.API.Application.Commands -> src.Ordering.API.Application.IntegrationEvents -> src.EventBusRabbitMQ",
+        "src.EventBusRabbitMQ -> src.EventBus.Abstractions -> src.Ordering.API.Application.IntegrationEvents.EventHandling -> src.Ordering.API.Application.Commands -> src.Ordering.API.Extensions -> src.EventBusRabbitMQ",
+        "src.EventBusRabbitMQ -> src.EventBus.Abstractions -> src.PaymentProcessor.IntegrationEvents.EventHandling -> src.EventBusRabbitMQ",
+        "src.Ordering.API.Application.Commands -> src.Ordering.API.Application.IntegrationEvents -> src.EventBus.Abstractions -> src.Ordering.API.Application.IntegrationEvents.EventHandling -> src.Ordering.API.Application.Commands",
+        "src.Ordering.API.Application.Commands -> src.Ordering.API.Extensions -> src.Ordering.API.Application.Commands",
+        "src.EventBus.Abstractions -> src.PaymentProcessor.IntegrationEvents.EventHandling -> src.EventBus.Abstractions",
+        "src.Ordering.Domain.SeedWork -> src.Ordering.Domain.AggregatesModel.OrderAggregate -> src.Ordering.Domain.SeedWork"
+      ],
+      "packages_checked": 164,
+      "packages_in_cycles": 23
+    },
+    {
+      "check_name": "unused_code_diagnostics",
+      "description": "Detects unused imports, variables, functions, and dead code via LSP diagnostics",
+      "languages": [
+        "csharp"
+      ],
+      "check_type": "standard",
+      "total_entities_checked": 147,
+      "findings_count": 147,
+      "warning_count": 147,
+      "score": 0.0,
+      "finding_groups": [
+        {
+          "severity": "warning",
+          "threshold": 0,
+          "description": "Unused import statements that should be removed",
+          "entities": [
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/GlobalUsings.cs",
+              "line_start": 4,
+              "line_end": 4,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Webhooks.API/Migrations/20230925222606_Initial.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/eShop.ServiceDefaults/OpenApiOptionsExtensions.cs",
+              "line_start": 4,
+              "line_end": 4,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/eShop.ServiceDefaults/OpenApiOptionsExtensions.cs",
+              "line_start": 10,
+              "line_end": 10,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/eShop.AppHost/Extensions.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Webhooks.API/Migrations/WebhooksContextModelSnapshot.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Webhooks.API/Migrations/WebhooksContextModelSnapshot.cs",
+              "line_start": 7,
+              "line_end": 7,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Webhooks.API/Migrations/WebhooksContextModelSnapshot.cs",
+              "line_start": 5,
+              "line_end": 5,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Webhooks.API/Migrations/WebhooksContextModelSnapshot.cs",
+              "line_start": 6,
+              "line_end": 6,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Webhooks.API/Migrations/WebhooksContextModelSnapshot.cs",
+              "line_start": 3,
+              "line_end": 3,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Webhooks.API/Migrations/20230925222606_Initial.Designer.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Webhooks.API/Migrations/20230925222606_Initial.Designer.cs",
+              "line_start": 8,
+              "line_end": 8,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Webhooks.API/Migrations/20230925222606_Initial.Designer.cs",
+              "line_start": 6,
+              "line_end": 6,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Webhooks.API/Migrations/20230925222606_Initial.Designer.cs",
+              "line_start": 7,
+              "line_end": 7,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Webhooks.API/Migrations/20230925222606_Initial.Designer.cs",
+              "line_start": 3,
+              "line_end": 3,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/WebhookClient/Services/WebhookData.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/WebhookClient/GlobalUsings.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/WebAppComponents/Services/ICatalogService.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/WebAppComponents/Services/ICatalogService.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/WebApp/Program.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/WebApp/Program.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/WebApp/GlobalUsings.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/OrderingContextModelSnapshot.cs",
+              "line_start": 5,
+              "line_end": 5,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/OrderingContextModelSnapshot.cs",
+              "line_start": 6,
+              "line_end": 6,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/OrderingContextModelSnapshot.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/OrderingContextModelSnapshot.cs",
+              "line_start": 3,
+              "line_end": 3,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20240106121712_UseEnumForOrderStatus.Designer.cs",
+              "line_start": 6,
+              "line_end": 6,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20240106121712_UseEnumForOrderStatus.Designer.cs",
+              "line_start": 7,
+              "line_end": 7,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20240106121712_UseEnumForOrderStatus.Designer.cs",
+              "line_start": 3,
+              "line_end": 3,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20240106121712_UseEnumForOrderStatus.Designer.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20231026091055_Outbox.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20231026091055_Outbox.Designer.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20231026091055_Outbox.Designer.cs",
+              "line_start": 6,
+              "line_end": 6,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20231026091055_Outbox.Designer.cs",
+              "line_start": 3,
+              "line_end": 3,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20231026091055_Outbox.Designer.cs",
+              "line_start": 8,
+              "line_end": 8,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20231021004633_FixOrderitemseqSchema.Designer.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20231021004633_FixOrderitemseqSchema.Designer.cs",
+              "line_start": 6,
+              "line_end": 6,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20231021004633_FixOrderitemseqSchema.Designer.cs",
+              "line_start": 3,
+              "line_end": 3,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20231021004633_FixOrderitemseqSchema.Designer.cs",
+              "line_start": 8,
+              "line_end": 8,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20230925222426_Initial.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20230925222426_Initial.Designer.cs",
+              "line_start": 3,
+              "line_end": 3,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20230925222426_Initial.Designer.cs",
+              "line_start": 8,
+              "line_end": 8,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20230925222426_Initial.Designer.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20230925222426_Initial.Designer.cs",
+              "line_start": 6,
+              "line_end": 6,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Domain/GlobalUsings.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.API/GlobalUsings.cs",
+              "line_start": 26,
+              "line_end": 26,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.API/Extensions/Extensions.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/IntegrationEventLogEF/GlobalUsings.cs",
+              "line_start": 6,
+              "line_end": 6,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/IntegrationEventLogEF/GlobalUsings.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Identity.API/GlobalUsings.cs",
+              "line_start": 30,
+              "line_end": 30,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Identity.API/GlobalUsings.cs",
+              "line_start": 42,
+              "line_end": 42,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Identity.API/Data/Migrations/ApplicationDbContextModelSnapshot.cs",
+              "line_start": 4,
+              "line_end": 4,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Identity.API/Data/Migrations/ApplicationDbContextModelSnapshot.cs",
+              "line_start": 7,
+              "line_end": 7,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Identity.API/Data/Migrations/ApplicationDbContextModelSnapshot.cs",
+              "line_start": 3,
+              "line_end": 3,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Identity.API/Data/Migrations/ApplicationDbContextModelSnapshot.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Identity.API/Data/Migrations/ApplicationDbContextModelSnapshot.cs",
+              "line_start": 6,
+              "line_end": 6,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Identity.API/Data/Migrations/ApplicationDbContextModelSnapshot.cs",
+              "line_start": 5,
+              "line_end": 5,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Identity.API/Data/Migrations/20230925223402_InitialMigration.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Identity.API/Data/Migrations/20230925223402_InitialMigration.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Identity.API/Data/Migrations/20230925223402_InitialMigration.Designer.cs",
+              "line_start": 7,
+              "line_end": 7,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Identity.API/Data/Migrations/20230925223402_InitialMigration.Designer.cs",
+              "line_start": 5,
+              "line_end": 5,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Identity.API/Data/Migrations/20230925223402_InitialMigration.Designer.cs",
+              "line_start": 6,
+              "line_end": 6,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Identity.API/Data/Migrations/20230925223402_InitialMigration.Designer.cs",
+              "line_start": 4,
+              "line_end": 4,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Identity.API/Data/Migrations/20230925223402_InitialMigration.Designer.cs",
+              "line_start": 8,
+              "line_end": 8,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Identity.API/Data/Migrations/20230925223402_InitialMigration.Designer.cs",
+              "line_start": 3,
+              "line_end": 3,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Identity.API/Data/Migrations/20230925223402_InitialMigration.Designer.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/HybridApp/Platforms/iOS/Program.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/HybridApp/Platforms/iOS/Program.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/HybridApp/Platforms/iOS/AppDelegate.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/HybridApp/Platforms/Windows/App.xaml.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/HybridApp/Platforms/Tizen/Main.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/HybridApp/Platforms/Tizen/Main.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/HybridApp/Platforms/Tizen/Main.cs",
+              "line_start": 3,
+              "line_end": 3,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/HybridApp/Platforms/MacCatalyst/Program.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/HybridApp/Platforms/MacCatalyst/Program.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/HybridApp/Platforms/MacCatalyst/AppDelegate.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/HybridApp/Platforms/Android/MainApplication.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/HybridApp/Platforms/Android/MainApplication.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/HybridApp/Platforms/Android/MainActivity.cs",
+              "line_start": 3,
+              "line_end": 3,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/HybridApp/Platforms/Android/MainActivity.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/HybridApp/Platforms/Android/MainActivity.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/HybridApp/MauiProgram.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/EventBus/Extensions/EventBusBuilderExtensions.cs",
+              "line_start": 4,
+              "line_end": 4,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Views/MauiAuthenticationBrowser.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Views/MauiAuthenticationBrowser.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Views/MapView.xaml.cs",
+              "line_start": 3,
+              "line_end": 3,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Views/MapView.xaml.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Views/MapView.xaml.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Views/CatalogView.xaml.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Views/BadgeView.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/ViewModels/CheckoutViewModel.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/ViewModels/CatalogViewModel.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/ViewModels/CatalogItemViewModel.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Services/Location/LocationService.cs",
+              "line_start": 3,
+              "line_end": 3,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Services/Location/LocationService.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Services/Identity/IdentityService.cs",
+              "line_start": 4,
+              "line_end": 4,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Services/Basket/Protos/Basket.cs",
+              "line_start": 11,
+              "line_end": 11,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Services/Basket/BasketService.cs",
+              "line_start": 7,
+              "line_end": 7,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Services/Basket/BasketService.cs",
+              "line_start": 8,
+              "line_end": 8,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Services/Basket/BasketService.cs",
+              "line_start": 6,
+              "line_end": 6,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Platforms/iOS/Program.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Platforms/iOS/AppDelegate.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Platforms/MacCatalyst/Program.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Platforms/MacCatalyst/AppDelegate.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Platforms/Android/WebAuthenticationCallbackActivity.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Platforms/Android/WebAuthenticationCallbackActivity.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Platforms/Android/MainApplication.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Platforms/Android/MainApplication.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Platforms/Android/MainActivity.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Platforms/Android/MainActivity.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Messages/ProductCountChangedMessage.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/MauiProgram.cs",
+              "line_start": 16,
+              "line_end": 16,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/MauiProgram.cs",
+              "line_start": 15,
+              "line_end": 15,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/MauiProgram.cs",
+              "line_start": 17,
+              "line_end": 17,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/MauiProgram.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/GlobalUsings.cs",
+              "line_start": 3,
+              "line_end": 3,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/GlobalUsings.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Converters/WebNavigatingEventArgsConverter.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Converters/WebNavigatedEventArgsConverter.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Converters/ItemsToHeightConverter.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Converters/HasCountConverter.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Converters/FirstValidationErrorConverter.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Converters/DoubleConverter.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/ClientApp/Converters/DoesNotHaveCountConverter.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Model/PaginatedItems.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/CatalogContextModelSnapshot.cs",
+              "line_start": 7,
+              "line_end": 7,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/CatalogContextModelSnapshot.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/CatalogContextModelSnapshot.cs",
+              "line_start": 6,
+              "line_end": 6,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/CatalogContextModelSnapshot.cs",
+              "line_start": 5,
+              "line_end": 5,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/CatalogContextModelSnapshot.cs",
+              "line_start": 3,
+              "line_end": 3,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231026091140_Outbox.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231026091140_Outbox.Designer.cs",
+              "line_start": 8,
+              "line_end": 8,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231026091140_Outbox.Designer.cs",
+              "line_start": 7,
+              "line_end": 7,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231026091140_Outbox.Designer.cs",
+              "line_start": 6,
+              "line_end": 6,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231026091140_Outbox.Designer.cs",
+              "line_start": 3,
+              "line_end": 3,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231026091140_Outbox.Designer.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231018163051_RemoveHiLoAndIndexCatalogName.Designer.cs",
+              "line_start": 7,
+              "line_end": 7,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231018163051_RemoveHiLoAndIndexCatalogName.Designer.cs",
+              "line_start": 6,
+              "line_end": 6,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231018163051_RemoveHiLoAndIndexCatalogName.Designer.cs",
+              "line_start": 5,
+              "line_end": 5,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231018163051_RemoveHiLoAndIndexCatalogName.Designer.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231009153249_Initial.Designer.cs",
+              "line_start": 7,
+              "line_end": 7,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231009153249_Initial.Designer.cs",
+              "line_start": 6,
+              "line_end": 6,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231009153249_Initial.Designer.cs",
+              "line_start": 5,
+              "line_end": 5,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231009153249_Initial.Designer.cs",
+              "line_start": 2,
+              "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/GlobalUsings.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Apis/CatalogApi.cs",
+              "line_start": 5,
+              "line_end": 5,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Basket.API/Grpc/BasketService.cs",
+              "line_start": 3,
+              "line_end": 3,
+              "metric_value": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "check_name": "function_size",
+      "description": "Checks that functions/methods do not exceed line count thresholds",
+      "languages": [
+        "javascript"
+      ],
+      "check_type": "standard",
+      "total_entities_checked": 89,
+      "findings_count": 2,
+      "warning_count": 2,
+      "score": 0.9775280898876404,
+      "finding_groups": [
+        {
+          "severity": "warning",
+          "threshold": 150,
+          "description": "Functions exceeding 150.0 lines",
+          "entities": [
+            {
+              "entity_name": "src.WebApp.wwwroot.js.catalog-sort.<function>",
+              "file_path": "src/WebApp/wwwroot/js/catalog-sort.js",
+              "line_start": 7,
+              "line_end": 266,
+              "metric_value": 259
+            },
+            {
+              "entity_name": "src.WebApp.wwwroot.js.chat-dock.<function>",
+              "file_path": "src/WebApp/wwwroot/js/chat-dock.js",
+              "line_start": 5,
+              "line_end": 233,
+              "metric_value": 228
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "check_name": "circular_dependencies",
+      "description": "Detects circular dependencies between packages",
+      "languages": [
+        "javascript"
+      ],
+      "check_type": "circular_dependencies",
+      "cycles": [],
+      "packages_checked": 9,
+      "packages_in_cycles": 0
+    },
+    {
+      "check_name": "unused_code_diagnostics",
+      "description": "Detects unused imports, variables, functions, and dead code via LSP diagnostics",
+      "languages": [
+        "javascript"
+      ],
+      "check_type": "standard",
+      "total_entities_checked": 1,
+      "findings_count": 1,
+      "warning_count": 0,
+      "score": 0.95,
+      "finding_groups": [
+        {
+          "severity": "info",
+          "threshold": 0,
+          "description": "Variables declared but never used",
+          "entities": [
+            {
+              "entity_name": "[unused_variable] 'rest' is declared but its value is never read.",
+              "file_path": "src/WebApp/wwwroot/js/chat-eyes.js",
+              "line_start": 90,
+              "line_end": 90,
+              "metric_value": 0.0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "file_summaries": [
+    {
+      "file_path": "src/Identity.API/Data/Migrations/20230925223402_InitialMigration.Designer.cs",
+      "total_findings": 8,
+      "warning_findings": 8,
+      "composite_risk_score": 90.0
+    },
+    {
+      "file_path": "src/Identity.API/Data/Migrations/ApplicationDbContextModelSnapshot.cs",
+      "total_findings": 7,
+      "warning_findings": 7,
+      "composite_risk_score": 85.0
+    },
+    {
+      "file_path": "src/Catalog.API/Infrastructure/Migrations/20231026091140_Outbox.Designer.cs",
+      "total_findings": 6,
+      "warning_findings": 6,
+      "composite_risk_score": 80.0
+    },
+    {
+      "file_path": "src/Catalog.API/Infrastructure/Migrations/CatalogContextModelSnapshot.cs",
+      "total_findings": 6,
+      "warning_findings": 6,
+      "composite_risk_score": 80.0
+    },
+    {
+      "file_path": "src/Ordering.Infrastructure/Migrations/20231026091055_Outbox.Designer.cs",
+      "total_findings": 5,
+      "warning_findings": 5,
+      "composite_risk_score": 75.0
+    },
+    {
+      "file_path": "src/Ordering.Infrastructure/Migrations/20240106121712_UseEnumForOrderStatus.Designer.cs",
+      "total_findings": 5,
+      "warning_findings": 5,
+      "composite_risk_score": 75.0
+    },
+    {
+      "file_path": "src/Ordering.Infrastructure/Migrations/OrderingContextModelSnapshot.cs",
+      "total_findings": 5,
+      "warning_findings": 5,
+      "composite_risk_score": 75.0
+    },
+    {
+      "file_path": "src/Ordering.Infrastructure/Migrations/20230925222426_Initial.Designer.cs",
+      "total_findings": 5,
+      "warning_findings": 5,
+      "composite_risk_score": 75.0
+    },
+    {
+      "file_path": "src/Ordering.Infrastructure/Migrations/20231021004633_FixOrderitemseqSchema.Designer.cs",
+      "total_findings": 5,
+      "warning_findings": 5,
+      "composite_risk_score": 75.0
+    },
+    {
+      "file_path": "src/Webhooks.API/Migrations/WebhooksContextModelSnapshot.cs",
+      "total_findings": 5,
+      "warning_findings": 5,
+      "composite_risk_score": 75.0
+    },
+    {
+      "file_path": "src/Webhooks.API/Migrations/20230925222606_Initial.Designer.cs",
+      "total_findings": 5,
+      "warning_findings": 5,
+      "composite_risk_score": 75.0
+    },
+    {
+      "file_path": "src/ClientApp/MauiProgram.cs",
+      "total_findings": 4,
+      "warning_findings": 4,
+      "composite_risk_score": 60.0
+    },
+    {
+      "file_path": "src/Catalog.API/Infrastructure/Migrations/20231018163051_RemoveHiLoAndIndexCatalogName.Designer.cs",
+      "total_findings": 4,
+      "warning_findings": 4,
+      "composite_risk_score": 60.0
+    },
+    {
+      "file_path": "src/Catalog.API/Infrastructure/Migrations/20231009153249_Initial.Designer.cs",
+      "total_findings": 4,
+      "warning_findings": 4,
+      "composite_risk_score": 60.0
+    },
+    {
+      "file_path": "src/Identity.API/Data/Migrations/20230925223402_InitialMigration.cs",
+      "total_findings": 3,
+      "warning_findings": 3,
+      "composite_risk_score": 45.0
+    },
+    {
+      "file_path": "src/HybridApp/Platforms/Tizen/Main.cs",
+      "total_findings": 3,
+      "warning_findings": 3,
+      "composite_risk_score": 45.0
+    },
+    {
+      "file_path": "src/HybridApp/Platforms/Android/MainActivity.cs",
+      "total_findings": 3,
+      "warning_findings": 3,
+      "composite_risk_score": 45.0
+    },
+    {
+      "file_path": "src/ClientApp/Views/MapView.xaml.cs",
+      "total_findings": 3,
+      "warning_findings": 3,
+      "composite_risk_score": 45.0
+    },
+    {
+      "file_path": "src/ClientApp/Services/Basket/BasketService.cs",
+      "total_findings": 3,
+      "warning_findings": 3,
+      "composite_risk_score": 45.0
+    },
+    {
+      "file_path": "src/Ordering.Infrastructure/Migrations/20230925222426_Initial.cs",
+      "total_findings": 2,
+      "warning_findings": 2,
+      "composite_risk_score": 30.0
+    }
+  ]
+}
