@@ -15,6 +15,9 @@ public static class Extensions
 
         builder.Services.AddSingleton<IBasketRepository, RedisBasketRepository>();
 
+        builder.Services.AddHttpClient("catalog", client =>
+            client.BaseAddress = new Uri("https+http://catalog-api"));
+
         builder.AddRabbitMqEventBus("eventbus")
                .AddSubscription<OrderStartedIntegrationEvent, OrderStartedIntegrationEventHandler>()
                .ConfigureJsonOptions(options => options.TypeInfoResolverChain.Add(IntegrationEventContext.Default));
