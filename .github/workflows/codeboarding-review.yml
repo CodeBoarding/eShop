@@ -28,9 +28,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
-      # Exercise https://github.com/CodeBoarding/CodeBoarding-action/pull/120.
-      - uses: CodeBoarding/CodeBoarding-action@refs/pull/120/head
+      # Keep the action ref, provider, and depth aligned with codeboarding-sync.yml
+      # so reviews reuse the graph published by sync instead of rebuilding it.
+      - uses: CodeBoarding/CodeBoarding-action@v1
         with:
           mode: review
           llm: hosted
-          depth_cap: 3
+          depth_cap: 2

@@ -38,9 +38,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
+      # Keep the action ref, provider, and depth aligned with codeboarding-review.yml.
       - uses: CodeBoarding/CodeBoarding-action@v1
         with:
           mode: sync
+          depth_cap: 2
           force_full: ${{ inputs.force_full || false }}
           target_branch: 'main'
           # CodeBoarding's free hosted tier. No secret to add: the run authenticates
