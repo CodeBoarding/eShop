@@ -7,7 +7,8 @@ namespace eShop.Basket.API.Grpc;
 
 public class BasketService(
     IBasketRepository repository,
-    ILogger<BasketService> logger) : Basket.BasketBase
+    ILogger<BasketService> logger,
+    IHttpClientFactory httpClientFactory) : Basket.BasketBase
 {
     [AllowAnonymous]
     public override async Task<CustomerBasketResponse> GetBasket(GetBasketRequest request, ServerCallContext context)
@@ -44,6 +45,38 @@ public class BasketService(
         if (logger.IsEnabled(LogLevel.Debug))
         {
             logger.LogDebug("Begin UpdateBasket call from method {Method} for basket id {Id}", context.Method, userId);
+        }
+
+        if (request.Items.Any(item => item.ProductId <= 0))
+        {
+            throw new RpcException(new Status(StatusCode.InvalidArgument, "Product IDs must be positive."));
+        }
+
+        if (request.Items.Count > 0)
+        {
+            using var catalog = httpClientFactory.CreateClient("catalog");
+            try
+            {
+                foreach (var productId in request.Items.Select(item => item.ProductId).Distinct())
+                {
+                    using var product = await catalog.GetAsync(
+                        $"/api/catalog/items/{productId}?api-version=2.0", context.CancellationToken);
+                    if (product.StatusCode == System.Net.HttpStatusCode.NotFound)
+                    {
+                        throw new RpcException(new Status(StatusCode.InvalidArgument, $"Product {productId} does not exist."));
+                    }
+
+                    product.EnsureSuccessStatusCode();
+                }
+            }
+            catch (HttpRequestException)
+            {
+                throw new RpcException(new Status(StatusCode.Unavailable, "Catalog validation is unavailable. Please retry."));
+            }
+            catch (OperationCanceledException) when (!context.CancellationToken.IsCancellationRequested)
+            {
+                throw new RpcException(new Status(StatusCode.Unavailable, "Catalog validation timed out. Please retry."));
+            }
         }
 
         var customerBasket = MapToCustomerBasket(userId, request);
