@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using eShop.Basket.API.Model;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -37,6 +38,11 @@ public static class CatalogApi
             .WithName("GetItem")
             .WithSummary("Get catalog item")
             .WithDescription("Get an item from the catalog")
+            .WithTags("Items");
+        api.MapGet("/items/{id:int}/basket-preview", GetBasketPreview)
+            .WithName("PreviewBasketItem")
+            .WithSummary("Preview a basket line")
+            .WithDescription("Calculate a line estimate using Basket-owned C# validation and pricing code in-process. Does not write a basket or reserve stock.")
             .WithTags("Items");
         v1.MapGet("/items/by/{name:minlength(1)}", GetItemsByName)
             .WithName("GetItemsByName")
@@ -233,6 +239,39 @@ public static class CatalogApi
         }
 
         return TypedResults.Ok(item);
+    }
+
+    public static async Task<Results<Ok<BasketPreview>, NotFound, BadRequest<ProblemDetails>>> GetBasketPreview(
+        [AsParameters] CatalogServices services,
+        int id,
+        int quantity = 1)
+    {
+        if (id <= 0)
+        {
+            return TypedResults.BadRequest(new ProblemDetails { Detail = "Id is not valid" });
+        }
+
+        var item = await services.Context.CatalogItems.AsNoTracking().SingleOrDefaultAsync(item => item.Id == id);
+        if (item is null)
+        {
+            return TypedResults.NotFound();
+        }
+
+        try
+        {
+            // Direct C# call into the Basket assembly, not an HTTP request or an integration event.
+            return TypedResults.Ok(BasketPreview.Create(new BasketItem
+            {
+                ProductId = item.Id,
+                ProductName = item.Name,
+                UnitPrice = item.Price,
+                Quantity = quantity
+            }));
+        }
+        catch (ValidationException exception)
+        {
+            return TypedResults.BadRequest(new ProblemDetails { Detail = exception.Message });
+        }
     }
 
     [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest, "application/problem+json")]
