@@ -2,6 +2,7 @@
 using eShop.Basket.API.Repositories;
 using eShop.Basket.API.IntegrationEvents.EventHandling;
 using eShop.Basket.API.IntegrationEvents.EventHandling.Events;
+using eShop.Basket.API.Services;
 
 namespace eShop.Basket.API.Extensions;
 
@@ -14,6 +15,8 @@ public static class Extensions
         builder.AddRedisClient("redis");
 
         builder.Services.AddSingleton<IBasketRepository, RedisBasketRepository>();
+        builder.Services.AddHttpClient<CatalogClient>(client =>
+            client.BaseAddress = new("https+http://catalog-api"));
 
         builder.AddRabbitMqEventBus("eventbus")
                .AddSubscription<OrderStartedIntegrationEvent, OrderStartedIntegrationEventHandler>()
