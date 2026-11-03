@@ -1,0 +1,48 @@
+name: Keep the demo review
+
+# A review lives only as an Actions artifact, which the CodeBoarding action keeps for 14 days.
+# This copies a pull request's newest review into a new artifact kept 90 days (the most a public
+# repository allows), with its base graph inside, so the website's live example keeps opening.
+# Run it by hand every ~80 days. It re-uploads the same bytes: no analysis, the map never changes.
+on:
+  workflow_dispatch:
+    inputs:
+      pr: { description: 'Pull request', default: '8' }
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  copy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Copy the newest review of the pull request, with its base inside
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR: ${{ inputs.pr }}
+        run: |
+          set -euo pipefail
+          found=
+          for id in $(gh api "repos/$REPO/actions/artifacts?per_page=100" --jq '.artifacts[] | select(.expired | not) | select(.name | startswith("codeboarding-review-")) | .id'); do
+            rm -rf review && mkdir review
+            gh api "repos/$REPO/actions/artifacts/$id/zip" > r.zip && unzip -oq r.zip -d review
+            if [ "$(jq -r '.pr_number | tostring' review/metadata.json)" = "$PR" ]; then found=$id; break; fi
+          done
+          [ -n "$found" ] || { echo "::error::No live review of #$PR to copy"; exit 1; }
+          echo "Copying artifact $found"
+          if [ ! -f review/base_analysis.json ]; then
+            name=$(jq -r .base_artifact review/metadata.json)
+            base=$(gh api "repos/$REPO/actions/artifacts?name=$name" --jq '[.artifacts[] | select(.expired | not)][0].id')
+            [ -n "$base" ] && [ "$base" != null ] || { echo "::error::Base artifact $name is gone"; exit 1; }
+            gh api "repos/$REPO/actions/artifacts/$base/zip" > b.zip && mkdir base && unzip -oq b.zip -d base
+            cp base/analysis.json review/base_analysis.json
+          fi
+          ls -la review
+      - uses: actions/upload-artifact@v4
+        with:
+          name: codeboarding-review-${{ github.run_id }}-${{ github.run_attempt }}
+          path: review/
+          if-no-files-found: error
+          retention-days: 90
