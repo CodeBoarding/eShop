@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using eShop.Catalog.API.Model;
 
 using Aspire.Hosting;
 using Aspire.Hosting.ApplicationModel;
@@ -7,7 +8,8 @@ using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace eShop.Catalog.FunctionalTests;
 
-public sealed class CatalogApiFixture : WebApplicationFactory<Program>, IAsyncLifetime
+// Select the Catalog assembly explicitly: the referenced Basket executable also has a Program type.
+public sealed class CatalogApiFixture : WebApplicationFactory<CatalogItem>, IAsyncLifetime
 {
     private readonly IHost _app;
 

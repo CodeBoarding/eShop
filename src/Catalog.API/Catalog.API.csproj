@@ -37,6 +37,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- Deliberate demo coupling: Catalog calls Basket's preview code in-process. -->
+    <ProjectReference Include="..\Basket.API\Basket.API.csproj" />
     <ProjectReference Include="..\EventBusRabbitMQ\EventBusRabbitMQ.csproj" />
     <ProjectReference Include="..\IntegrationEventLogEF\IntegrationEventLogEF.csproj" />
     <ProjectReference Include="..\eShop.ServiceDefaults\eShop.ServiceDefaults.csproj" />
@@ -49,5 +51,12 @@
   <ItemGroup>
     <InternalsVisibleTo Include="Catalog.FunctionalTests" />
   </ItemGroup>
+
+  <!-- Reuse Basket's assembly, not the configuration of its independently hosted service. -->
+  <Target Name="ExcludeBasketHostSettingsFromPublish" BeforeTargets="_HandleFileConflictsForPublish">
+    <ItemGroup>
+      <ResolvedFileToPublish Remove="$([MSBuild]::NormalizeDirectory('$(MSBuildProjectDirectory)', '..', 'Basket.API'))appsettings*.json" />
+    </ItemGroup>
+  </Target>
 
 </Project>
