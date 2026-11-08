@@ -48,9 +48,9 @@ jobs:
       - uses: CodeBoarding/CodeBoarding-action@v1
         with:
           codeboarding_analysis_location: in_place
-          # CodeBoarding's free hosted tier. No secret to add: the run authenticates
-          # with the GitHub OIDC token that `id-token: write` above grants.
-          llm: hosted
+          # Billed to the CodeBoarding license in the CODEBOARDING_LICENSE secret.
+          llm: license
+          license_key: ${{ secrets.CODEBOARDING_LICENSE }}
 
   sync:
     if: github.event_name == 'push'
@@ -65,6 +65,6 @@ jobs:
         with:
           mode: sync
           codeboarding_analysis_location: in_place
-          # CodeBoarding's free hosted tier. No secret to add: the run authenticates
-          # with the GitHub OIDC token that `id-token: write` above grants.
-          llm: hosted
+          # Billed to the CodeBoarding license in the CODEBOARDING_LICENSE secret.
+          llm: license
+          license_key: ${{ secrets.CODEBOARDING_LICENSE }}
