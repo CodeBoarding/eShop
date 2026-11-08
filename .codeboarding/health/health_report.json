@@ -1,6 +1,6 @@
 {
   "repository_name": ".codeboarding-target",
-  "timestamp": "2026-11-08T21:54:10.072253+00:00",
+  "timestamp": "2026-11-08T22:56:16.598052+00:00",
   "overall_score": 0.8729889589905363,
   "check_summaries": [
     {
@@ -117,20 +117,20 @@
       "check_type": "circular_dependencies",
       "cycles": [
         "src.WebAppComponents.Services -> src.WebApp.Services -> src.WebAppComponents.Services",
-        "src.OrderProcessor.Extensions -> src.OrderProcessor -> src.OrderProcessor.Extensions",
+        "src.OrderProcessor -> src.OrderProcessor.Extensions -> src.OrderProcessor",
         "src.Identity.API.Quickstart -> src.Identity.API.Quickstart.Account -> src.Identity.API.Quickstart",
         "src.ClientApp.ViewModels.Base -> src.ClientApp.ViewModels -> src.ClientApp.ViewModels.Base",
-        "src.ClientApp.Animations.Base -> src.ClientApp.Animations -> src.ClientApp.Animations.Base",
-        "src.ClientApp.Animations.Base -> src.ClientApp.Animations -> src.ClientApp.Helpers -> src.ClientApp.Animations.Base",
-        "src.Catalog.API.Extensions -> src.Catalog.API -> src.Catalog.API.Extensions",
-        "src.Ordering.API.Application.IntegrationEvents -> src.EventBus.Abstractions -> src.Ordering.API.Application.IntegrationEvents.EventHandling -> src.Ordering.API.Application.Commands -> src.Ordering.API.Application.IntegrationEvents",
-        "src.Ordering.API.Application.IntegrationEvents -> src.EventBusRabbitMQ -> src.EventBus.Abstractions -> src.Ordering.API.Application.IntegrationEvents.EventHandling -> src.Ordering.API.Application.Commands -> src.Ordering.API.Application.IntegrationEvents",
-        "src.PaymentProcessor.IntegrationEvents.EventHandling -> src.EventBus.Abstractions -> src.PaymentProcessor.IntegrationEvents.EventHandling",
-        "src.PaymentProcessor.IntegrationEvents.EventHandling -> src.EventBusRabbitMQ -> src.EventBus.Abstractions -> src.PaymentProcessor.IntegrationEvents.EventHandling",
+        "src.ClientApp.Helpers -> src.ClientApp.Animations.Base -> src.ClientApp.Animations -> src.ClientApp.Helpers",
+        "src.ClientApp.Animations -> src.ClientApp.Animations.Base -> src.ClientApp.Animations",
+        "src.Catalog.API -> src.Catalog.API.Extensions -> src.Catalog.API",
         "src.Catalog.API.IntegrationEvents -> src.EventBus.Abstractions -> src.Catalog.API.IntegrationEvents.EventHandling -> src.Catalog.API.IntegrationEvents",
         "src.Catalog.API.IntegrationEvents -> src.EventBusRabbitMQ -> src.EventBus.Abstractions -> src.Catalog.API.IntegrationEvents.EventHandling -> src.Catalog.API.IntegrationEvents",
         "src.Ordering.API.Extensions -> src.EventBusRabbitMQ -> src.EventBus.Abstractions -> src.Ordering.API.Application.IntegrationEvents.EventHandling -> src.Ordering.API.Application.Commands -> src.Ordering.API.Extensions",
         "src.Ordering.API.Extensions -> src.Ordering.API.Application.Commands -> src.Ordering.API.Extensions",
+        "src.Ordering.API.Application.Commands -> src.Ordering.API.Application.IntegrationEvents -> src.EventBus.Abstractions -> src.Ordering.API.Application.IntegrationEvents.EventHandling -> src.Ordering.API.Application.Commands",
+        "src.Ordering.API.Application.Commands -> src.Ordering.API.Application.IntegrationEvents -> src.EventBusRabbitMQ -> src.EventBus.Abstractions -> src.Ordering.API.Application.IntegrationEvents.EventHandling -> src.Ordering.API.Application.Commands",
+        "src.EventBusRabbitMQ -> src.EventBus.Abstractions -> src.PaymentProcessor.IntegrationEvents.EventHandling -> src.EventBusRabbitMQ",
+        "src.PaymentProcessor.IntegrationEvents.EventHandling -> src.EventBus.Abstractions -> src.PaymentProcessor.IntegrationEvents.EventHandling",
         "src.Ordering.Domain.SeedWork -> src.Ordering.Domain.AggregatesModel.OrderAggregate -> src.Ordering.Domain.SeedWork"
       ],
       "packages_checked": 164,
