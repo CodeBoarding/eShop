@@ -60,6 +60,8 @@ jobs:
       contents: write       # commit the generated analysis to main
       actions: read         # continue from an analysis an earlier run published
       id-token: write       # identifies this repo to CodeBoarding's hosted tier
+      issues: read          # read the issues that report problems
+      pull-requests: read   # read which pull requests fix them
     steps:
       - uses: CodeBoarding/CodeBoarding-action@v1
         with:
@@ -68,3 +70,4 @@ jobs:
           # Billed to the CodeBoarding license in the CODEBOARDING_LICENSE secret.
           llm: license
           license_key: ${{ secrets.CODEBOARDING_LICENSE }}
+          problem_history: 'true'
