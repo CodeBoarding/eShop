@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated_at": "2026-10-11T09:35:21.410776+00:00",
+    "generated_at": "2026-11-08T21:56:01.812025+00:00",
     "source_tree_hash": "7652348516a3e8adc8f408726a7696401f1b56b30281d65fbe2c4c38f13d0c42",
     "repo_name": ".codeboarding-target",
     "depth_level": 2,
@@ -398,7 +398,7 @@
           "axis": "structural",
           "rung": "layers",
           "leaf_reason": "",
-          "last_id": 8,
+          "last_id": 7,
           "rules": [
             {
               "id": "1.1",
@@ -414,7 +414,15 @@
                   "src",
                   "ClientApp",
                   "Helpers"
+                ],
+                [
+                  "src",
+                  "ClientApp",
+                  "Animations"
                 ]
+              ],
+              "terms": [
+                "animation"
               ],
               "parts": [
                 {
@@ -438,6 +446,18 @@
                       "src",
                       "ClientApp",
                       "Helpers"
+                    ]
+                  ]
+                },
+                {
+                  "id": "",
+                  "name": "Animations",
+                  "origin": "box",
+                  "prefixes": [
+                    [
+                      "src",
+                      "ClientApp",
+                      "Animations"
                     ]
                   ]
                 }
@@ -613,21 +633,6 @@
                   "ClientApp",
                   "Converters"
                 ]
-              ]
-            },
-            {
-              "id": "1.8",
-              "name": "Animations",
-              "origin": "box",
-              "prefixes": [
-                [
-                  "src",
-                  "ClientApp",
-                  "Animations"
-                ]
-              ],
-              "terms": [
-                "animation"
               ]
             }
           ]
@@ -1004,7 +1009,7 @@
           "axis": "structural",
           "rung": "unmerge",
           "leaf_reason": "",
-          "last_id": 2,
+          "last_id": 4,
           "rules": [
             {
               "id": "1.1.1",
@@ -1020,6 +1025,18 @@
             },
             {
               "id": "1.1.2",
+              "name": "Animations",
+              "origin": "box",
+              "prefixes": [
+                [
+                  "src",
+                  "ClientApp",
+                  "Animations"
+                ]
+              ]
+            },
+            {
+              "id": "1.1.3",
               "name": "Helpers",
               "origin": "box",
               "prefixes": [
@@ -1027,6 +1044,17 @@
                   "src",
                   "ClientApp",
                   "Helpers"
+                ]
+              ]
+            },
+            {
+              "id": "1.1.4",
+              "name": "Loose files in src.ClientApp",
+              "origin": "loose",
+              "fallback_prefixes": [
+                [
+                  "src",
+                  "ClientApp"
                 ]
               ]
             }
@@ -1518,13 +1546,6 @@
           "axis": "",
           "rung": "leaf",
           "leaf_reason": "small: 7 units, at most 7; nothing to un-merge",
-          "last_id": 0,
-          "rules": []
-        },
-        "1.8": {
-          "axis": "",
-          "rung": "leaf",
-          "leaf_reason": "small: 5 units, at most 7; nothing to un-merge",
           "last_id": 0,
           "rules": []
         },
@@ -2450,7 +2471,7 @@
       }
     }
   },
-  "description": "Microservices architecture for the eShop application orchestrated via .NET Aspire, featuring catalog, basket, ordering, payment, identity, and webhook services interconnected via RabbitMQ integration events, gRPC, and REST APIs, alongside MAUI mobile and Blazor web clients.",
+  "description": "The eShop application architecture provides an enterprise microservices e-commerce platform. Customer interactions flow through MAUI and Web frontends into backend services covering catalog items, shopping baskets, order lifecycle orchestration, and external webhooks. Asynchronous coordination between domain aggregates, payments, and notifications is driven by an outbox-supported RabbitMQ event bus, while Aspire and shared service defaults supply cross-cutting hosting and telemetry.",
   "files": {
     "src/ClientApp/Animations/Base/AnimationBase.cs": {
       "method_keys": [
@@ -20409,8 +20430,8 @@
   },
   "components": [
     {
-      "name": "Client App",
-      "description": "Cross-platform .NET MAUI mobile client application providing UI views, view models, and service adapters for catalog, basket, and order workflows.",
+      "name": "Mobile Client Application",
+      "description": "Cross-platform mobile and desktop application providing customer shopping, catalog browsing, cart, and checkout user experiences.",
       "key_entities": [
         {
           "qualified_name": "src.ClientApp.MauiProgram",
@@ -20419,22 +20440,28 @@
           "reference_end_line": 186
         },
         {
-          "qualified_name": "src.ClientApp.ViewModels.CatalogViewModel.CatalogViewModel",
-          "reference_file": "src/ClientApp/ViewModels/CatalogViewModel.cs",
-          "reference_start_line": 11,
-          "reference_end_line": 198
+          "qualified_name": "src.ClientApp.Services.Basket.BasketService",
+          "reference_file": "src/ClientApp/Services/Basket/BasketService.cs",
+          "reference_start_line": 13,
+          "reference_end_line": 152
         },
         {
-          "qualified_name": "src.ClientApp.ViewModels.BasketViewModel",
-          "reference_file": "src/ClientApp/ViewModels/BasketViewModel.cs",
+          "qualified_name": "src.ClientApp.Services.Catalog.CatalogService",
+          "reference_file": "src/ClientApp/Services/Catalog/CatalogService.cs",
           "reference_start_line": 9,
-          "reference_end_line": 114
+          "reference_end_line": 85
         },
         {
-          "qualified_name": "src.ClientApp.Services.AppEnvironment.AppEnvironmentService",
-          "reference_file": "src/ClientApp/Services/AppEnvironment/AppEnvironmentService.cs",
-          "reference_start_line": 8,
-          "reference_end_line": 67
+          "qualified_name": "src.ClientApp.Services.Order.OrderService",
+          "reference_file": "src/ClientApp/Services/Order/OrderService.cs",
+          "reference_start_line": 11,
+          "reference_end_line": 129
+        },
+        {
+          "qualified_name": "src.ClientApp.ViewModels.MainViewModel",
+          "reference_file": "src/ClientApp/ViewModels/MainViewModel.cs",
+          "reference_start_line": 6,
+          "reference_end_line": 19
         }
       ],
       "source_cluster_ids": [
@@ -21842,32 +21869,38 @@
       "can_expand": true,
       "components": [
         {
-          "name": "Client Services",
-          "description": "Provides backend API communication, authentication, navigation, and application state services alongside utility helpers.",
+          "name": "Client Services and Infrastructure",
+          "description": "Provides remote HTTP and gRPC service clients, mock services, navigation, and UI animation helpers.",
           "key_entities": [
             {
-              "qualified_name": "src.ClientApp.Services.Basket.BasketService",
-              "reference_file": "src/ClientApp/Services/Basket/BasketService.cs",
-              "reference_start_line": 13,
-              "reference_end_line": 152
+              "qualified_name": "src.ClientApp.Services.AppEnvironment.IAppEnvironmentService",
+              "reference_file": "src/ClientApp/Services/AppEnvironment/IAppEnvironmentService.cs",
+              "reference_start_line": 8,
+              "reference_end_line": 20
             },
             {
-              "qualified_name": "src.ClientApp.Services.Catalog.CatalogService",
-              "reference_file": "src/ClientApp/Services/Catalog/CatalogService.cs",
-              "reference_start_line": 9,
-              "reference_end_line": 85
+              "qualified_name": "src.ClientApp.Services.Basket.IBasketService",
+              "reference_file": "src/ClientApp/Services/Basket/IBasketService.cs",
+              "reference_start_line": 5,
+              "reference_end_line": 12
             },
             {
-              "qualified_name": "src.ClientApp.Services.Identity.IdentityService",
-              "reference_file": "src/ClientApp/Services/Identity/IdentityService.cs",
-              "reference_start_line": 9,
-              "reference_end_line": 154
+              "qualified_name": "src.ClientApp.Services.Catalog.ICatalogService",
+              "reference_file": "src/ClientApp/Services/Catalog/ICatalogService.cs",
+              "reference_start_line": 5,
+              "reference_end_line": 14
             },
             {
-              "qualified_name": "src.ClientApp.Services.Navigation.MauiNavigationService",
-              "reference_file": "src/ClientApp/Services/Navigation/MauiNavigationService.cs",
-              "reference_start_line": 6,
-              "reference_end_line": 36
+              "qualified_name": "src.ClientApp.Services.Identity.IIdentityService",
+              "reference_file": "src/ClientApp/Services/Identity/IIdentityService.cs",
+              "reference_start_line": 5,
+              "reference_end_line": 15
+            },
+            {
+              "qualified_name": "src.ClientApp.Services.Navigation.INavigationService",
+              "reference_file": "src/ClientApp/Services/Navigation/INavigationService.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 11
             },
             {
               "qualified_name": "src.ClientApp.Services.RequestProvider.RequestProvider",
@@ -21877,6 +21910,10 @@
             }
           ],
           "source_cluster_ids": [
+            "1.0",
+            "1.1",
+            "1.2",
+            "1.3",
             "1.23",
             "1.24",
             "1.61",
@@ -21914,9 +21951,55 @@
             "1.93",
             "1.94",
             "1.95",
-            "1.96"
+            "1.96",
+            "1.97"
           ],
           "file_methods": [
+            {
+              "file_path": "src/ClientApp/Animations/Base/AnimationBase.cs",
+              "methods": [
+                "src.ClientApp.Animations.Base.AnimationBase",
+                "src.ClientApp.Animations.Base.AnimationBase.BeginAnimation()",
+                "src.ClientApp.Animations.Base.AnimationBase.Begin()",
+                "src.ClientApp.Animations.Base.AnimationBase.ResetAnimation()",
+                "src.ClientApp.Animations.Base.AnimationBase.Reset()",
+                "src.ClientApp.Animations.Base.AnimationBase.InternalBegin()"
+              ]
+            },
+            {
+              "file_path": "src/ClientApp/Animations/Base/EasingType.cs",
+              "methods": [
+                "src.ClientApp.Animations.Base.EasingType"
+              ]
+            },
+            {
+              "file_path": "src/ClientApp/Animations/FadeToAnimation.cs",
+              "methods": [
+                "src.ClientApp.Animations.FadeToAnimation.FadeToAnimation",
+                "src.ClientApp.Animations.FadeToAnimation.FadeToAnimation.BeginAnimation()",
+                "src.ClientApp.Animations.FadeToAnimation.FadeToAnimation.ResetAnimation()",
+                "src.ClientApp.Animations.FadeToAnimation.FadeInAnimation",
+                "src.ClientApp.Animations.FadeToAnimation.FadeInAnimation.FadeDirection",
+                "src.ClientApp.Animations.FadeToAnimation.FadeInAnimation.BeginAnimation()",
+                "src.ClientApp.Animations.FadeToAnimation.FadeInAnimation.ResetAnimation()",
+                "src.ClientApp.Animations.FadeToAnimation.FadeInAnimation.FadeIn()",
+                "src.ClientApp.Animations.FadeToAnimation.FadeOutAnimation",
+                "src.ClientApp.Animations.FadeToAnimation.FadeOutAnimation.FadeDirection",
+                "src.ClientApp.Animations.FadeToAnimation.FadeOutAnimation.BeginAnimation()",
+                "src.ClientApp.Animations.FadeToAnimation.FadeOutAnimation.ResetAnimation()",
+                "src.ClientApp.Animations.FadeToAnimation.FadeOutAnimation.FadeOut()"
+              ]
+            },
+            {
+              "file_path": "src/ClientApp/Animations/StoryBoard.cs",
+              "methods": [
+                "src.ClientApp.Animations.StoryBoard",
+                "src.ClientApp.Animations.StoryBoard.StoryBoard()",
+                "src.ClientApp.Animations.StoryBoard.StoryBoard(List<AnimationBase> animations)",
+                "src.ClientApp.Animations.StoryBoard.BeginAnimation()",
+                "src.ClientApp.Animations.StoryBoard.ResetAnimation()"
+              ]
+            },
             {
               "file_path": "src/ClientApp/Helpers/EasingHelper.cs",
               "methods": [
@@ -22373,6 +22456,13 @@
                 "src.ClientApp.Services.Theme.Theme.shared.Theme",
                 "src.ClientApp.Services.Theme.Theme.shared.Theme.SetStatusBarColor(Color color, bool darkStatusBarTint)"
               ]
+            },
+            {
+              "file_path": "src/ClientApp/Triggers/BeginAnimation.cs",
+              "methods": [
+                "src.ClientApp.Triggers.BeginAnimation",
+                "src.ClientApp.Triggers.BeginAnimation.Invoke(VisualElement sender)"
+              ]
             }
           ],
           "component_id": "1.1",
@@ -22381,8 +22471,8 @@
           "components_relations": []
         },
         {
-          "name": "Domain Models",
-          "description": "Defines domain entities, transfer objects, and request/response payloads for catalog items, baskets, orders, and user profiles.",
+          "name": "Application Data Models",
+          "description": "Defines core domain entities and data transfer contracts for catalog items, baskets, orders, and user profiles.",
           "key_entities": [
             {
               "qualified_name": "src.ClientApp.Models.Basket.BasketItem",
@@ -22407,6 +22497,12 @@
               "reference_file": "src/ClientApp/Models/Orders/Order.cs",
               "reference_start_line": 5,
               "reference_end_line": 52
+            },
+            {
+              "qualified_name": "src.ClientApp.Models.User.UserInfo",
+              "reference_file": "src/ClientApp/Models/User/UserInfo.cs",
+              "reference_start_line": 5,
+              "reference_end_line": 44
             }
           ],
           "source_cluster_ids": [
@@ -22615,9 +22711,15 @@
           "components_relations": []
         },
         {
-          "name": "Presentation ViewModels",
-          "description": "Contains presentation logic, input validation rules, and collection wrappers supporting user interaction and data binding.",
+          "name": "Presentation View Models",
+          "description": "Encapsulates presentation logic, observable properties, commands, and validation rules for application views.",
           "key_entities": [
+            {
+              "qualified_name": "src.ClientApp.ViewModels.Base.IViewModelBase",
+              "reference_file": "src/ClientApp/ViewModels/Base/IViewModelBase.cs",
+              "reference_start_line": 5,
+              "reference_end_line": 17
+            },
             {
               "qualified_name": "src.ClientApp.ViewModels.Base.ViewModelBase",
               "reference_file": "src/ClientApp/ViewModels/Base/ViewModelBase.cs",
@@ -22901,14 +23003,20 @@
           "components_relations": []
         },
         {
-          "name": "UI Views",
-          "description": "Renders application pages, reusable UI components, navigation shells, and item templates using .NET MAUI XAML.",
+          "name": "User Interface Views",
+          "description": "Renders user interface pages, custom navigation elements, and data item templates.",
           "key_entities": [
             {
               "qualified_name": "src.ClientApp.Views.ContentPageBase",
               "reference_file": "src/ClientApp/Views/ContentPageBase.cs",
               "reference_start_line": 5,
               "reference_end_line": 24
+            },
+            {
+              "qualified_name": "src.ClientApp.Views.LoginView.xaml.LoginView",
+              "reference_file": "src/ClientApp/Views/LoginView.xaml.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 23
             },
             {
               "qualified_name": "src.ClientApp.Views.BasketView.xaml.BasketView",
@@ -22921,12 +23029,6 @@
               "reference_file": "src/ClientApp/Views/CatalogView.xaml.cs",
               "reference_start_line": 6,
               "reference_end_line": 58
-            },
-            {
-              "qualified_name": "src.ClientApp.Views.LoginView.xaml.LoginView",
-              "reference_file": "src/ClientApp/Views/LoginView.xaml.cs",
-              "reference_start_line": 3,
-              "reference_end_line": 23
             }
           ],
           "source_cluster_ids": [
@@ -23103,9 +23205,15 @@
           "components_relations": []
         },
         {
-          "name": "Application Core",
-          "description": "Coordinates cross-cutting application lifecycle, dependency injection startup, custom controls, effects, and messaging.",
+          "name": "Application Shell and Controls",
+          "description": "Configures application lifecycle, shell routing, custom visual controls, and global application messages.",
           "key_entities": [
+            {
+              "qualified_name": "src.ClientApp.MauiProgram",
+              "reference_file": "src/ClientApp/MauiProgram.cs",
+              "reference_start_line": 22,
+              "reference_end_line": 186
+            },
             {
               "qualified_name": "src.ClientApp.App.xaml.App",
               "reference_file": "src/ClientApp/App.xaml.cs",
@@ -23119,16 +23227,16 @@
               "reference_end_line": 39
             },
             {
-              "qualified_name": "src.ClientApp.MauiProgram",
-              "reference_file": "src/ClientApp/MauiProgram.cs",
-              "reference_start_line": 22,
-              "reference_end_line": 186
-            },
-            {
               "qualified_name": "src.ClientApp.Messages.ProductCountChangedMessage",
               "reference_file": "src/ClientApp/Messages/ProductCountChangedMessage.cs",
               "reference_start_line": 5,
               "reference_end_line": 6
+            },
+            {
+              "qualified_name": "src.ClientApp.Exceptions.ServiceAuthenticationException",
+              "reference_file": "src/ClientApp/Exceptions/ServiceAuthenticationException.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 16
             }
           ],
           "source_cluster_ids": [
@@ -23254,8 +23362,8 @@
           "components_relations": []
         },
         {
-          "name": "Platform Entry Points",
-          "description": "Provides platform-specific application entry points, activities, and delegates across Android, iOS, MacCatalyst, and Windows.",
+          "name": "Platform Native Bootstrappers",
+          "description": "Supplies native host entry points and app delegators for Android, iOS, MacCatalyst, and Windows.",
           "key_entities": [
             {
               "qualified_name": "src.ClientApp.Platforms.Android.MainApplication",
@@ -23358,15 +23466,9 @@
           "components_relations": []
         },
         {
-          "name": "Value Converters",
-          "description": "Transforms data types and validation states into formats suitable for XAML UI data binding.",
+          "name": "Data Binding Value Converters",
+          "description": "Contains XAML value converters for data binding transformations, collections, and validation display.",
           "key_entities": [
-            {
-              "qualified_name": "src.ClientApp.Converters.FirstValidationErrorConverter",
-              "reference_file": "src/ClientApp/Converters/FirstValidationErrorConverter.cs",
-              "reference_start_line": 6,
-              "reference_end_line": 15
-            },
             {
               "qualified_name": "src.ClientApp.Converters.HasCountConverter",
               "reference_file": "src/ClientApp/Converters/HasCountConverter.cs",
@@ -23374,8 +23476,14 @@
               "reference_end_line": 15
             },
             {
-              "qualified_name": "src.ClientApp.Converters.WebNavigatedEventArgsConverter",
-              "reference_file": "src/ClientApp/Converters/WebNavigatedEventArgsConverter.cs",
+              "qualified_name": "src.ClientApp.Converters.DoesNotHaveCountConverter",
+              "reference_file": "src/ClientApp/Converters/DoesNotHaveCountConverter.cs",
+              "reference_start_line": 6,
+              "reference_end_line": 15
+            },
+            {
+              "qualified_name": "src.ClientApp.Converters.FirstValidationErrorConverter",
+              "reference_file": "src/ClientApp/Converters/FirstValidationErrorConverter.cs",
               "reference_start_line": 6,
               "reference_end_line": 15
             }
@@ -23446,122 +23554,25 @@
           "can_expand": false,
           "components": [],
           "components_relations": []
-        },
-        {
-          "name": "Animations and Triggers",
-          "description": "Implements custom XAML animations, easing behaviors, and visual storyboard triggers for UI elements.",
-          "key_entities": [
-            {
-              "qualified_name": "src.ClientApp.Animations.FadeToAnimation.FadeToAnimation",
-              "reference_file": "src/ClientApp/Animations/FadeToAnimation.cs",
-              "reference_start_line": 6,
-              "reference_end_line": 39
-            },
-            {
-              "qualified_name": "src.ClientApp.Animations.StoryBoard",
-              "reference_file": "src/ClientApp/Animations/StoryBoard.cs",
-              "reference_start_line": 6,
-              "reference_end_line": 46
-            },
-            {
-              "qualified_name": "src.ClientApp.Triggers.BeginAnimation",
-              "reference_file": "src/ClientApp/Triggers/BeginAnimation.cs",
-              "reference_start_line": 5,
-              "reference_end_line": 17
-            }
-          ],
-          "source_cluster_ids": [
-            "1.0",
-            "1.1",
-            "1.2",
-            "1.3",
-            "1.97"
-          ],
-          "file_methods": [
-            {
-              "file_path": "src/ClientApp/Animations/Base/AnimationBase.cs",
-              "methods": [
-                "src.ClientApp.Animations.Base.AnimationBase",
-                "src.ClientApp.Animations.Base.AnimationBase.BeginAnimation()",
-                "src.ClientApp.Animations.Base.AnimationBase.Begin()",
-                "src.ClientApp.Animations.Base.AnimationBase.ResetAnimation()",
-                "src.ClientApp.Animations.Base.AnimationBase.Reset()",
-                "src.ClientApp.Animations.Base.AnimationBase.InternalBegin()"
-              ]
-            },
-            {
-              "file_path": "src/ClientApp/Animations/Base/EasingType.cs",
-              "methods": [
-                "src.ClientApp.Animations.Base.EasingType"
-              ]
-            },
-            {
-              "file_path": "src/ClientApp/Animations/FadeToAnimation.cs",
-              "methods": [
-                "src.ClientApp.Animations.FadeToAnimation.FadeToAnimation",
-                "src.ClientApp.Animations.FadeToAnimation.FadeToAnimation.BeginAnimation()",
-                "src.ClientApp.Animations.FadeToAnimation.FadeToAnimation.ResetAnimation()",
-                "src.ClientApp.Animations.FadeToAnimation.FadeInAnimation",
-                "src.ClientApp.Animations.FadeToAnimation.FadeInAnimation.FadeDirection",
-                "src.ClientApp.Animations.FadeToAnimation.FadeInAnimation.BeginAnimation()",
-                "src.ClientApp.Animations.FadeToAnimation.FadeInAnimation.ResetAnimation()",
-                "src.ClientApp.Animations.FadeToAnimation.FadeInAnimation.FadeIn()",
-                "src.ClientApp.Animations.FadeToAnimation.FadeOutAnimation",
-                "src.ClientApp.Animations.FadeToAnimation.FadeOutAnimation.FadeDirection",
-                "src.ClientApp.Animations.FadeToAnimation.FadeOutAnimation.BeginAnimation()",
-                "src.ClientApp.Animations.FadeToAnimation.FadeOutAnimation.ResetAnimation()",
-                "src.ClientApp.Animations.FadeToAnimation.FadeOutAnimation.FadeOut()"
-              ]
-            },
-            {
-              "file_path": "src/ClientApp/Animations/StoryBoard.cs",
-              "methods": [
-                "src.ClientApp.Animations.StoryBoard",
-                "src.ClientApp.Animations.StoryBoard.StoryBoard()",
-                "src.ClientApp.Animations.StoryBoard.StoryBoard(List<AnimationBase> animations)",
-                "src.ClientApp.Animations.StoryBoard.BeginAnimation()",
-                "src.ClientApp.Animations.StoryBoard.ResetAnimation()"
-              ]
-            },
-            {
-              "file_path": "src/ClientApp/Triggers/BeginAnimation.cs",
-              "methods": [
-                "src.ClientApp.Triggers.BeginAnimation",
-                "src.ClientApp.Triggers.BeginAnimation.Invoke(VisualElement sender)"
-              ]
-            }
-          ],
-          "component_id": "1.8",
-          "can_expand": false,
-          "components": [],
-          "components_relations": []
         }
       ],
       "components_relations": [
         {
-          "relation": "populates and serializes",
-          "src_name": "Client Services",
-          "dst_name": "Domain Models",
+          "relation": "populates and references models",
+          "src_name": "Client Services and Infrastructure",
+          "dst_name": "Application Data Models",
           "evidence": "",
           "key_edges": [
             {
-              "source": "src/ClientApp/Services/Basket/BasketMockService.cs|src.ClientApp.Services.Basket.BasketMockService.BasketMockService()",
+              "source": "src/ClientApp/Services/Basket/BasketMockService.cs|src.ClientApp.Services.Basket.BasketMockService.ClearBasketAsync()",
               "target": "src/ClientApp/Models/Basket/CustomerBasket.cs|src.ClientApp.Models.Basket.CustomerBasket",
               "call_sites": [
                 {
-                  "line": 11,
-                  "column": 33
-                },
-                {
-                  "line": 12,
-                  "column": 27
-                },
-                {
-                  "line": 22,
+                  "line": 55,
                   "column": 27
                 }
               ],
-              "description": "Services serialize, deserialize, and manipulate customer basket and catalog data models."
+              "description": "Basket service operations populate and manipulate customer basket models"
             }
           ],
           "src_id": "1.1",
@@ -23974,9 +23985,9 @@
           ]
         },
         {
-          "relation": "raises exceptions in",
-          "src_name": "Client Services",
-          "dst_name": "Application Core",
+          "relation": "signals authentication failure",
+          "src_name": "Client Services and Infrastructure",
+          "dst_name": "Application Shell and Controls",
           "evidence": "",
           "key_edges": [
             {
@@ -23988,7 +23999,7 @@
                   "column": 27
                 }
               ],
-              "description": "Request provider throws authentication exceptions on unauthorized responses."
+              "description": "HTTP request handler raises authentication error exceptions"
             }
           ],
           "src_id": "1.1",
@@ -24020,9 +24031,9 @@
           ]
         },
         {
-          "relation": "delegates business operations to",
-          "src_name": "Presentation ViewModels",
-          "dst_name": "Client Services",
+          "relation": "invokes client services",
+          "src_name": "Presentation View Models",
+          "dst_name": "Client Services and Infrastructure",
           "evidence": "",
           "key_edges": [
             {
@@ -24038,7 +24049,7 @@
                   "column": 56
                 }
               ],
-              "description": "ViewModels delegate backend data retrieval and business actions to service interfaces."
+              "description": "View models interact with basket service contracts to retrieve and modify cart state"
             }
           ],
           "src_id": "1.3",
@@ -25716,21 +25727,21 @@
           ]
         },
         {
-          "relation": "manipulates domain models from",
-          "src_name": "Presentation ViewModels",
-          "dst_name": "Domain Models",
+          "relation": "binds and modifies models",
+          "src_name": "Presentation View Models",
+          "dst_name": "Application Data Models",
           "evidence": "",
           "key_edges": [
             {
               "source": "src/ClientApp/ViewModels/BasketViewModel.cs|src.ClientApp.ViewModels.BasketViewModel.AddBasketItemAsync(BasketItem item, IList<BasketItem> basketItems)",
-              "target": "src/ClientApp/Models/Basket/CustomerBasket.cs|src.ClientApp.Models.Basket.CustomerBasket",
+              "target": "src/ClientApp/Models/Basket/CustomerBasket.cs|src.ClientApp.Models.Basket.CustomerBasket.AddItemToBasket(BasketItem basketItem)",
               "call_sites": [
                 {
                   "line": 67,
                   "column": 20
                 }
               ],
-              "description": "ViewModels bind to and modify domain model properties during user interactions."
+              "description": "Basket view model updates basket model items and aggregates"
             }
           ],
           "src_id": "1.3",
@@ -25902,9 +25913,9 @@
           ]
         },
         {
-          "relation": "publishes messages to",
-          "src_name": "Presentation ViewModels",
-          "dst_name": "Application Core",
+          "relation": "broadcasts state change messages",
+          "src_name": "Presentation View Models",
+          "dst_name": "Application Shell and Controls",
           "evidence": "",
           "key_edges": [
             {
@@ -25916,7 +25927,7 @@
                   "column": 27
                 }
               ],
-              "description": "ViewModels publish messenger notifications across the application infrastructure."
+              "description": "Catalog and checkout view models post count notifications across the app"
             }
           ],
           "src_id": "1.3",
@@ -25948,27 +25959,38 @@
           ]
         },
         {
-          "relation": "binds to and triggers",
-          "src_name": "UI Views",
-          "dst_name": "Presentation ViewModels",
+          "relation": "binds lifecycle to view models",
+          "src_name": "User Interface Views",
+          "dst_name": "Presentation View Models",
           "evidence": "",
           "key_edges": [
             {
-              "source": "src/ClientApp/Views/LoginView.xaml.cs|src.ClientApp.Views.LoginView.xaml.LoginView.OnAppearing()",
-              "target": "src/ClientApp/ViewModels/LoginViewModel.cs|src.ClientApp.ViewModels.LoginViewModel.InvalidateMock()",
+              "source": "src/ClientApp/Views/ContentPageBase.cs|src.ClientApp.Views.ContentPageBase.OnAppearing()",
+              "target": "src/ClientApp/ViewModels/Base/IViewModelBase.cs|src.ClientApp.ViewModels.Base.IViewModelBase",
               "call_sites": [
                 {
-                  "line": 20,
-                  "column": 20
+                  "line": 16,
+                  "column": 35
                 }
               ],
-              "description": "Views bind presentation logic and trigger commands on their associated view models."
+              "description": "Base and page-specific views trigger lifecycle hooks and commands on view models"
             }
           ],
           "src_id": "1.4",
           "dst_id": "1.3",
           "is_static": true,
           "all_edges": [
+            {
+              "source": "src/ClientApp/Views/ContentPageBase.cs|src.ClientApp.Views.ContentPageBase.OnAppearing()",
+              "target": "src/ClientApp/ViewModels/Base/IViewModelBase.cs|src.ClientApp.ViewModels.Base.IViewModelBase",
+              "call_sites": [
+                {
+                  "line": 16,
+                  "column": 35
+                }
+              ],
+              "description": ""
+            },
             {
               "source": "src/ClientApp/Views/LoginView.xaml.cs|src.ClientApp.Views.LoginView.xaml.LoginView.OnAppearing()",
               "target": "src/ClientApp/ViewModels/LoginViewModel.cs|src.ClientApp.ViewModels.LoginViewModel",
@@ -25994,21 +26016,21 @@
           ]
         },
         {
-          "relation": "bootstraps and configures",
-          "src_name": "Application Core",
-          "dst_name": "Client Services",
+          "relation": "initializes and routes services",
+          "src_name": "Application Shell and Controls",
+          "dst_name": "Client Services and Infrastructure",
           "evidence": "",
           "key_edges": [
             {
-              "source": "src/ClientApp/App.xaml.cs|src.ClientApp.App.xaml.App.InitApp()",
-              "target": "src/ClientApp/Services/AppEnvironment/IAppEnvironmentService.cs|src.ClientApp.Services.AppEnvironment.IAppEnvironmentService",
+              "source": "src/ClientApp/App.xaml.cs|src.ClientApp.App.xaml.App.HandleAppActions(AppAction appAction)",
+              "target": "src/ClientApp/Services/Navigation/INavigationService.cs|src.ClientApp.Services.Navigation.INavigationService.NavigateToAsync(string route, IDictionary<string, object> routeParameters = null)",
               "call_sites": [
                 {
-                  "line": 53,
-                  "column": 36
+                  "line": 163,
+                  "column": 50
                 }
               ],
-              "description": "App startup configures service dependency injection and initializes navigation."
+              "description": "App startup initiates service dependency registration and handles navigation actions"
             }
           ],
           "src_id": "1.5",
@@ -26386,9 +26408,9 @@
           ]
         },
         {
-          "relation": "initializes application host via",
-          "src_name": "Platform Entry Points",
-          "dst_name": "Application Core",
+          "relation": "bootstraps MAUI application",
+          "src_name": "Platform Native Bootstrappers",
+          "dst_name": "Application Shell and Controls",
           "evidence": "",
           "key_edges": [
             {
@@ -26400,7 +26422,7 @@
                   "column": 63
                 }
               ],
-              "description": "Platform application classes call the shared MAUI program builder entry point."
+              "description": "Platform entry points instantiate the configured MAUI application host"
             }
           ],
           "src_id": "1.6",
@@ -26496,58 +26518,12 @@
               "description": ""
             }
           ]
-        },
-        {
-          "relation": "resolves easing curves from",
-          "src_name": "Animations and Triggers",
-          "dst_name": "Client Services",
-          "evidence": "",
-          "key_edges": [
-            {
-              "source": "src/ClientApp/Animations/FadeToAnimation.cs|src.ClientApp.Animations.FadeToAnimation.FadeToAnimation.BeginAnimation()",
-              "target": "src/ClientApp/Helpers/EasingHelper.cs|src.ClientApp.Helpers.EasingHelper.GetEasing(EasingType type)",
-              "call_sites": [
-                {
-                  "line": 26,
-                  "column": 80
-                }
-              ],
-              "description": "Fade animation resolves easing curves through easing helpers."
-            }
-          ],
-          "src_id": "1.8",
-          "dst_id": "1.1",
-          "is_static": true,
-          "all_edges": [
-            {
-              "source": "src/ClientApp/Animations/FadeToAnimation.cs|src.ClientApp.Animations.FadeToAnimation.FadeToAnimation.BeginAnimation()",
-              "target": "src/ClientApp/Helpers/EasingHelper.cs|src.ClientApp.Helpers.EasingHelper",
-              "call_sites": [
-                {
-                  "line": 26,
-                  "column": 80
-                }
-              ],
-              "description": ""
-            },
-            {
-              "source": "src/ClientApp/Animations/FadeToAnimation.cs|src.ClientApp.Animations.FadeToAnimation.FadeToAnimation.BeginAnimation()",
-              "target": "src/ClientApp/Helpers/EasingHelper.cs|src.ClientApp.Helpers.EasingHelper.GetEasing(EasingType type)",
-              "call_sites": [
-                {
-                  "line": 26,
-                  "column": 80
-                }
-              ],
-              "description": ""
-            }
-          ]
         }
       ]
     },
     {
-      "name": "Ordering Service",
-      "description": "Ordering domain service and background order processor handling order creation, status transitions, buyer management, and grace period execution.",
+      "name": "Order Management Service",
+      "description": "Manages order lifecycles, order drafting, validation grace periods, domain aggregate state, and background order processing.",
       "key_entities": [
         {
           "qualified_name": "src.Ordering.API.Apis.OrdersApi.OrdersApi",
@@ -26556,16 +26532,16 @@
           "reference_end_line": 170
         },
         {
+          "qualified_name": "src.Ordering.Infrastructure.OrderingContext",
+          "reference_file": "src/Ordering.Infrastructure/OrderingContext.cs",
+          "reference_start_line": 10,
+          "reference_end_line": 114
+        },
+        {
           "qualified_name": "src.Ordering.Domain.AggregatesModel.OrderAggregate.Order",
           "reference_file": "src/Ordering.Domain/AggregatesModel/OrderAggregate/Order.cs",
           "reference_start_line": 5,
           "reference_end_line": 187
-        },
-        {
-          "qualified_name": "src.Ordering.Domain.AggregatesModel.BuyerAggregate.Buyer",
-          "reference_file": "src/Ordering.Domain/AggregatesModel/BuyerAggregate/Buyer.cs",
-          "reference_start_line": 5,
-          "reference_end_line": 52
         },
         {
           "qualified_name": "src.OrderProcessor.Services.GracePeriodManagerService",
@@ -27635,9 +27611,34 @@
       "can_expand": true,
       "components": [
         {
-          "name": "Ordering.API",
-          "description": "Owns 199 symbols across 66 files: src/Ordering.API/Apis/OrderServices.cs, src/Ordering.API/Apis/OrdersApi.cs, src/Ordering.API/Application/Behaviors/LoggingBehavior.cs, src/Ordering.API/Application/Behaviors/TransactionBehavior.cs, src/Ordering.API/Application/Behaviors/ValidatorBehavior.cs, src/Ordering.API/Application/Commands/CancelOrderCommand.cs, src/Ordering.API/Application/Commands/CancelOrderCommandHandler.cs, src/Ordering.API/Application/Commands/CreateOrderCommand.cs, ....",
-          "key_entities": [],
+          "name": "Ordering Web API",
+          "description": "Exposes order endpoints, commands, queries, pipeline behaviors, and integration event handlers.",
+          "key_entities": [
+            {
+              "qualified_name": "src.Ordering.API.Apis.OrdersApi.OrdersApi",
+              "reference_file": "src/Ordering.API/Apis/OrdersApi.cs",
+              "reference_start_line": 5,
+              "reference_end_line": 170
+            },
+            {
+              "qualified_name": "src.Ordering.API.Application.Commands.CreateOrderCommandHandler.CreateOrderCommandHandler",
+              "reference_file": "src/Ordering.API/Application/Commands/CreateOrderCommandHandler.cs",
+              "reference_start_line": 6,
+              "reference_end_line": 54
+            },
+            {
+              "qualified_name": "src.Ordering.API.Application.Queries.OrderQueries",
+              "reference_file": "src/Ordering.API/Application/Queries/OrderQueries.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 54
+            },
+            {
+              "qualified_name": "src.Ordering.API.Application.IntegrationEvents.OrderingIntegrationEventService",
+              "reference_file": "src/Ordering.API/Application/IntegrationEvents/OrderingIntegrationEventService.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 43
+            }
+          ],
           "source_cluster_ids": [
             "2.6",
             "2.7",
@@ -28244,9 +28245,34 @@
           "components_relations": []
         },
         {
-          "name": "Ordering.Domain",
-          "description": "Owns 79 symbols across 22 files: src/Ordering.Domain/AggregatesModel/BuyerAggregate/Buyer.cs, src/Ordering.Domain/AggregatesModel/BuyerAggregate/CardType.cs, src/Ordering.Domain/AggregatesModel/BuyerAggregate/IBuyerRepository.cs, src/Ordering.Domain/AggregatesModel/BuyerAggregate/PaymentMethod.cs, src/Ordering.Domain/AggregatesModel/OrderAggregate/Address.cs, src/Ordering.Domain/AggregatesModel/OrderAggregate/IOrderRepository.cs, src/Ordering.Domain/AggregatesModel/OrderAggregate/Order.cs, src/Ordering.Domain/AggregatesModel/OrderAggregate/OrderItem.cs, ....",
-          "key_entities": [],
+          "name": "Ordering Domain Model",
+          "description": "Defines core domain entities, aggregates, domain events, repository interfaces, and domain exceptions.",
+          "key_entities": [
+            {
+              "qualified_name": "src.Ordering.Domain.AggregatesModel.OrderAggregate.Order",
+              "reference_file": "src/Ordering.Domain/AggregatesModel/OrderAggregate/Order.cs",
+              "reference_start_line": 5,
+              "reference_end_line": 187
+            },
+            {
+              "qualified_name": "src.Ordering.Domain.AggregatesModel.BuyerAggregate.Buyer",
+              "reference_file": "src/Ordering.Domain/AggregatesModel/BuyerAggregate/Buyer.cs",
+              "reference_start_line": 5,
+              "reference_end_line": 52
+            },
+            {
+              "qualified_name": "src.Ordering.Domain.AggregatesModel.OrderAggregate.IOrderRepository",
+              "reference_file": "src/Ordering.Domain/AggregatesModel/OrderAggregate/IOrderRepository.cs",
+              "reference_start_line": 6,
+              "reference_end_line": 14
+            },
+            {
+              "qualified_name": "src.Ordering.Domain.AggregatesModel.BuyerAggregate.IBuyerRepository",
+              "reference_file": "src/Ordering.Domain/AggregatesModel/BuyerAggregate/IBuyerRepository.cs",
+              "reference_start_line": 6,
+              "reference_end_line": 13
+            }
+          ],
           "source_cluster_ids": [
             "2.73",
             "2.74",
@@ -28468,9 +28494,34 @@
           "components_relations": []
         },
         {
-          "name": "Ordering.Infrastructure",
-          "description": "Owns 64 symbols across 22 files: src/Ordering.Infrastructure/EntityConfigurations/BuyerEntityTypeConfiguration.cs, src/Ordering.Infrastructure/EntityConfigurations/CardTypeEntityTypeConfiguration.cs, src/Ordering.Infrastructure/EntityConfigurations/ClientRequestEntityTypeConfiguration.cs, src/Ordering.Infrastructure/EntityConfigurations/OrderEntityTypeConfiguration.cs, src/Ordering.Infrastructure/EntityConfigurations/OrderItemEntityTypeConfiguration.cs, src/Ordering.Infrastructure/EntityConfigurations/PaymentMethodEntityTypeConfiguration.cs, src/Ordering.Infrastructure/Idempotency/ClientRequest.cs, src/Ordering.Infrastructure/Idempotency/IRequestManager.cs, ....",
-          "key_entities": [],
+          "name": "Ordering Data Persistence",
+          "description": "Provides database persistence, Entity Framework configurations, migrations, request idempotency, and repository implementations.",
+          "key_entities": [
+            {
+              "qualified_name": "src.Ordering.Infrastructure.OrderingContext",
+              "reference_file": "src/Ordering.Infrastructure/OrderingContext.cs",
+              "reference_start_line": 10,
+              "reference_end_line": 114
+            },
+            {
+              "qualified_name": "src.Ordering.Infrastructure.Repositories.OrderRepository",
+              "reference_file": "src/Ordering.Infrastructure/Repositories/OrderRepository.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 39
+            },
+            {
+              "qualified_name": "src.Ordering.Infrastructure.Repositories.BuyerRepository",
+              "reference_file": "src/Ordering.Infrastructure/Repositories/BuyerRepository.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 53
+            },
+            {
+              "qualified_name": "src.Ordering.Infrastructure.Idempotency.RequestManager",
+              "reference_file": "src/Ordering.Infrastructure/Idempotency/RequestManager.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 39
+            }
+          ],
           "source_cluster_ids": [
             "2.95",
             "2.96",
@@ -28677,9 +28728,22 @@
           "components_relations": []
         },
         {
-          "name": "OrderProcessor",
-          "description": "Owns 13 symbols across 5 files: src/OrderProcessor/BackgroundTaskOptions.cs, src/OrderProcessor/Events/GracePeriodConfirmedIntegrationEvent.cs, src/OrderProcessor/Extensions/Extensions.cs, src/OrderProcessor/Services/GracePeriodManagerService.cs, src/OrderProcessor/Services/GracePeriodOrdersRepository.cs.",
-          "key_entities": [],
+          "name": "Order Processing Worker",
+          "description": "Runs background services to identify orders ready for confirmation and publish grace period integration events.",
+          "key_entities": [
+            {
+              "qualified_name": "src.OrderProcessor.Services.GracePeriodManagerService",
+              "reference_file": "src/OrderProcessor/Services/GracePeriodManagerService.cs",
+              "reference_start_line": 7,
+              "reference_end_line": 65
+            },
+            {
+              "qualified_name": "src.OrderProcessor.Services.GracePeriodOrdersRepository.GracePeriodOrdersRepository",
+              "reference_file": "src/OrderProcessor/Services/GracePeriodOrdersRepository.cs",
+              "reference_start_line": 12,
+              "reference_end_line": 48
+            }
+          ],
           "source_cluster_ids": [
             "2.0",
             "2.1",
@@ -28736,11 +28800,23 @@
       ],
       "components_relations": [
         {
-          "relation": "calls",
-          "src_name": "Ordering.API",
-          "dst_name": "Ordering.Domain",
+          "relation": "executes business operations on",
+          "src_name": "Ordering Web API",
+          "dst_name": "Ordering Domain Model",
           "evidence": "",
-          "key_edges": [],
+          "key_edges": [
+            {
+              "source": "src/Ordering.API/Application/Commands/CancelOrderCommandHandler.cs|src.Ordering.API.Application.Commands.CancelOrderCommandHandler.CancelOrderCommandHandler.Handle(CancelOrderCommand command, CancellationToken cancellationToken)",
+              "target": "src/Ordering.Domain/AggregatesModel/OrderAggregate/IOrderRepository.cs|src.Ordering.Domain.AggregatesModel.OrderAggregate.IOrderRepository.GetAsync(int orderId)",
+              "call_sites": [
+                {
+                  "line": 21,
+                  "column": 52
+                }
+              ],
+              "description": "Order cancellation handler fetches the aggregate from the repository"
+            }
+          ],
           "src_id": "2.1",
           "dst_id": "2.2",
           "is_static": true,
@@ -29729,11 +29805,23 @@
           ]
         },
         {
-          "relation": "calls",
-          "src_name": "Ordering.API",
-          "dst_name": "Ordering.Infrastructure",
+          "relation": "manages transactions with",
+          "src_name": "Ordering Web API",
+          "dst_name": "Ordering Data Persistence",
           "evidence": "",
-          "key_edges": [],
+          "key_edges": [
+            {
+              "source": "src/Ordering.API/Application/Behaviors/TransactionBehavior.cs|src.Ordering.API.Application.Behaviors.TransactionBehavior.TransactionBehavior<TRequest, TResponse>.Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)",
+              "target": "src/Ordering.Infrastructure/OrderingContext.cs|src.Ordering.Infrastructure.OrderingContext.BeginTransactionAsync()",
+              "call_sites": [
+                {
+                  "line": 38,
+                  "column": 64
+                }
+              ],
+              "description": "Command pipeline coordinates transactions through the ordering database context"
+            }
+          ],
           "src_id": "2.1",
           "dst_id": "2.3",
           "is_static": true,
@@ -30178,11 +30266,23 @@
           ]
         },
         {
-          "relation": "calls",
-          "src_name": "Ordering.Infrastructure",
-          "dst_name": "Ordering.Domain",
+          "relation": "implements and persists",
+          "src_name": "Ordering Data Persistence",
+          "dst_name": "Ordering Domain Model",
           "evidence": "",
-          "key_edges": [],
+          "key_edges": [
+            {
+              "source": "src/Ordering.Infrastructure/Repositories/BuyerRepository.cs|src.Ordering.Infrastructure.Repositories.BuyerRepository.Add(Buyer buyer)",
+              "target": "src/Ordering.Domain/SeedWork/Entity.cs|src.Ordering.Domain.SeedWork.Entity",
+              "call_sites": [
+                {
+                  "line": 16,
+                  "column": 19
+                }
+              ],
+              "description": "Repository implementations persist domain aggregates"
+            }
+          ],
           "src_id": "2.3",
           "dst_id": "2.2",
           "is_static": true,
@@ -30258,8 +30358,8 @@
       ]
     },
     {
-      "name": "Identity API",
-      "description": "OpenID Connect and OAuth2 identity provider handling user authentication, profile data, consent, and account management.",
+      "name": "User Identity Service",
+      "description": "Provides authentication, user authorization, credentials management, and OpenID Connect token endpoints.",
       "key_entities": [
         {
           "qualified_name": "src.Identity.API.Configuration.Config",
@@ -30274,16 +30374,16 @@
           "reference_end_line": 23
         },
         {
+          "qualified_name": "src.Identity.API.Services.EFLoginService",
+          "reference_file": "src/Identity.API/Services/EFLoginService.cs",
+          "reference_start_line": 3,
+          "reference_end_line": 34
+        },
+        {
           "qualified_name": "src.Identity.API.Quickstart.Account.AccountController",
           "reference_file": "src/Identity.API/Quickstart/Account/AccountController.cs",
           "reference_start_line": 8,
           "reference_end_line": 334
-        },
-        {
-          "qualified_name": "src.Identity.API.Services.ProfileService",
-          "reference_file": "src/Identity.API/Services/ProfileService.cs",
-          "reference_start_line": 3,
-          "reference_end_line": 118
         }
       ],
       "source_cluster_ids": [
@@ -30805,9 +30905,34 @@
       "can_expand": true,
       "components": [
         {
-          "name": "Quickstart",
-          "description": "Owns 77 symbols across 27 files: src/Identity.API/Quickstart/Account/AccountController.cs, src/Identity.API/Quickstart/Account/AccountOptions.cs, src/Identity.API/Quickstart/Account/ExternalController.cs, src/Identity.API/Quickstart/Account/ExternalProvider.cs, src/Identity.API/Quickstart/Account/LoggedOutViewModel.cs, src/Identity.API/Quickstart/Account/LoginInputModel.cs, src/Identity.API/Quickstart/Account/LoginViewModel.cs, src/Identity.API/Quickstart/Account/LogoutInputModel.cs, ....",
-          "key_entities": [],
+          "name": "Identity Interaction Controllers",
+          "description": "Interactive controllers, views, and workflows for user login, logout, external authentication, consent, and device authorization.",
+          "key_entities": [
+            {
+              "qualified_name": "src.Identity.API.Quickstart.Account.AccountController",
+              "reference_file": "src/Identity.API/Quickstart/Account/AccountController.cs",
+              "reference_start_line": 8,
+              "reference_end_line": 334
+            },
+            {
+              "qualified_name": "src.Identity.API.Quickstart.Account.ExternalController",
+              "reference_file": "src/Identity.API/Quickstart/Account/ExternalController.cs",
+              "reference_start_line": 5,
+              "reference_end_line": 239
+            },
+            {
+              "qualified_name": "src.Identity.API.Quickstart.Consent.ConsentController",
+              "reference_file": "src/Identity.API/Quickstart/Consent/ConsentController.cs",
+              "reference_start_line": 11,
+              "reference_end_line": 248
+            },
+            {
+              "qualified_name": "src.Identity.API.Quickstart.Device.DeviceController",
+              "reference_file": "src/Identity.API/Quickstart/Device/DeviceController.cs",
+              "reference_start_line": 8,
+              "reference_end_line": 215
+            }
+          ],
           "source_cluster_ids": [
             "3.29",
             "3.30",
@@ -31057,9 +31182,28 @@
           "components_relations": []
         },
         {
-          "name": "Models",
-          "description": "Owns 23 symbols across 23 files: src/Identity.API/Models/AccountViewModels/ForgotPasswordViewModel.cs, src/Identity.API/Models/AccountViewModels/LoggedOutViewModel.cs, src/Identity.API/Models/AccountViewModels/LoginViewModel.cs, src/Identity.API/Models/AccountViewModels/LogoutViewModel.cs, src/Identity.API/Models/AccountViewModels/RedirectViewModel.cs, src/Identity.API/Models/AccountViewModels/RegisterViewModel.cs, src/Identity.API/Models/AccountViewModels/ResetPasswordViewModel.cs, src/Identity.API/Models/AccountViewModels/SendCodeViewModel.cs, ....",
-          "key_entities": [],
+          "name": "User And Authentication Models",
+          "description": "Domain entities and view models representing application users, account states, and consent interactions.",
+          "key_entities": [
+            {
+              "qualified_name": "src.Identity.API.Models.ApplicationUser",
+              "reference_file": "src/Identity.API/Models/ApplicationUser.cs",
+              "reference_start_line": 4,
+              "reference_end_line": 31
+            },
+            {
+              "qualified_name": "src.Identity.API.Models.AccountViewModels.LoginViewModel",
+              "reference_file": "src/Identity.API/Models/AccountViewModels/LoginViewModel.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 17
+            },
+            {
+              "qualified_name": "src.Identity.API.Models.ConsentViewModels.ConsentViewModel",
+              "reference_file": "src/Identity.API/Models/ConsentViewModels/ConsentViewModel.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 13
+            }
+          ],
           "source_cluster_ids": [
             "3.5",
             "3.6",
@@ -31231,9 +31375,28 @@
           "components_relations": []
         },
         {
-          "name": "Services",
-          "description": "Owns 20 symbols across 5 files: src/Identity.API/Services/EFLoginService.cs, src/Identity.API/Services/ILoginService.cs, src/Identity.API/Services/IRedirectService.cs, src/Identity.API/Services/ProfileService.cs, src/Identity.API/Services/RedirectService.cs.",
-          "key_entities": [],
+          "name": "Authentication And Profile Services",
+          "description": "Business services managing user login, profile claim generation, and redirect URL resolution.",
+          "key_entities": [
+            {
+              "qualified_name": "src.Identity.API.Services.EFLoginService",
+              "reference_file": "src/Identity.API/Services/EFLoginService.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 34
+            },
+            {
+              "qualified_name": "src.Identity.API.Services.IRedirectService",
+              "reference_file": "src/Identity.API/Services/IRedirectService.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 7
+            },
+            {
+              "qualified_name": "src.Identity.API.Services.ProfileService",
+              "reference_file": "src/Identity.API/Services/ProfileService.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 118
+            }
+          ],
           "source_cluster_ids": [
             "3.56",
             "3.57",
@@ -31294,9 +31457,16 @@
           "components_relations": []
         },
         {
-          "name": "Data",
-          "description": "Owns 10 symbols across 4 files: src/Identity.API/Data/ApplicationDbContext.cs, src/Identity.API/Data/Migrations/20230925223402_InitialMigration.Designer.cs, src/Identity.API/Data/Migrations/20230925223402_InitialMigration.cs, src/Identity.API/Data/Migrations/ApplicationDbContextModelSnapshot.cs.",
-          "key_entities": [],
+          "name": "Identity Data Context",
+          "description": "Entity Framework database context and schema migrations for identity persistence.",
+          "key_entities": [
+            {
+              "qualified_name": "src.Identity.API.Data.ApplicationDbContext",
+              "reference_file": "src/Identity.API/Data/ApplicationDbContext.cs",
+              "reference_start_line": 8,
+              "reference_end_line": 23
+            }
+          ],
           "source_cluster_ids": [
             "3.1",
             "3.2",
@@ -31341,9 +31511,22 @@
           "components_relations": []
         },
         {
-          "name": "Loose files in src.Identity.API",
-          "description": "Owns 8 symbols across 3 files: src/Identity.API/Configuration/Config.cs, src/Identity.API/UsersSeed.cs, src/Identity.API/wwwroot/js/signout-redirect.js.",
-          "key_entities": [],
+          "name": "Host Configuration And Seeding",
+          "description": "Application bootstrap, IdentityServer client/resource definitions, and initial user database seeding.",
+          "key_entities": [
+            {
+              "qualified_name": "src.Identity.API.Configuration.Config",
+              "reference_file": "src/Identity.API/Configuration/Config.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 192
+            },
+            {
+              "qualified_name": "src.Identity.API.UsersSeed",
+              "reference_file": "src/Identity.API/UsersSeed.cs",
+              "reference_start_line": 4,
+              "reference_end_line": 99
+            }
+          ],
           "source_cluster_ids": [
             "3.0",
             "3.28",
@@ -31383,11 +31566,23 @@
       ],
       "components_relations": [
         {
-          "relation": "calls",
-          "src_name": "Quickstart",
-          "dst_name": "Models",
+          "relation": "instantiates and provisions",
+          "src_name": "Identity Interaction Controllers",
+          "dst_name": "User And Authentication Models",
           "evidence": "",
-          "key_edges": [],
+          "key_edges": [
+            {
+              "source": "src/Identity.API/Quickstart/Account/ExternalController.cs|src.Identity.API.Quickstart.Account.ExternalController.AutoProvisionUserAsync(string provider, string providerUserId, IEnumerable<Claim> claims)",
+              "target": "src/Identity.API/Models/ApplicationUser.cs|src.Identity.API.Models.ApplicationUser",
+              "call_sites": [
+                {
+                  "line": 200,
+                  "column": 24
+                }
+              ],
+              "description": "Provisions external authentication claims into application user instances"
+            }
+          ],
           "src_id": "3.1",
           "dst_id": "3.2",
           "is_static": true,
@@ -31406,11 +31601,27 @@
           ]
         },
         {
-          "relation": "calls",
-          "src_name": "Loose files in src.Identity.API",
-          "dst_name": "Models",
+          "relation": "seeds user instances",
+          "src_name": "Host Configuration And Seeding",
+          "dst_name": "User And Authentication Models",
           "evidence": "",
-          "key_edges": [],
+          "key_edges": [
+            {
+              "source": "src/Identity.API/UsersSeed.cs|src.Identity.API.UsersSeed.SeedAsync(ApplicationDbContext context)",
+              "target": "src/Identity.API/Models/ApplicationUser.cs|src.Identity.API.Models.ApplicationUser",
+              "call_sites": [
+                {
+                  "line": 12,
+                  "column": 25
+                },
+                {
+                  "line": 57,
+                  "column": 23
+                }
+              ],
+              "description": "Creates default user entities to seed database on startup"
+            }
+          ],
           "src_id": "3.5",
           "dst_id": "3.2",
           "is_static": true,
@@ -31435,9 +31646,15 @@
       ]
     },
     {
-      "name": "Web Frontends",
-      "description": "Web and hybrid front-end applications providing Blazor web pages, chatbot components, order status tracking, and UI view models.",
+      "name": "Web Storefront Application",
+      "description": "Hosts the customer-facing web and hybrid user interfaces for shopping, catalog navigation, basket management, and real-time status notifications.",
       "key_entities": [
+        {
+          "qualified_name": "src.WebApp.Services.BasketService.BasketService",
+          "reference_file": "src/WebApp/Services/BasketService.cs",
+          "reference_start_line": 7,
+          "reference_end_line": 48
+        },
         {
           "qualified_name": "src.WebApp.Services.OrderingService.OrderingService",
           "reference_file": "src/WebApp/Services/OrderingService.cs",
@@ -31445,10 +31662,10 @@
           "reference_end_line": 20
         },
         {
-          "qualified_name": "src.WebApp.Services.BasketService.BasketService",
-          "reference_file": "src/WebApp/Services/BasketService.cs",
+          "qualified_name": "src.WebAppComponents.Services.CatalogService",
+          "reference_file": "src/WebAppComponents/Services/CatalogService.cs",
           "reference_start_line": 7,
-          "reference_end_line": 48
+          "reference_end_line": 85
         },
         {
           "qualified_name": "src.WebApp.Services.OrderStatus.OrderStatusNotificationService",
@@ -32061,8 +32278,8 @@
       "can_expand": true,
       "components": [
         {
-          "name": "Blazor Web Application",
-          "description": "Hosts the server-rendered Blazor web application, managing shopping cart sessions, order status notifications, and an AI chat assistant.",
+          "name": "Web Storefront Host",
+          "description": "Hosts the server-side Blazor web application, shopping basket state, order status event handlers, and conversational chatbot UI.",
           "key_entities": [
             {
               "qualified_name": "src.WebApp.Components.Chatbot.ChatState",
@@ -32075,12 +32292,6 @@
               "reference_file": "src/WebApp/Services/BasketState.cs",
               "reference_start_line": 9,
               "reference_end_line": 157
-            },
-            {
-              "qualified_name": "src.WebApp.Services.OrderingService.OrderingService",
-              "reference_file": "src/WebApp/Services/OrderingService.cs",
-              "reference_start_line": 3,
-              "reference_end_line": 20
             },
             {
               "qualified_name": "src.WebApp.Services.OrderStatus.OrderStatusNotificationService",
@@ -32510,8 +32721,8 @@
           "components_relations": []
         },
         {
-          "name": "MAUI Hybrid Client",
-          "description": "Provides a cross-platform .NET MAUI Blazor Hybrid client targeting mobile and desktop platforms with local catalog integration.",
+          "name": "Hybrid Mobile Client",
+          "description": "Implements the .NET MAUI hybrid application targeting mobile and desktop platforms with platform-specific entry points and hybrid catalog services.",
           "key_entities": [
             {
               "qualified_name": "src.HybridApp.MauiProgram",
@@ -32662,20 +32873,14 @@
           "components_relations": []
         },
         {
-          "name": "Shared Blazor Components",
-          "description": "Defines shared Blazor catalog components, interfaces, formatting helpers, and catalog item models used across web and hybrid frontends.",
+          "name": "Shared Storefront Catalog",
+          "description": "Provides reusable storefront UI domain models and shared catalog service interfaces used across web and hybrid clients.",
           "key_entities": [
             {
               "qualified_name": "src.WebAppComponents.Catalog.CatalogItem.CatalogItem",
               "reference_file": "src/WebAppComponents/Catalog/CatalogItem.cs",
               "reference_start_line": 3,
               "reference_end_line": 13
-            },
-            {
-              "qualified_name": "src.WebAppComponents.Services.CatalogService",
-              "reference_file": "src/WebAppComponents/Services/CatalogService.cs",
-              "reference_start_line": 7,
-              "reference_end_line": 85
             },
             {
               "qualified_name": "src.WebAppComponents.Services.ICatalogService",
@@ -32688,6 +32893,12 @@
               "reference_file": "src/WebAppComponents/Services/IProductImageUrlProvider.cs",
               "reference_start_line": 5,
               "reference_end_line": 12
+            },
+            {
+              "qualified_name": "src.WebAppComponents.Services.CatalogService",
+              "reference_file": "src/WebAppComponents/Services/CatalogService.cs",
+              "reference_start_line": 7,
+              "reference_end_line": 85
             }
           ],
           "source_cluster_ids": [
@@ -32773,21 +32984,21 @@
       ],
       "components_relations": [
         {
-          "relation": "queries catalog items via",
-          "src_name": "Blazor Web Application",
-          "dst_name": "MAUI Hybrid Client",
+          "relation": "queries catalog via",
+          "src_name": "Web Storefront Host",
+          "dst_name": "Hybrid Mobile Client",
           "evidence": "",
           "key_edges": [
             {
-              "source": "src/WebApp/Components/Chatbot/ChatState.cs|src.WebApp.Components.Chatbot.ChatState.AddToCart(int itemId)",
-              "target": "src/HybridApp/Services/CatalogService.cs|src.HybridApp.Services.CatalogService.GetCatalogItem(int id)",
+              "source": "src/WebApp/Components/Chatbot/ChatState.cs|src.WebApp.Components.Chatbot.ChatState.SearchCatalog(string productDescription)",
+              "target": "src/HybridApp/Services/CatalogService.cs|src.HybridApp.Services.CatalogService.GetCatalogItemsWithSemanticRelevance(int page, int take, string text)",
               "call_sites": [
                 {
-                  "line": 141,
-                  "column": 46
+                  "line": 122,
+                  "column": 49
                 }
               ],
-              "description": "ChatState invokes catalog service methods from the hybrid application service layer"
+              "description": "Chat state invokes hybrid catalog search and item lookup operations"
             }
           ],
           "src_id": "4.1",
@@ -32830,9 +33041,9 @@
           ]
         },
         {
-          "relation": "consumes shared catalog services from",
-          "src_name": "Blazor Web Application",
-          "dst_name": "Shared Blazor Components",
+          "relation": "queries catalog items from",
+          "src_name": "Web Storefront Host",
+          "dst_name": "Shared Storefront Catalog",
           "evidence": "",
           "key_edges": [
             {
@@ -32844,7 +33055,7 @@
                   "column": 46
                 }
               ],
-              "description": "ChatState invokes shared catalog retrieval interfaces"
+              "description": "Chatbot uses shared catalog service contract to retrieve items and check catalog data"
             }
           ],
           "src_id": "4.1",
@@ -32965,8 +33176,8 @@
         },
         {
           "relation": "resolves image URLs through",
-          "src_name": "Shared Blazor Components",
-          "dst_name": "Blazor Web Application",
+          "src_name": "Shared Storefront Catalog",
+          "dst_name": "Web Storefront Host",
           "evidence": "",
           "key_edges": [
             {
@@ -32978,7 +33189,7 @@
                   "column": 12
                 }
               ],
-              "description": "Default interface method calls the web app's concrete product image provider implementation"
+              "description": "Interface default method resolves item image URL via web image URL provider"
             }
           ],
           "src_id": "4.3",
@@ -33000,8 +33211,8 @@
         },
         {
           "relation": "resolves image URLs through",
-          "src_name": "Shared Blazor Components",
-          "dst_name": "MAUI Hybrid Client",
+          "src_name": "Shared Storefront Catalog",
+          "dst_name": "Hybrid Mobile Client",
           "evidence": "",
           "key_edges": [
             {
@@ -33013,7 +33224,7 @@
                   "column": 12
                 }
               ],
-              "description": "Default interface method calls the hybrid app's concrete product image provider implementation"
+              "description": "Interface default method resolves item image URL via hybrid image URL provider"
             }
           ],
           "src_id": "4.3",
@@ -33036,8 +33247,8 @@
       ]
     },
     {
-      "name": "Catalog Service",
-      "description": "Catalog management service with AI vector search support, database persistence, and transactional outbox event logging.",
+      "name": "Product Catalog Service",
+      "description": "Manages product items, brands, and catalog categories while logging outgoing integration events for transactional consistency.",
       "key_entities": [
         {
           "qualified_name": "src.Catalog.API.Apis.CatalogApi",
@@ -33052,10 +33263,10 @@
           "reference_end_line": 29
         },
         {
-          "qualified_name": "src.Catalog.API.Services.CatalogAI",
-          "reference_file": "src/Catalog.API/Services/CatalogAI.cs",
-          "reference_start_line": 7,
-          "reference_end_line": 77
+          "qualified_name": "src.Catalog.API.IntegrationEvents.CatalogIntegrationEventService",
+          "reference_file": "src/Catalog.API/IntegrationEvents/CatalogIntegrationEventService.cs",
+          "reference_start_line": 3,
+          "reference_end_line": 61
         }
       ],
       "source_cluster_ids": [
@@ -33458,9 +33669,22 @@
       "can_expand": true,
       "components": [
         {
-          "name": "Catalog.API",
-          "description": "Owns 100 symbols across 38 files: src/Catalog.API/Apis/CatalogApi.cs, src/Catalog.API/CatalogOptions.cs, src/Catalog.API/Extensions/Extensions.cs, src/Catalog.API/Extensions/HostEnvironmentExtensions.cs, src/Catalog.API/Infrastructure/CatalogContext.cs, src/Catalog.API/Infrastructure/CatalogContextSeed.cs, src/Catalog.API/Infrastructure/EntityConfigurations/CatalogBrandEntityTypeConfiguration.cs, src/Catalog.API/Infrastructure/EntityConfigurations/CatalogItemEntityTypeConfiguration.cs, ....",
-          "key_entities": [],
+          "name": "Catalog API and Persistence",
+          "description": "Exposes catalog REST API endpoints, handles stock-related integration events, and manages catalog entity persistence and semantic search.",
+          "key_entities": [
+            {
+              "qualified_name": "src.Catalog.API.Infrastructure.CatalogContext",
+              "reference_file": "src/Catalog.API/Infrastructure/CatalogContext.cs",
+              "reference_start_line": 8,
+              "reference_end_line": 29
+            },
+            {
+              "qualified_name": "src.Catalog.API.IntegrationEvents.CatalogIntegrationEventService",
+              "reference_file": "src/Catalog.API/IntegrationEvents/CatalogIntegrationEventService.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 61
+            }
+          ],
           "source_cluster_ids": [
             "5.0",
             "5.1",
@@ -33800,9 +34024,28 @@
           "components_relations": []
         },
         {
-          "name": "IntegrationEventLogEF",
-          "description": "Owns 27 symbols across 6 files: src/IntegrationEventLogEF/EventStateEnum.cs, src/IntegrationEventLogEF/IntegrationEventLogEntry.cs, src/IntegrationEventLogEF/IntegrationLogExtensions.cs, src/IntegrationEventLogEF/Services/IIntegrationEventLogService.cs, src/IntegrationEventLogEF/Services/IntegrationEventLogService.cs, src/IntegrationEventLogEF/Utilities/ResilientTransaction.cs.",
-          "key_entities": [],
+          "name": "Integration Event Outbox Log",
+          "description": "Maintains transactional outbox event logs and manages event publication state transitions within Entity Framework database contexts.",
+          "key_entities": [
+            {
+              "qualified_name": "src.IntegrationEventLogEF.Services.IIntegrationEventLogService",
+              "reference_file": "src/IntegrationEventLogEF/Services/IIntegrationEventLogService.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 11
+            },
+            {
+              "qualified_name": "src.IntegrationEventLogEF.IntegrationEventLogEntry",
+              "reference_file": "src/IntegrationEventLogEF/IntegrationEventLogEntry.cs",
+              "reference_start_line": 5,
+              "reference_end_line": 41
+            },
+            {
+              "qualified_name": "src.IntegrationEventLogEF.IntegrationLogExtensions",
+              "reference_file": "src/IntegrationEventLogEF/IntegrationLogExtensions.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 15
+            }
+          ],
           "source_cluster_ids": [
             "5.39",
             "5.40",
@@ -33878,11 +34121,34 @@
       ],
       "components_relations": [
         {
-          "relation": "calls",
-          "src_name": "Catalog.API",
-          "dst_name": "IntegrationEventLogEF",
+          "relation": "records outbox events in",
+          "src_name": "Catalog API and Persistence",
+          "dst_name": "Integration Event Outbox Log",
           "evidence": "",
-          "key_edges": [],
+          "key_edges": [
+            {
+              "source": "src/Catalog.API/Infrastructure/CatalogContext.cs|src.Catalog.API.Infrastructure.CatalogContext.OnModelCreating(ModelBuilder builder)",
+              "target": "src/IntegrationEventLogEF/IntegrationLogExtensions.cs|src.IntegrationEventLogEF.IntegrationLogExtensions.UseIntegrationEventLogs(this ModelBuilder builder)",
+              "call_sites": [
+                {
+                  "line": 26,
+                  "column": 17
+                }
+              ],
+              "description": "Configures the catalog database model to include integration event log entity tables."
+            },
+            {
+              "source": "src/Catalog.API/IntegrationEvents/CatalogIntegrationEventService.cs|src.Catalog.API.IntegrationEvents.CatalogIntegrationEventService.PublishThroughEventBusAsync(IntegrationEvent evt)",
+              "target": "src/IntegrationEventLogEF/Services/IIntegrationEventLogService.cs|src.IntegrationEventLogEF.Services.IIntegrationEventLogService.MarkEventAsInProgressAsync(Guid eventId)",
+              "call_sites": [
+                {
+                  "line": 17,
+                  "column": 46
+                }
+              ],
+              "description": "Updates outbox event log statuses while publishing integration events through the event bus."
+            }
+          ],
           "src_id": "5.1",
           "dst_id": "5.2",
           "is_static": true,
@@ -34069,8 +34335,8 @@
       ]
     },
     {
-      "name": "Webhooks and Shared Infrastructure",
-      "description": "Webhook subscription and delivery service alongside client management and database migration infrastructure.",
+      "name": "Webhook Notification Service",
+      "description": "Manages subscriptions and dispatches external webhook notifications triggered by e-commerce events.",
       "key_entities": [
         {
           "qualified_name": "src.Webhooks.API.Apis.WebHooksApi",
@@ -34091,10 +34357,10 @@
           "reference_end_line": 15
         },
         {
-          "qualified_name": "src.Shared.MigrateDbContextExtensions.MigrateDbContextExtensions",
-          "reference_file": "src/Shared/MigrateDbContextExtensions.cs",
-          "reference_start_line": 5,
-          "reference_end_line": 89
+          "qualified_name": "src.Webhooks.API.Infrastructure.WebhooksContext",
+          "reference_file": "src/Webhooks.API/Infrastructure/WebhooksContext.cs",
+          "reference_start_line": 8,
+          "reference_end_line": 21
         }
       ],
       "source_cluster_ids": [
@@ -34419,9 +34685,40 @@
       "can_expand": true,
       "components": [
         {
-          "name": "Webhooks.API",
-          "description": "Owns 48 symbols across 25 files: src/Webhooks.API/Apis/WebHooksApi.cs, src/Webhooks.API/Exceptions/WebhooksDomainException.cs, src/Webhooks.API/Extensions/Extensions.cs, src/Webhooks.API/Extensions/RouteHandlerBuilderExtensions.cs, src/Webhooks.API/Infrastructure/WebhooksContext.cs, src/Webhooks.API/IntegrationEvents/OrderStatusChangedToPaidIntegrationEvent.cs, src/Webhooks.API/IntegrationEvents/OrderStatusChangedToPaidIntegrationEventHandler.cs, src/Webhooks.API/IntegrationEvents/OrderStatusChangedToShippedIntegrationEvent.cs, ....",
-          "key_entities": [],
+          "name": "Webhook Subscription API",
+          "description": "Manages webhook subscriptions, verifies grant URLs, and sends webhook notifications upon receiving integration events.",
+          "key_entities": [
+            {
+              "qualified_name": "src.Webhooks.API.Apis.WebHooksApi",
+              "reference_file": "src/Webhooks.API/Apis/WebHooksApi.cs",
+              "reference_start_line": 7,
+              "reference_end_line": 87
+            },
+            {
+              "qualified_name": "src.Webhooks.API.Infrastructure.WebhooksContext",
+              "reference_file": "src/Webhooks.API/Infrastructure/WebhooksContext.cs",
+              "reference_start_line": 8,
+              "reference_end_line": 21
+            },
+            {
+              "qualified_name": "src.Webhooks.API.Services.WebhooksSender",
+              "reference_file": "src/Webhooks.API/Services/WebhooksSender.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 36
+            },
+            {
+              "qualified_name": "src.Webhooks.API.Services.WebhooksRetriever",
+              "reference_file": "src/Webhooks.API/Services/WebhooksRetriever.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 10
+            },
+            {
+              "qualified_name": "src.Webhooks.API.Services.GrantUrlTesterService",
+              "reference_file": "src/Webhooks.API/Services/GrantUrlTesterService.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 47
+            }
+          ],
           "source_cluster_ids": [
             "6.14",
             "6.15",
@@ -34631,9 +34928,28 @@
           "components_relations": []
         },
         {
-          "name": "WebhookClient",
-          "description": "Owns 23 symbols across 11 files: src/WebhookClient/Endpoints/AuthenticationEndpoints.cs, src/WebhookClient/Endpoints/WebhookEndpoints.cs, src/WebhookClient/Extensions/Extensions.cs, src/WebhookClient/Services/HooksRepository.cs, src/WebhookClient/Services/WebHookReceived.cs, src/WebhookClient/Services/WebHooksClient.cs, src/WebhookClient/Services/WebhookClientOptions.cs, src/WebhookClient/Services/WebhookData.cs, ....",
-          "key_entities": [],
+          "name": "Webhook Client Consumer",
+          "description": "Consumes webhooks, processes verification handshakes and incoming notifications, and manages client-side subscriptions.",
+          "key_entities": [
+            {
+              "qualified_name": "src.WebhookClient.Services.WebHooksClient.WebhooksClient",
+              "reference_file": "src/WebhookClient/Services/WebHooksClient.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 15
+            },
+            {
+              "qualified_name": "src.WebhookClient.Endpoints.WebhookEndpoints",
+              "reference_file": "src/WebhookClient/Endpoints/WebhookEndpoints.cs",
+              "reference_start_line": 6,
+              "reference_end_line": 58
+            },
+            {
+              "qualified_name": "src.WebhookClient.Services.HooksRepository",
+              "reference_file": "src/WebhookClient/Services/HooksRepository.cs",
+              "reference_start_line": 5,
+              "reference_end_line": 49
+            }
+          ],
           "source_cluster_ids": [
             "6.2",
             "6.3",
@@ -34734,9 +35050,16 @@
           "components_relations": []
         },
         {
-          "name": "Shared",
-          "description": "Owns 13 symbols across 2 files: src/Shared/ActivityExtensions.cs, src/Shared/MigrateDbContextExtensions.cs.",
-          "key_entities": [],
+          "name": "Database Migration Utilities",
+          "description": "Provides database migration hosting and activity tracing extensions across application services.",
+          "key_entities": [
+            {
+              "qualified_name": "src.Shared.MigrateDbContextExtensions.MigrateDbContextExtensions",
+              "reference_file": "src/Shared/MigrateDbContextExtensions.cs",
+              "reference_start_line": 5,
+              "reference_end_line": 89
+            }
+          ],
           "source_cluster_ids": [
             "6.0",
             "6.1"
@@ -34774,11 +35097,23 @@
       ],
       "components_relations": [
         {
-          "relation": "calls",
-          "src_name": "Webhooks.API",
-          "dst_name": "Shared",
+          "relation": "configures migrations via",
+          "src_name": "Webhook Subscription API",
+          "dst_name": "Database Migration Utilities",
           "evidence": "",
-          "key_edges": [],
+          "key_edges": [
+            {
+              "source": "src/Webhooks.API/Extensions/Extensions.cs|src.Webhooks.API.Extensions.Extensions.AddApplicationServices(this IHostApplicationBuilder builder)",
+              "target": "src/Shared/MigrateDbContextExtensions.cs|src.Shared.MigrateDbContextExtensions.MigrateDbContextExtensions.AddMigration<TContext>(this IServiceCollection services)",
+              "call_sites": [
+                {
+                  "line": 12,
+                  "column": 26
+                }
+              ],
+              "description": "Registers webhook database context for automated execution during host startup."
+            }
+          ],
           "src_id": "6.1",
           "dst_id": "6.3",
           "is_static": true,
@@ -34810,8 +35145,8 @@
       ]
     },
     {
-      "name": "Event Bus",
-      "description": "Asynchronous event bus abstractions and RabbitMQ messaging implementation for inter-service integration event publishing and subscription.",
+      "name": "Event Bus Messaging Infrastructure",
+      "description": "Delivers asynchronous publish-subscribe messaging and integration event handling across microservices using RabbitMQ.",
       "key_entities": [
         {
           "qualified_name": "src.EventBus.Abstractions.IEventBus",
@@ -34826,16 +35161,22 @@
           "reference_end_line": 15
         },
         {
+          "qualified_name": "src.EventBusRabbitMQ.RabbitMQEventBus",
+          "reference_file": "src/EventBusRabbitMQ/RabbitMQEventBus.cs",
+          "reference_start_line": 13,
+          "reference_end_line": 322
+        },
+        {
           "qualified_name": "src.EventBus.Events.IntegrationEvent",
           "reference_file": "src/EventBus/Events/IntegrationEvent.cs",
           "reference_start_line": 3,
           "reference_end_line": 17
         },
         {
-          "qualified_name": "src.EventBusRabbitMQ.RabbitMQEventBus",
-          "reference_file": "src/EventBusRabbitMQ/RabbitMQEventBus.cs",
-          "reference_start_line": 13,
-          "reference_end_line": 322
+          "qualified_name": "src.EventBusRabbitMQ.RabbitMqDependencyInjectionExtensions",
+          "reference_file": "src/EventBusRabbitMQ/RabbitMqDependencyInjectionExtensions.cs",
+          "reference_start_line": 6,
+          "reference_end_line": 47
         }
       ],
       "source_cluster_ids": [
@@ -34946,9 +35287,34 @@
       "can_expand": true,
       "components": [
         {
-          "name": "EventBus",
-          "description": "Owns 18 symbols across 7 files: src/EventBus/Abstractions/EventBusSubscriptionInfo.cs, src/EventBus/Abstractions/IEventBus.cs, src/EventBus/Abstractions/IEventBusBuilder.cs, src/EventBus/Abstractions/IIntegrationEventHandler.cs, src/EventBus/Events/IntegrationEvent.cs, src/EventBus/Extensions/EventBusBuilderExtensions.cs, src/EventBus/Extensions/GenericTypeExtensions.cs.",
-          "key_entities": [],
+          "name": "Event Bus Abstraction Contracts",
+          "description": "Defines integration events, handler interfaces, event bus contracts, and subscription metadata used across services.",
+          "key_entities": [
+            {
+              "qualified_name": "src.EventBus.Abstractions.IEventBus",
+              "reference_file": "src/EventBus/Abstractions/IEventBus.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 7
+            },
+            {
+              "qualified_name": "src.EventBus.Abstractions.IIntegrationEventHandler.IIntegrationEventHandler",
+              "reference_file": "src/EventBus/Abstractions/IIntegrationEventHandler.cs",
+              "reference_start_line": 11,
+              "reference_end_line": 15
+            },
+            {
+              "qualified_name": "src.EventBus.Events.IntegrationEvent",
+              "reference_file": "src/EventBus/Events/IntegrationEvent.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 17
+            },
+            {
+              "qualified_name": "src.EventBus.Abstractions.EventBusSubscriptionInfo",
+              "reference_file": "src/EventBus/Abstractions/EventBusSubscriptionInfo.cs",
+              "reference_start_line": 6,
+              "reference_end_line": 24
+            }
+          ],
           "source_cluster_ids": [
             "7.0",
             "7.1",
@@ -35019,9 +35385,34 @@
           "components_relations": []
         },
         {
-          "name": "EventBusRabbitMQ",
-          "description": "Owns 16 symbols across 4 files: src/EventBusRabbitMQ/EventBusOptions.cs, src/EventBusRabbitMQ/RabbitMQEventBus.cs, src/EventBusRabbitMQ/RabbitMQTelemetry.cs, src/EventBusRabbitMQ/RabbitMqDependencyInjectionExtensions.cs.",
-          "key_entities": [],
+          "name": "RabbitMQ Transport Implementation",
+          "description": "Implements the event bus on RabbitMQ with support for resilient message publishing, consumer dispatching, telemetry, and service registration.",
+          "key_entities": [
+            {
+              "qualified_name": "src.EventBusRabbitMQ.RabbitMQEventBus",
+              "reference_file": "src/EventBusRabbitMQ/RabbitMQEventBus.cs",
+              "reference_start_line": 13,
+              "reference_end_line": 322
+            },
+            {
+              "qualified_name": "src.EventBusRabbitMQ.RabbitMqDependencyInjectionExtensions",
+              "reference_file": "src/EventBusRabbitMQ/RabbitMqDependencyInjectionExtensions.cs",
+              "reference_start_line": 6,
+              "reference_end_line": 47
+            },
+            {
+              "qualified_name": "src.EventBusRabbitMQ.EventBusOptions",
+              "reference_file": "src/EventBusRabbitMQ/EventBusOptions.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 8
+            },
+            {
+              "qualified_name": "src.EventBusRabbitMQ.RabbitMQTelemetry",
+              "reference_file": "src/EventBusRabbitMQ/RabbitMQTelemetry.cs",
+              "reference_start_line": 6,
+              "reference_end_line": 13
+            }
+          ],
           "source_cluster_ids": [
             "7.7",
             "7.8",
@@ -35074,11 +35465,23 @@
       ],
       "components_relations": [
         {
-          "relation": "calls",
-          "src_name": "EventBusRabbitMQ",
-          "dst_name": "EventBus",
+          "relation": "dispatches incoming messages to",
+          "src_name": "RabbitMQ Transport Implementation",
+          "dst_name": "Event Bus Abstraction Contracts",
           "evidence": "",
-          "key_edges": [],
+          "key_edges": [
+            {
+              "source": "src/EventBusRabbitMQ/RabbitMQEventBus.cs|src.EventBusRabbitMQ.RabbitMQEventBus.ProcessEvent(string eventName, string message)",
+              "target": "src/EventBus/Abstractions/IIntegrationEventHandler.cs|src.EventBus.Abstractions.IIntegrationEventHandler.IIntegrationEventHandler.Handle(IntegrationEvent event)",
+              "call_sites": [
+                {
+                  "line": 206,
+                  "column": 27
+                }
+              ],
+              "description": "Deserializes incoming broker messages and invokes registered integration event handlers."
+            }
+          ],
           "src_id": "7.2",
           "dst_id": "7.1",
           "is_static": true,
@@ -35121,8 +35524,8 @@
       ]
     },
     {
-      "name": "Basket API",
-      "description": "Customer shopping cart service backed by Redis cache and exposing gRPC and event-driven interfaces.",
+      "name": "Shopping Cart Service",
+      "description": "Stores customer shopping carts and items in high-speed Redis caches and processes order lifecycle updates.",
       "key_entities": [
         {
           "qualified_name": "src.Basket.API.Grpc.BasketService",
@@ -35135,6 +35538,12 @@
           "reference_file": "src/Basket.API/Repositories/RedisBasketRepository.cs",
           "reference_start_line": 6,
           "reference_end_line": 50
+        },
+        {
+          "qualified_name": "src.Basket.API.Repositories.IBasketRepository",
+          "reference_file": "src/Basket.API/Repositories/IBasketRepository.cs",
+          "reference_start_line": 5,
+          "reference_end_line": 11
         },
         {
           "qualified_name": "src.Basket.API.IntegrationEvents.EventHandling.OrderStartedIntegrationEventHandler",
@@ -35238,9 +35647,22 @@
       "can_expand": true,
       "components": [
         {
-          "name": "Extensions",
-          "description": "Owns 6 symbols across 2 files: src/Basket.API/Extensions/Extensions.cs, src/Basket.API/Extensions/ServerCallContextIdentityExtensions.cs.",
-          "key_entities": [],
+          "name": "Service Configuration and Identity",
+          "description": "Provides dependency injection configuration and gRPC caller identity extraction helpers.",
+          "key_entities": [
+            {
+              "qualified_name": "src.Basket.API.Extensions.ServerCallContextIdentityExtensions",
+              "reference_file": "src/Basket.API/Extensions/ServerCallContextIdentityExtensions.cs",
+              "reference_start_line": 5,
+              "reference_end_line": 10
+            },
+            {
+              "qualified_name": "src.Basket.API.Extensions.Extensions.Extensions",
+              "reference_file": "src/Basket.API/Extensions/Extensions.cs",
+              "reference_start_line": 8,
+              "reference_end_line": 23
+            }
+          ],
           "source_cluster_ids": [
             "8.0",
             "8.1"
@@ -35269,9 +35691,22 @@
           "components_relations": []
         },
         {
-          "name": "IntegrationEvents",
-          "description": "Owns 3 symbols across 2 files: src/Basket.API/IntegrationEvents/EventHandling/OrderStartedIntegrationEventHandler.cs, src/Basket.API/IntegrationEvents/Events/OrderStartedIntegrationEvent.cs.",
-          "key_entities": [],
+          "name": "Order Integration Event Handling",
+          "description": "Consumes integration events from the message bus to clean up customer baskets when orders start.",
+          "key_entities": [
+            {
+              "qualified_name": "src.Basket.API.IntegrationEvents.EventHandling.OrderStartedIntegrationEventHandler",
+              "reference_file": "src/Basket.API/IntegrationEvents/EventHandling/OrderStartedIntegrationEventHandler.cs",
+              "reference_start_line": 6,
+              "reference_end_line": 17
+            },
+            {
+              "qualified_name": "src.Basket.API.IntegrationEvents.Events.OrderStartedIntegrationEvent",
+              "reference_file": "src/Basket.API/IntegrationEvents/Events/OrderStartedIntegrationEvent.cs",
+              "reference_start_line": 6,
+              "reference_end_line": 7
+            }
+          ],
           "source_cluster_ids": [
             "8.3",
             "8.4"
@@ -35297,9 +35732,16 @@
           "components_relations": []
         },
         {
-          "name": "Loose files in src.Basket.API",
-          "description": "Owns 8 symbols across 1 files: src/Basket.API/Grpc/BasketService.cs.",
-          "key_entities": [],
+          "name": "Basket Service API Host",
+          "description": "Hosts the gRPC service endpoints and bootstrap configuration for basket operations.",
+          "key_entities": [
+            {
+              "qualified_name": "src.Basket.API.Grpc.BasketService",
+              "reference_file": "src/Basket.API/Grpc/BasketService.cs",
+              "reference_start_line": 8,
+              "reference_end_line": 112
+            }
+          ],
           "source_cluster_ids": [
             "8.2",
             "8.7"
@@ -35325,9 +35767,22 @@
           "components_relations": []
         },
         {
-          "name": "Model",
-          "description": "Owns 5 symbols across 2 files: src/Basket.API/Model/BasketItem.cs, src/Basket.API/Model/CustomerBasket.cs.",
-          "key_entities": [],
+          "name": "Basket Domain Model",
+          "description": "Defines customer shopping basket and basket item domain entities.",
+          "key_entities": [
+            {
+              "qualified_name": "src.Basket.API.Model.CustomerBasket",
+              "reference_file": "src/Basket.API/Model/CustomerBasket.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 16
+            },
+            {
+              "qualified_name": "src.Basket.API.Model.BasketItem",
+              "reference_file": "src/Basket.API/Model/BasketItem.cs",
+              "reference_start_line": 3,
+              "reference_end_line": 25
+            }
+          ],
           "source_cluster_ids": [
             "8.5",
             "8.6"
@@ -35355,9 +35810,22 @@
           "components_relations": []
         },
         {
-          "name": "Repositories",
-          "description": "Owns 10 symbols across 2 files: src/Basket.API/Repositories/IBasketRepository.cs, src/Basket.API/Repositories/RedisBasketRepository.cs.",
-          "key_entities": [],
+          "name": "Basket Redis Persistence",
+          "description": "Persists and retrieves customer basket data within Redis storage.",
+          "key_entities": [
+            {
+              "qualified_name": "src.Basket.API.Repositories.IBasketRepository",
+              "reference_file": "src/Basket.API/Repositories/IBasketRepository.cs",
+              "reference_start_line": 5,
+              "reference_end_line": 11
+            },
+            {
+              "qualified_name": "src.Basket.API.Repositories.RedisBasketRepository.RedisBasketRepository",
+              "reference_file": "src/Basket.API/Repositories/RedisBasketRepository.cs",
+              "reference_start_line": 6,
+              "reference_end_line": 50
+            }
+          ],
           "source_cluster_ids": [
             "8.8",
             "8.9"
@@ -35392,11 +35860,23 @@
       ],
       "components_relations": [
         {
-          "relation": "calls",
-          "src_name": "IntegrationEvents",
-          "dst_name": "Repositories",
+          "relation": "deletes basket in",
+          "src_name": "Order Integration Event Handling",
+          "dst_name": "Basket Redis Persistence",
           "evidence": "",
-          "key_edges": [],
+          "key_edges": [
+            {
+              "source": "src/Basket.API/IntegrationEvents/EventHandling/OrderStartedIntegrationEventHandler.cs|src.Basket.API.IntegrationEvents.EventHandling.OrderStartedIntegrationEventHandler.Handle(OrderStartedIntegrationEvent event)",
+              "target": "src/Basket.API/Repositories/IBasketRepository.cs|src.Basket.API.Repositories.IBasketRepository.DeleteBasketAsync(string id)",
+              "call_sites": [
+                {
+                  "line": 14,
+                  "column": 26
+                }
+              ],
+              "description": "Order handler deletes the customer basket from the repository on order start"
+            }
+          ],
           "src_id": "8.2",
           "dst_id": "8.5",
           "is_static": true,
@@ -35437,11 +35917,23 @@
           ]
         },
         {
-          "relation": "calls",
-          "src_name": "Loose files in src.Basket.API",
-          "dst_name": "Extensions",
+          "relation": "resolves identity from",
+          "src_name": "Basket Service API Host",
+          "dst_name": "Service Configuration and Identity",
           "evidence": "",
-          "key_edges": [],
+          "key_edges": [
+            {
+              "source": "src/Basket.API/Grpc/BasketService.cs|src.Basket.API.Grpc.BasketService.GetBasket(GetBasketRequest request, ServerCallContext context)",
+              "target": "src/Basket.API/Extensions/ServerCallContextIdentityExtensions.cs|src.Basket.API.Extensions.ServerCallContextIdentityExtensions.GetUserIdentity(this ServerCallContext context)",
+              "call_sites": [
+                {
+                  "line": 15,
+                  "column": 30
+                }
+              ],
+              "description": "Extracts user identity from the incoming gRPC call context"
+            }
+          ],
           "src_id": "8.3",
           "dst_id": "8.1",
           "is_static": true,
@@ -35515,11 +36007,23 @@
           ]
         },
         {
-          "relation": "calls",
-          "src_name": "Loose files in src.Basket.API",
-          "dst_name": "Model",
+          "relation": "instantiates and maps",
+          "src_name": "Basket Service API Host",
+          "dst_name": "Basket Domain Model",
           "evidence": "",
-          "key_edges": [],
+          "key_edges": [
+            {
+              "source": "src/Basket.API/Grpc/BasketService.cs|src.Basket.API.Grpc.BasketService.MapToCustomerBasket(string userId, UpdateBasketRequest customerBasketRequest)",
+              "target": "src/Basket.API/Model/CustomerBasket.cs|src.Basket.API.Model.CustomerBasket",
+              "call_sites": [
+                {
+                  "line": 95,
+                  "column": 28
+                }
+              ],
+              "description": "Maps gRPC update basket requests into customer basket domain objects"
+            }
+          ],
           "src_id": "8.3",
           "dst_id": "8.4",
           "is_static": true,
@@ -35560,11 +36064,23 @@
           ]
         },
         {
-          "relation": "calls",
-          "src_name": "Loose files in src.Basket.API",
-          "dst_name": "Repositories",
+          "relation": "queries and updates",
+          "src_name": "Basket Service API Host",
+          "dst_name": "Basket Redis Persistence",
           "evidence": "",
-          "key_edges": [],
+          "key_edges": [
+            {
+              "source": "src/Basket.API/Grpc/BasketService.cs|src.Basket.API.Grpc.BasketService.GetBasket(GetBasketRequest request, ServerCallContext context)",
+              "target": "src/Basket.API/Repositories/IBasketRepository.cs|src.Basket.API.Repositories.IBasketRepository.GetBasketAsync(string customerId)",
+              "call_sites": [
+                {
+                  "line": 26,
+                  "column": 37
+                }
+              ],
+              "description": "Queries and updates basket records via repository interface"
+            }
+          ],
           "src_id": "8.3",
           "dst_id": "8.5",
           "is_static": true,
@@ -35673,8 +36189,8 @@
       ]
     },
     {
-      "name": "Application Host and Defaults",
-      "description": "Aspire application orchestration host and shared microservice defaults for authentication, configuration, and telemetry.",
+      "name": "Application Orchestration and Service Defaults",
+      "description": "Defines shared application hosting orchestration, standard telemetry, resilience policies, and authentication defaults.",
       "key_entities": [
         {
           "qualified_name": "src.eShop.ServiceDefaults.AuthenticationExtensions",
@@ -35689,10 +36205,16 @@
           "reference_end_line": 53
         },
         {
-          "qualified_name": "src.eShop.ServiceDefaults.ClaimsPrincipalExtensions",
-          "reference_file": "src/eShop.ServiceDefaults/ClaimsPrincipalExtensions.cs",
-          "reference_start_line": 5,
-          "reference_end_line": 13
+          "qualified_name": "src.eShop.ServiceDefaults.ConfigurationExtensions",
+          "reference_file": "src/eShop.ServiceDefaults/ConfigurationExtensions.cs",
+          "reference_start_line": 3,
+          "reference_end_line": 8
+        },
+        {
+          "qualified_name": "src.eShop.ServiceDefaults.Extensions",
+          "reference_file": "src/eShop.ServiceDefaults/Extensions.cs",
+          "reference_start_line": 14,
+          "reference_end_line": 130
         }
       ],
       "source_cluster_ids": [
@@ -35792,8 +36314,8 @@
       "can_expand": true,
       "components": [
         {
-          "name": "eShop.ServiceDefaults",
-          "description": "Owns 32 symbols across 7 files: src/eShop.ServiceDefaults/AuthenticationExtensions.cs, src/eShop.ServiceDefaults/ClaimsPrincipalExtensions.cs, src/eShop.ServiceDefaults/ConfigurationExtensions.cs, src/eShop.ServiceDefaults/Extensions.cs, src/eShop.ServiceDefaults/HttpClientExtensions.cs, src/eShop.ServiceDefaults/OpenApi.Extensions.cs, src/eShop.ServiceDefaults/OpenApiOptionsExtensions.cs.",
+          "name": "Microservice Cross-Cutting Defaults",
+          "description": "Configures common microservice cross-cutting concerns including OpenTelemetry, health checks, service discovery, JWT authentication, and OpenAPI documentation.",
           "key_entities": [],
           "source_cluster_ids": [
             "9.2",
@@ -35879,8 +36401,8 @@
           "components_relations": []
         },
         {
-          "name": "eShop.AppHost",
-          "description": "Owns 8 symbols across 1 files: src/eShop.AppHost/Extensions.cs.",
+          "name": "Aspire Application Orchestration",
+          "description": "Orchestrates distributed application resources, backing services, AI models, and API routing using .NET Aspire.",
           "key_entities": [],
           "source_cluster_ids": [
             "9.0",
@@ -35910,20 +36432,20 @@
       "components_relations": []
     },
     {
-      "name": "Payment Processor",
-      "description": "Background payment simulator processing stock-confirmed orders and publishing payment success or failure events.",
+      "name": "Payment Processing Service",
+      "description": "Processes simulated asynchronous payment verification workflows in response to inventory reservation events.",
       "key_entities": [
-        {
-          "qualified_name": "src.PaymentProcessor.PaymentOptions",
-          "reference_file": "src/PaymentProcessor/PaymentOptions.cs",
-          "reference_start_line": 3,
-          "reference_end_line": 7
-        },
         {
           "qualified_name": "src.PaymentProcessor.IntegrationEvents.EventHandling.OrderStatusChangedToStockConfirmedIntegrationEventHandler",
           "reference_file": "src/PaymentProcessor/IntegrationEvents/EventHandling/OrderStatusChangedToStockConfirmedIntegrationEventHandler.cs",
           "reference_start_line": 3,
           "reference_end_line": 35
+        },
+        {
+          "qualified_name": "src.PaymentProcessor.PaymentOptions",
+          "reference_file": "src/PaymentProcessor/PaymentOptions.cs",
+          "reference_start_line": 3,
+          "reference_end_line": 7
         }
       ],
       "source_cluster_ids": [
@@ -35975,29 +36497,21 @@
   ],
   "components_relations": [
     {
-      "relation": "populates and serializes",
-      "src_name": "Client Services",
-      "dst_name": "Domain Models",
+      "relation": "populates and references models",
+      "src_name": "Client Services and Infrastructure",
+      "dst_name": "Application Data Models",
       "evidence": "",
       "key_edges": [
         {
-          "source": "src/ClientApp/Services/Basket/BasketMockService.cs|src.ClientApp.Services.Basket.BasketMockService.BasketMockService()",
+          "source": "src/ClientApp/Services/Basket/BasketMockService.cs|src.ClientApp.Services.Basket.BasketMockService.ClearBasketAsync()",
           "target": "src/ClientApp/Models/Basket/CustomerBasket.cs|src.ClientApp.Models.Basket.CustomerBasket",
           "call_sites": [
             {
-              "line": 11,
-              "column": 33
-            },
-            {
-              "line": 12,
-              "column": 27
-            },
-            {
-              "line": 22,
+              "line": 55,
               "column": 27
             }
           ],
-          "description": "Services serialize, deserialize, and manipulate customer basket and catalog data models."
+          "description": "Basket service operations populate and manipulate customer basket models"
         }
       ],
       "src_id": "1.1",
@@ -36410,9 +36924,9 @@
       ]
     },
     {
-      "relation": "raises exceptions in",
-      "src_name": "Client Services",
-      "dst_name": "Application Core",
+      "relation": "signals authentication failure",
+      "src_name": "Client Services and Infrastructure",
+      "dst_name": "Application Shell and Controls",
       "evidence": "",
       "key_edges": [
         {
@@ -36424,7 +36938,7 @@
               "column": 27
             }
           ],
-          "description": "Request provider throws authentication exceptions on unauthorized responses."
+          "description": "HTTP request handler raises authentication error exceptions"
         }
       ],
       "src_id": "1.1",
@@ -36456,9 +36970,9 @@
       ]
     },
     {
-      "relation": "delegates business operations to",
-      "src_name": "Presentation ViewModels",
-      "dst_name": "Client Services",
+      "relation": "invokes client services",
+      "src_name": "Presentation View Models",
+      "dst_name": "Client Services and Infrastructure",
       "evidence": "",
       "key_edges": [
         {
@@ -36474,7 +36988,7 @@
               "column": 56
             }
           ],
-          "description": "ViewModels delegate backend data retrieval and business actions to service interfaces."
+          "description": "View models interact with basket service contracts to retrieve and modify cart state"
         }
       ],
       "src_id": "1.3",
@@ -38152,21 +38666,21 @@
       ]
     },
     {
-      "relation": "manipulates domain models from",
-      "src_name": "Presentation ViewModels",
-      "dst_name": "Domain Models",
+      "relation": "binds and modifies models",
+      "src_name": "Presentation View Models",
+      "dst_name": "Application Data Models",
       "evidence": "",
       "key_edges": [
         {
           "source": "src/ClientApp/ViewModels/BasketViewModel.cs|src.ClientApp.ViewModels.BasketViewModel.AddBasketItemAsync(BasketItem item, IList<BasketItem> basketItems)",
-          "target": "src/ClientApp/Models/Basket/CustomerBasket.cs|src.ClientApp.Models.Basket.CustomerBasket",
+          "target": "src/ClientApp/Models/Basket/CustomerBasket.cs|src.ClientApp.Models.Basket.CustomerBasket.AddItemToBasket(BasketItem basketItem)",
           "call_sites": [
             {
               "line": 67,
               "column": 20
             }
           ],
-          "description": "ViewModels bind to and modify domain model properties during user interactions."
+          "description": "Basket view model updates basket model items and aggregates"
         }
       ],
       "src_id": "1.3",
@@ -38338,9 +38852,9 @@
       ]
     },
     {
-      "relation": "publishes messages to",
-      "src_name": "Presentation ViewModels",
-      "dst_name": "Application Core",
+      "relation": "broadcasts state change messages",
+      "src_name": "Presentation View Models",
+      "dst_name": "Application Shell and Controls",
       "evidence": "",
       "key_edges": [
         {
@@ -38352,7 +38866,7 @@
               "column": 27
             }
           ],
-          "description": "ViewModels publish messenger notifications across the application infrastructure."
+          "description": "Catalog and checkout view models post count notifications across the app"
         }
       ],
       "src_id": "1.3",
@@ -38384,27 +38898,38 @@
       ]
     },
     {
-      "relation": "binds to and triggers",
-      "src_name": "UI Views",
-      "dst_name": "Presentation ViewModels",
+      "relation": "binds lifecycle to view models",
+      "src_name": "User Interface Views",
+      "dst_name": "Presentation View Models",
       "evidence": "",
       "key_edges": [
         {
-          "source": "src/ClientApp/Views/LoginView.xaml.cs|src.ClientApp.Views.LoginView.xaml.LoginView.OnAppearing()",
-          "target": "src/ClientApp/ViewModels/LoginViewModel.cs|src.ClientApp.ViewModels.LoginViewModel.InvalidateMock()",
+          "source": "src/ClientApp/Views/ContentPageBase.cs|src.ClientApp.Views.ContentPageBase.OnAppearing()",
+          "target": "src/ClientApp/ViewModels/Base/IViewModelBase.cs|src.ClientApp.ViewModels.Base.IViewModelBase",
           "call_sites": [
             {
-              "line": 20,
-              "column": 20
+              "line": 16,
+              "column": 35
             }
           ],
-          "description": "Views bind presentation logic and trigger commands on their associated view models."
+          "description": "Base and page-specific views trigger lifecycle hooks and commands on view models"
         }
       ],
       "src_id": "1.4",
       "dst_id": "1.3",
       "is_static": true,
       "all_edges": [
+        {
+          "source": "src/ClientApp/Views/ContentPageBase.cs|src.ClientApp.Views.ContentPageBase.OnAppearing()",
+          "target": "src/ClientApp/ViewModels/Base/IViewModelBase.cs|src.ClientApp.ViewModels.Base.IViewModelBase",
+          "call_sites": [
+            {
+              "line": 16,
+              "column": 35
+            }
+          ],
+          "description": ""
+        },
         {
           "source": "src/ClientApp/Views/LoginView.xaml.cs|src.ClientApp.Views.LoginView.xaml.LoginView.OnAppearing()",
           "target": "src/ClientApp/ViewModels/LoginViewModel.cs|src.ClientApp.ViewModels.LoginViewModel",
@@ -38430,21 +38955,21 @@
       ]
     },
     {
-      "relation": "bootstraps and configures",
-      "src_name": "Application Core",
-      "dst_name": "Client Services",
+      "relation": "initializes and routes services",
+      "src_name": "Application Shell and Controls",
+      "dst_name": "Client Services and Infrastructure",
       "evidence": "",
       "key_edges": [
         {
-          "source": "src/ClientApp/App.xaml.cs|src.ClientApp.App.xaml.App.InitApp()",
-          "target": "src/ClientApp/Services/AppEnvironment/IAppEnvironmentService.cs|src.ClientApp.Services.AppEnvironment.IAppEnvironmentService",
+          "source": "src/ClientApp/App.xaml.cs|src.ClientApp.App.xaml.App.HandleAppActions(AppAction appAction)",
+          "target": "src/ClientApp/Services/Navigation/INavigationService.cs|src.ClientApp.Services.Navigation.INavigationService.NavigateToAsync(string route, IDictionary<string, object> routeParameters = null)",
           "call_sites": [
             {
-              "line": 53,
-              "column": 36
+              "line": 163,
+              "column": 50
             }
           ],
-          "description": "App startup configures service dependency injection and initializes navigation."
+          "description": "App startup initiates service dependency registration and handles navigation actions"
         }
       ],
       "src_id": "1.5",
@@ -38822,9 +39347,9 @@
       ]
     },
     {
-      "relation": "initializes application host via",
-      "src_name": "Platform Entry Points",
-      "dst_name": "Application Core",
+      "relation": "bootstraps MAUI application",
+      "src_name": "Platform Native Bootstrappers",
+      "dst_name": "Application Shell and Controls",
       "evidence": "",
       "key_edges": [
         {
@@ -38836,7 +39361,7 @@
               "column": 63
             }
           ],
-          "description": "Platform application classes call the shared MAUI program builder entry point."
+          "description": "Platform entry points instantiate the configured MAUI application host"
         }
       ],
       "src_id": "1.6",
@@ -38934,57 +39459,23 @@
       ]
     },
     {
-      "relation": "resolves easing curves from",
-      "src_name": "Animations and Triggers",
-      "dst_name": "Client Services",
+      "relation": "publishes payment status events",
+      "src_name": "Payment Processing Service",
+      "dst_name": "Event Bus Abstraction Contracts",
       "evidence": "",
       "key_edges": [
         {
-          "source": "src/ClientApp/Animations/FadeToAnimation.cs|src.ClientApp.Animations.FadeToAnimation.FadeToAnimation.BeginAnimation()",
-          "target": "src/ClientApp/Helpers/EasingHelper.cs|src.ClientApp.Helpers.EasingHelper.GetEasing(EasingType type)",
+          "source": "src/PaymentProcessor/IntegrationEvents/EventHandling/OrderStatusChangedToStockConfirmedIntegrationEventHandler.cs|src.PaymentProcessor.IntegrationEvents.EventHandling.OrderStatusChangedToStockConfirmedIntegrationEventHandler.Handle(OrderStatusChangedToStockConfirmedIntegrationEvent event)",
+          "target": "src/EventBus/Abstractions/IEventBus.cs|src.EventBus.Abstractions.IEventBus.PublishAsync(IntegrationEvent event)",
           "call_sites": [
             {
-              "line": 26,
-              "column": 80
+              "line": 32,
+              "column": 24
             }
           ],
-          "description": "Fade animation resolves easing curves through easing helpers."
+          "description": "Publishes payment completion or failure integration events to the event bus."
         }
       ],
-      "src_id": "1.8",
-      "dst_id": "1.1",
-      "is_static": true,
-      "all_edges": [
-        {
-          "source": "src/ClientApp/Animations/FadeToAnimation.cs|src.ClientApp.Animations.FadeToAnimation.FadeToAnimation.BeginAnimation()",
-          "target": "src/ClientApp/Helpers/EasingHelper.cs|src.ClientApp.Helpers.EasingHelper",
-          "call_sites": [
-            {
-              "line": 26,
-              "column": 80
-            }
-          ],
-          "description": ""
-        },
-        {
-          "source": "src/ClientApp/Animations/FadeToAnimation.cs|src.ClientApp.Animations.FadeToAnimation.FadeToAnimation.BeginAnimation()",
-          "target": "src/ClientApp/Helpers/EasingHelper.cs|src.ClientApp.Helpers.EasingHelper.GetEasing(EasingType type)",
-          "call_sites": [
-            {
-              "line": 26,
-              "column": 80
-            }
-          ],
-          "description": ""
-        }
-      ]
-    },
-    {
-      "relation": "publishes events to",
-      "src_name": "Payment Processor",
-      "dst_name": "EventBus",
-      "evidence": "",
-      "key_edges": [],
       "src_id": "10",
       "dst_id": "7.1",
       "is_static": true,
@@ -39014,23 +39505,11 @@
       ]
     },
     {
-      "relation": "publishes events to",
-      "src_name": "Payment Processor",
-      "dst_name": "EventBusRabbitMQ",
+      "relation": "publishes payment status events",
+      "src_name": "Payment Processing Service",
+      "dst_name": "RabbitMQ Transport Implementation",
       "evidence": "",
-      "key_edges": [
-        {
-          "source": "src/PaymentProcessor/IntegrationEvents/EventHandling/OrderStatusChangedToStockConfirmedIntegrationEventHandler.cs|src.PaymentProcessor.IntegrationEvents.EventHandling.OrderStatusChangedToStockConfirmedIntegrationEventHandler.Handle(OrderStatusChangedToStockConfirmedIntegrationEvent event)",
-          "target": "src/EventBusRabbitMQ/RabbitMQEventBus.cs|src.EventBusRabbitMQ.RabbitMQEventBus.PublishAsync(IntegrationEvent event)",
-          "call_sites": [
-            {
-              "line": 32,
-              "column": 24
-            }
-          ],
-          "description": "Publishes payment integration events via the event bus"
-        }
-      ],
+      "key_edges": [],
       "src_id": "10",
       "dst_id": "7.2",
       "is_static": true,
@@ -39049,11 +39528,23 @@
       ]
     },
     {
-      "relation": "calls",
-      "src_name": "Ordering.API",
-      "dst_name": "Ordering.Domain",
+      "relation": "executes business operations on",
+      "src_name": "Ordering Web API",
+      "dst_name": "Ordering Domain Model",
       "evidence": "",
-      "key_edges": [],
+      "key_edges": [
+        {
+          "source": "src/Ordering.API/Application/Commands/CancelOrderCommandHandler.cs|src.Ordering.API.Application.Commands.CancelOrderCommandHandler.CancelOrderCommandHandler.Handle(CancelOrderCommand command, CancellationToken cancellationToken)",
+          "target": "src/Ordering.Domain/AggregatesModel/OrderAggregate/IOrderRepository.cs|src.Ordering.Domain.AggregatesModel.OrderAggregate.IOrderRepository.GetAsync(int orderId)",
+          "call_sites": [
+            {
+              "line": 21,
+              "column": 52
+            }
+          ],
+          "description": "Order cancellation handler fetches the aggregate from the repository"
+        }
+      ],
       "src_id": "2.1",
       "dst_id": "2.2",
       "is_static": true,
@@ -40042,11 +40533,23 @@
       ]
     },
     {
-      "relation": "calls",
-      "src_name": "Ordering.API",
-      "dst_name": "Ordering.Infrastructure",
+      "relation": "manages transactions with",
+      "src_name": "Ordering Web API",
+      "dst_name": "Ordering Data Persistence",
       "evidence": "",
-      "key_edges": [],
+      "key_edges": [
+        {
+          "source": "src/Ordering.API/Application/Behaviors/TransactionBehavior.cs|src.Ordering.API.Application.Behaviors.TransactionBehavior.TransactionBehavior<TRequest, TResponse>.Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)",
+          "target": "src/Ordering.Infrastructure/OrderingContext.cs|src.Ordering.Infrastructure.OrderingContext.BeginTransactionAsync()",
+          "call_sites": [
+            {
+              "line": 38,
+              "column": 64
+            }
+          ],
+          "description": "Command pipeline coordinates transactions through the ordering database context"
+        }
+      ],
       "src_id": "2.1",
       "dst_id": "2.3",
       "is_static": true,
@@ -40491,21 +40994,21 @@
       ]
     },
     {
-      "relation": "stores outbox events in",
-      "src_name": "Ordering.API",
-      "dst_name": "IntegrationEventLogEF",
+      "relation": "persists integration event outbox logs",
+      "src_name": "Ordering Web API",
+      "dst_name": "Integration Event Outbox Log",
       "evidence": "",
       "key_edges": [
         {
           "source": "src/Ordering.API/Application/IntegrationEvents/OrderingIntegrationEventService.cs|src.Ordering.API.Application.IntegrationEvents.OrderingIntegrationEventService.AddAndSaveEventAsync(IntegrationEvent evt)",
-          "target": "src/IntegrationEventLogEF/Services/IntegrationEventLogService.cs|src.IntegrationEventLogEF.Services.IntegrationEventLogService.IntegrationEventLogService<TContext>.SaveEventAsync(IntegrationEvent event, IDbContextTransaction transaction)",
+          "target": "src/IntegrationEventLogEF/Services/IIntegrationEventLogService.cs|src.IntegrationEventLogEF.Services.IIntegrationEventLogService.SaveEventAsync(IntegrationEvent event, IDbContextTransaction transaction)",
           "call_sites": [
             {
               "line": 40,
               "column": 32
             }
           ],
-          "description": "Persists outbox integration events during order transactions"
+          "description": "Persists pending outbox integration events alongside ordering transactions."
         }
       ],
       "src_id": "2.1",
@@ -40659,9 +41162,9 @@
       ]
     },
     {
-      "relation": "uses migration helpers in",
-      "src_name": "Ordering.API",
-      "dst_name": "Shared",
+      "relation": "invokes shared database migration helpers",
+      "src_name": "Ordering Web API",
+      "dst_name": "Database Migration Utilities",
       "evidence": "",
       "key_edges": [
         {
@@ -40673,7 +41176,7 @@
               "column": 18
             }
           ],
-          "description": "Registers database migration extensions"
+          "description": "Registers common database migration extensions during ordering service initialization."
         }
       ],
       "src_id": "2.1",
@@ -40705,9 +41208,9 @@
       ]
     },
     {
-      "relation": "publishes and subscribes events via",
-      "src_name": "Ordering.API",
-      "dst_name": "EventBus",
+      "relation": "publishes order events and registers subscriptions",
+      "src_name": "Ordering Web API",
+      "dst_name": "Event Bus Abstraction Contracts",
       "evidence": "",
       "key_edges": [],
       "src_id": "2.1",
@@ -41095,9 +41598,9 @@
       ]
     },
     {
-      "relation": "publishes and subscribes events via",
-      "src_name": "Ordering.API",
-      "dst_name": "EventBusRabbitMQ",
+      "relation": "publishes order events and registers subscriptions",
+      "src_name": "Ordering Web API",
+      "dst_name": "RabbitMQ Transport Implementation",
       "evidence": "",
       "key_edges": [],
       "src_id": "2.1",
@@ -41140,9 +41643,9 @@
       ]
     },
     {
-      "relation": "configures defaults from",
-      "src_name": "Ordering.API",
-      "dst_name": "eShop.ServiceDefaults",
+      "relation": "configures authentication and service defaults",
+      "src_name": "Ordering Web API",
+      "dst_name": "Microservice Cross-Cutting Defaults",
       "evidence": "",
       "key_edges": [
         {
@@ -41154,7 +41657,7 @@
               "column": 17
             }
           ],
-          "description": "Configures authentication defaults from service defaults"
+          "description": "Configures JWT bearer token verification using shared defaults."
         }
       ],
       "src_id": "2.1",
@@ -41186,11 +41689,23 @@
       ]
     },
     {
-      "relation": "calls",
-      "src_name": "Ordering.Infrastructure",
-      "dst_name": "Ordering.Domain",
+      "relation": "implements and persists",
+      "src_name": "Ordering Data Persistence",
+      "dst_name": "Ordering Domain Model",
       "evidence": "",
-      "key_edges": [],
+      "key_edges": [
+        {
+          "source": "src/Ordering.Infrastructure/Repositories/BuyerRepository.cs|src.Ordering.Infrastructure.Repositories.BuyerRepository.Add(Buyer buyer)",
+          "target": "src/Ordering.Domain/SeedWork/Entity.cs|src.Ordering.Domain.SeedWork.Entity",
+          "call_sites": [
+            {
+              "line": 16,
+              "column": 19
+            }
+          ],
+          "description": "Repository implementations persist domain aggregates"
+        }
+      ],
       "src_id": "2.3",
       "dst_id": "2.2",
       "is_static": true,
@@ -41264,9 +41779,9 @@
       ]
     },
     {
-      "relation": "stores outbox events in",
-      "src_name": "Ordering.Infrastructure",
-      "dst_name": "IntegrationEventLogEF",
+      "relation": "persists integration event outbox logs",
+      "src_name": "Ordering Data Persistence",
+      "dst_name": "Integration Event Outbox Log",
       "evidence": "",
       "key_edges": [],
       "src_id": "2.3",
@@ -41298,9 +41813,9 @@
       ]
     },
     {
-      "relation": "publishes and subscribes events via",
-      "src_name": "OrderProcessor",
-      "dst_name": "EventBus",
+      "relation": "publishes order events and registers subscriptions",
+      "src_name": "Order Processing Worker",
+      "dst_name": "Event Bus Abstraction Contracts",
       "evidence": "",
       "key_edges": [
         {
@@ -41312,7 +41827,7 @@
               "column": 32
             }
           ],
-          "description": "Registers event bus and publishes order status events"
+          "description": "Publishes order status transitions and configures RabbitMQ event subscriptions."
         }
       ],
       "src_id": "2.4",
@@ -41366,9 +41881,9 @@
       ]
     },
     {
-      "relation": "publishes and subscribes events via",
-      "src_name": "OrderProcessor",
-      "dst_name": "EventBusRabbitMQ",
+      "relation": "publishes order events and registers subscriptions",
+      "src_name": "Order Processing Worker",
+      "dst_name": "RabbitMQ Transport Implementation",
       "evidence": "",
       "key_edges": [],
       "src_id": "2.4",
@@ -41411,11 +41926,23 @@
       ]
     },
     {
-      "relation": "calls",
-      "src_name": "Quickstart",
-      "dst_name": "Models",
+      "relation": "instantiates and provisions",
+      "src_name": "Identity Interaction Controllers",
+      "dst_name": "User And Authentication Models",
       "evidence": "",
-      "key_edges": [],
+      "key_edges": [
+        {
+          "source": "src/Identity.API/Quickstart/Account/ExternalController.cs|src.Identity.API.Quickstart.Account.ExternalController.AutoProvisionUserAsync(string provider, string providerUserId, IEnumerable<Claim> claims)",
+          "target": "src/Identity.API/Models/ApplicationUser.cs|src.Identity.API.Models.ApplicationUser",
+          "call_sites": [
+            {
+              "line": 200,
+              "column": 24
+            }
+          ],
+          "description": "Provisions external authentication claims into application user instances"
+        }
+      ],
       "src_id": "3.1",
       "dst_id": "3.2",
       "is_static": true,
@@ -41434,11 +41961,27 @@
       ]
     },
     {
-      "relation": "calls",
-      "src_name": "Loose files in src.Identity.API",
-      "dst_name": "Models",
+      "relation": "seeds user instances",
+      "src_name": "Host Configuration And Seeding",
+      "dst_name": "User And Authentication Models",
       "evidence": "",
-      "key_edges": [],
+      "key_edges": [
+        {
+          "source": "src/Identity.API/UsersSeed.cs|src.Identity.API.UsersSeed.SeedAsync(ApplicationDbContext context)",
+          "target": "src/Identity.API/Models/ApplicationUser.cs|src.Identity.API.Models.ApplicationUser",
+          "call_sites": [
+            {
+              "line": 12,
+              "column": 25
+            },
+            {
+              "line": 57,
+              "column": 23
+            }
+          ],
+          "description": "Creates default user entities to seed database on startup"
+        }
+      ],
       "src_id": "3.5",
       "dst_id": "3.2",
       "is_static": true,
@@ -41461,21 +42004,21 @@
       ]
     },
     {
-      "relation": "queries catalog items via",
-      "src_name": "Blazor Web Application",
-      "dst_name": "MAUI Hybrid Client",
+      "relation": "queries catalog via",
+      "src_name": "Web Storefront Host",
+      "dst_name": "Hybrid Mobile Client",
       "evidence": "",
       "key_edges": [
         {
-          "source": "src/WebApp/Components/Chatbot/ChatState.cs|src.WebApp.Components.Chatbot.ChatState.AddToCart(int itemId)",
-          "target": "src/HybridApp/Services/CatalogService.cs|src.HybridApp.Services.CatalogService.GetCatalogItem(int id)",
+          "source": "src/WebApp/Components/Chatbot/ChatState.cs|src.WebApp.Components.Chatbot.ChatState.SearchCatalog(string productDescription)",
+          "target": "src/HybridApp/Services/CatalogService.cs|src.HybridApp.Services.CatalogService.GetCatalogItemsWithSemanticRelevance(int page, int take, string text)",
           "call_sites": [
             {
-              "line": 141,
-              "column": 46
+              "line": 122,
+              "column": 49
             }
           ],
-          "description": "ChatState invokes catalog service methods from the hybrid application service layer"
+          "description": "Chat state invokes hybrid catalog search and item lookup operations"
         }
       ],
       "src_id": "4.1",
@@ -41518,9 +42061,9 @@
       ]
     },
     {
-      "relation": "consumes shared catalog services from",
-      "src_name": "Blazor Web Application",
-      "dst_name": "Shared Blazor Components",
+      "relation": "queries catalog items from",
+      "src_name": "Web Storefront Host",
+      "dst_name": "Shared Storefront Catalog",
       "evidence": "",
       "key_edges": [
         {
@@ -41532,7 +42075,7 @@
               "column": 46
             }
           ],
-          "description": "ChatState invokes shared catalog retrieval interfaces"
+          "description": "Chatbot uses shared catalog service contract to retrieve items and check catalog data"
         }
       ],
       "src_id": "4.1",
@@ -41652,9 +42195,9 @@
       ]
     },
     {
-      "relation": "subscribes to events on",
-      "src_name": "Blazor Web Application",
-      "dst_name": "EventBus",
+      "relation": "subscribes to order status events",
+      "src_name": "Web Storefront Host",
+      "dst_name": "Event Bus Abstraction Contracts",
       "evidence": "",
       "key_edges": [
         {
@@ -41686,7 +42229,7 @@
               "column": 18
             }
           ],
-          "description": "Subscribes to order status events from the event bus"
+          "description": "Subscribes the web storefront to order status change integration events."
         }
       ],
       "src_id": "4.1",
@@ -41758,9 +42301,9 @@
       ]
     },
     {
-      "relation": "subscribes to events on",
-      "src_name": "Blazor Web Application",
-      "dst_name": "EventBusRabbitMQ",
+      "relation": "subscribes to order status events",
+      "src_name": "Web Storefront Host",
+      "dst_name": "RabbitMQ Transport Implementation",
       "evidence": "",
       "key_edges": [],
       "src_id": "4.1",
@@ -41792,9 +42335,9 @@
       ]
     },
     {
-      "relation": "configures HTTP and config defaults from",
-      "src_name": "Blazor Web Application",
-      "dst_name": "eShop.ServiceDefaults",
+      "relation": "configures HTTP authentication and service defaults",
+      "src_name": "Web Storefront Host",
+      "dst_name": "Microservice Cross-Cutting Defaults",
       "evidence": "",
       "key_edges": [
         {
@@ -41814,7 +42357,7 @@
               "column": 14
             }
           ],
-          "description": "Configures authenticated HTTP client communication using service defaults"
+          "description": "Configures HTTP client token delegation and configuration lookups."
         }
       ],
       "src_id": "4.1",
@@ -41893,8 +42436,8 @@
     },
     {
       "relation": "resolves image URLs through",
-      "src_name": "Shared Blazor Components",
-      "dst_name": "Blazor Web Application",
+      "src_name": "Shared Storefront Catalog",
+      "dst_name": "Web Storefront Host",
       "evidence": "",
       "key_edges": [
         {
@@ -41906,7 +42449,7 @@
               "column": 12
             }
           ],
-          "description": "Default interface method calls the web app's concrete product image provider implementation"
+          "description": "Interface default method resolves item image URL via web image URL provider"
         }
       ],
       "src_id": "4.3",
@@ -41928,8 +42471,8 @@
     },
     {
       "relation": "resolves image URLs through",
-      "src_name": "Shared Blazor Components",
-      "dst_name": "MAUI Hybrid Client",
+      "src_name": "Shared Storefront Catalog",
+      "dst_name": "Hybrid Mobile Client",
       "evidence": "",
       "key_edges": [
         {
@@ -41941,7 +42484,7 @@
               "column": 12
             }
           ],
-          "description": "Default interface method calls the hybrid app's concrete product image provider implementation"
+          "description": "Interface default method resolves item image URL via hybrid image URL provider"
         }
       ],
       "src_id": "4.3",
@@ -41962,11 +42505,34 @@
       ]
     },
     {
-      "relation": "calls",
-      "src_name": "Catalog.API",
-      "dst_name": "IntegrationEventLogEF",
+      "relation": "records outbox events in",
+      "src_name": "Catalog API and Persistence",
+      "dst_name": "Integration Event Outbox Log",
       "evidence": "",
-      "key_edges": [],
+      "key_edges": [
+        {
+          "source": "src/Catalog.API/Infrastructure/CatalogContext.cs|src.Catalog.API.Infrastructure.CatalogContext.OnModelCreating(ModelBuilder builder)",
+          "target": "src/IntegrationEventLogEF/IntegrationLogExtensions.cs|src.IntegrationEventLogEF.IntegrationLogExtensions.UseIntegrationEventLogs(this ModelBuilder builder)",
+          "call_sites": [
+            {
+              "line": 26,
+              "column": 17
+            }
+          ],
+          "description": "Configures the catalog database model to include integration event log entity tables."
+        },
+        {
+          "source": "src/Catalog.API/IntegrationEvents/CatalogIntegrationEventService.cs|src.Catalog.API.IntegrationEvents.CatalogIntegrationEventService.PublishThroughEventBusAsync(IntegrationEvent evt)",
+          "target": "src/IntegrationEventLogEF/Services/IIntegrationEventLogService.cs|src.IntegrationEventLogEF.Services.IIntegrationEventLogService.MarkEventAsInProgressAsync(Guid eventId)",
+          "call_sites": [
+            {
+              "line": 17,
+              "column": 46
+            }
+          ],
+          "description": "Updates outbox event log statuses while publishing integration events through the event bus."
+        }
+      ],
       "src_id": "5.1",
       "dst_id": "5.2",
       "is_static": true,
@@ -42151,9 +42717,9 @@
       ]
     },
     {
-      "relation": "uses migration helpers in",
-      "src_name": "Catalog.API",
-      "dst_name": "Shared",
+      "relation": "executes shared database migrations",
+      "src_name": "Catalog API and Persistence",
+      "dst_name": "Database Migration Utilities",
       "evidence": "",
       "key_edges": [
         {
@@ -42165,7 +42731,7 @@
               "column": 26
             }
           ],
-          "description": "Configures database migrations for catalog context"
+          "description": "Executes shared database migrations for the catalog context."
         }
       ],
       "src_id": "5.1",
@@ -42197,9 +42763,9 @@
       ]
     },
     {
-      "relation": "publishes and subscribes events via",
-      "src_name": "Catalog.API",
-      "dst_name": "EventBus",
+      "relation": "publishes catalog integration events",
+      "src_name": "Catalog API and Persistence",
+      "dst_name": "Event Bus Abstraction Contracts",
       "evidence": "",
       "key_edges": [
         {
@@ -42211,7 +42777,7 @@
               "column": 28
             }
           ],
-          "description": "Publishes catalog price and stock events and subscribes to order events"
+          "description": "Publishes price changes and stock availability updates over the event bus."
         }
       ],
       "src_id": "5.1",
@@ -42273,9 +42839,9 @@
       ]
     },
     {
-      "relation": "publishes and subscribes events via",
-      "src_name": "Catalog.API",
-      "dst_name": "EventBusRabbitMQ",
+      "relation": "publishes catalog integration events",
+      "src_name": "Catalog API and Persistence",
+      "dst_name": "RabbitMQ Transport Implementation",
       "evidence": "",
       "key_edges": [],
       "src_id": "5.1",
@@ -42318,9 +42884,9 @@
       ]
     },
     {
-      "relation": "publishes and subscribes events via",
-      "src_name": "IntegrationEventLogEF",
-      "dst_name": "EventBus",
+      "relation": "publishes catalog integration events",
+      "src_name": "Integration Event Outbox Log",
+      "dst_name": "Event Bus Abstraction Contracts",
       "evidence": "",
       "key_edges": [],
       "src_id": "5.2",
@@ -42341,11 +42907,23 @@
       ]
     },
     {
-      "relation": "calls",
-      "src_name": "Webhooks.API",
-      "dst_name": "Shared",
+      "relation": "configures migrations via",
+      "src_name": "Webhook Subscription API",
+      "dst_name": "Database Migration Utilities",
       "evidence": "",
-      "key_edges": [],
+      "key_edges": [
+        {
+          "source": "src/Webhooks.API/Extensions/Extensions.cs|src.Webhooks.API.Extensions.Extensions.AddApplicationServices(this IHostApplicationBuilder builder)",
+          "target": "src/Shared/MigrateDbContextExtensions.cs|src.Shared.MigrateDbContextExtensions.MigrateDbContextExtensions.AddMigration<TContext>(this IServiceCollection services)",
+          "call_sites": [
+            {
+              "line": 12,
+              "column": 26
+            }
+          ],
+          "description": "Registers webhook database context for automated execution during host startup."
+        }
+      ],
       "src_id": "6.1",
       "dst_id": "6.3",
       "is_static": true,
@@ -42375,9 +42953,9 @@
       ]
     },
     {
-      "relation": "subscribes to events on",
-      "src_name": "Webhooks.API",
-      "dst_name": "EventBus",
+      "relation": "registers event subscriptions for webhooks",
+      "src_name": "Webhook Subscription API",
+      "dst_name": "Event Bus Abstraction Contracts",
       "evidence": "",
       "key_edges": [
         {
@@ -42397,7 +42975,7 @@
               "column": 18
             }
           ],
-          "description": "Subscribes webhook integrations to event bus events"
+          "description": "Registers event handlers to listen for events that trigger webhook dispatches."
         }
       ],
       "src_id": "6.1",
@@ -42445,9 +43023,9 @@
       ]
     },
     {
-      "relation": "subscribes to events on",
-      "src_name": "Webhooks.API",
-      "dst_name": "EventBusRabbitMQ",
+      "relation": "registers event subscriptions for webhooks",
+      "src_name": "Webhook Subscription API",
+      "dst_name": "RabbitMQ Transport Implementation",
       "evidence": "",
       "key_edges": [],
       "src_id": "6.1",
@@ -42479,35 +43057,11 @@
       ]
     },
     {
-      "relation": "configures authentication defaults from",
-      "src_name": "Webhooks.API",
-      "dst_name": "eShop.ServiceDefaults",
+      "relation": "applies standard authentication and service defaults",
+      "src_name": "Webhook Subscription API",
+      "dst_name": "Microservice Cross-Cutting Defaults",
       "evidence": "",
-      "key_edges": [
-        {
-          "source": "src/Webhooks.API/Apis/WebHooksApi.cs|src.Webhooks.API.Apis.WebHooksApi.MapWebHooksApiV1(this IEndpointRouteBuilder app)",
-          "target": "src/eShop.ServiceDefaults/ClaimsPrincipalExtensions.cs|src.eShop.ServiceDefaults.ClaimsPrincipalExtensions",
-          "call_sites": [
-            {
-              "line": 15,
-              "column": 31
-            },
-            {
-              "line": 25,
-              "column": 31
-            },
-            {
-              "line": 51,
-              "column": 35
-            },
-            {
-              "line": 71,
-              "column": 31
-            }
-          ],
-          "description": "Uses token handling and claims extensions from service defaults"
-        }
-      ],
+      "key_edges": [],
       "src_id": "6.1",
       "dst_id": "9.1",
       "is_static": true,
@@ -42583,11 +43137,23 @@
       ]
     },
     {
-      "relation": "configures authentication defaults from",
-      "src_name": "WebhookClient",
-      "dst_name": "eShop.ServiceDefaults",
+      "relation": "applies standard authentication and service defaults",
+      "src_name": "Webhook Client Consumer",
+      "dst_name": "Microservice Cross-Cutting Defaults",
       "evidence": "",
-      "key_edges": [],
+      "key_edges": [
+        {
+          "source": "src/WebhookClient/Extensions/Extensions.cs|src.WebhookClient.Extensions.Extensions.AddApplicationServices(this IHostApplicationBuilder builder)",
+          "target": "src/eShop.ServiceDefaults/HttpClientExtensions.cs|src.eShop.ServiceDefaults.HttpClientExtensions.AddAuthToken(this IHttpClientBuilder builder)",
+          "call_sites": [
+            {
+              "line": 21,
+              "column": 14
+            }
+          ],
+          "description": "Applies common token management and configuration readers to webhook services."
+        }
+      ],
       "src_id": "6.2",
       "dst_id": "9.1",
       "is_static": true,
@@ -42647,9 +43213,9 @@
       ]
     },
     {
-      "relation": "dispatches events to",
-      "src_name": "EventBus",
-      "dst_name": "Payment Processor",
+      "relation": "dispatches stock confirmed events to payment handler",
+      "src_name": "Event Bus Abstraction Contracts",
+      "dst_name": "Payment Processing Service",
       "evidence": "",
       "key_edges": [
         {
@@ -42661,7 +43227,7 @@
               "column": 70
             }
           ],
-          "description": "Dispatches stock confirmed integration event to payment processor handler"
+          "description": "Dispatches order stock confirmed events to the payment processing handler."
         }
       ],
       "src_id": "7.1",
@@ -42682,9 +43248,9 @@
       ]
     },
     {
-      "relation": "dispatches events to",
-      "src_name": "EventBus",
-      "dst_name": "Ordering.API",
+      "relation": "dispatches integration events to ordering handlers",
+      "src_name": "Event Bus Abstraction Contracts",
+      "dst_name": "Ordering Web API",
       "evidence": "",
       "key_edges": [
         {
@@ -42696,7 +43262,7 @@
               "column": 70
             }
           ],
-          "description": "Dispatches order payment, stock, and grace period events to ordering handlers"
+          "description": "Delivers payment, stock, and grace period events to ordering domain handlers."
         }
       ],
       "src_id": "7.1",
@@ -42761,9 +43327,9 @@
       ]
     },
     {
-      "relation": "dispatches events to",
-      "src_name": "EventBus",
-      "dst_name": "Blazor Web Application",
+      "relation": "delivers order status update events to web clients",
+      "src_name": "Event Bus Abstraction Contracts",
+      "dst_name": "Web Storefront Host",
       "evidence": "",
       "key_edges": [
         {
@@ -42775,7 +43341,7 @@
               "column": 70
             }
           ],
-          "description": "Dispatches order status notification events to web frontends"
+          "description": "Notifies web frontends of order status transitions."
         }
       ],
       "src_id": "7.1",
@@ -42851,9 +43417,9 @@
       ]
     },
     {
-      "relation": "dispatches events to",
-      "src_name": "EventBus",
-      "dst_name": "Catalog.API",
+      "relation": "dispatches order validation events to catalog handlers",
+      "src_name": "Event Bus Abstraction Contracts",
+      "dst_name": "Catalog API and Persistence",
       "evidence": "",
       "key_edges": [
         {
@@ -42865,7 +43431,7 @@
               "column": 70
             }
           ],
-          "description": "Dispatches order validation and payment events to catalog handlers"
+          "description": "Routes order status change events into the catalog validation logic."
         }
       ],
       "src_id": "7.1",
@@ -42897,9 +43463,9 @@
       ]
     },
     {
-      "relation": "dispatches events to",
-      "src_name": "EventBus",
-      "dst_name": "Webhooks.API",
+      "relation": "delivers domain integration events to webhook dispatchers",
+      "src_name": "Event Bus Abstraction Contracts",
+      "dst_name": "Webhook Subscription API",
       "evidence": "",
       "key_edges": [
         {
@@ -42911,7 +43477,7 @@
               "column": 70
             }
           ],
-          "description": "Dispatches price and order events to webhook trigger handlers"
+          "description": "Forwards order and catalog update events to webhook delivery handlers."
         }
       ],
       "src_id": "7.1",
@@ -42954,9 +43520,9 @@
       ]
     },
     {
-      "relation": "dispatches events to",
-      "src_name": "EventBus",
-      "dst_name": "IntegrationEvents",
+      "relation": "dispatches order started event to clear basket",
+      "src_name": "Event Bus Abstraction Contracts",
+      "dst_name": "Order Integration Event Handling",
       "evidence": "",
       "key_edges": [
         {
@@ -42968,7 +43534,7 @@
               "column": 70
             }
           ],
-          "description": "Dispatches order started integration event to clear customer basket"
+          "description": "Delivers order started integration events to clear the customer basket."
         }
       ],
       "src_id": "7.1",
@@ -42989,9 +43555,9 @@
       ]
     },
     {
-      "relation": "dispatches events to",
-      "src_name": "EventBusRabbitMQ",
-      "dst_name": "Shared",
+      "relation": "delivers domain integration events to webhook dispatchers",
+      "src_name": "RabbitMQ Transport Implementation",
+      "dst_name": "Database Migration Utilities",
       "evidence": "",
       "key_edges": [],
       "src_id": "7.2",
@@ -43045,11 +43611,23 @@
       ]
     },
     {
-      "relation": "calls",
-      "src_name": "EventBusRabbitMQ",
-      "dst_name": "EventBus",
+      "relation": "dispatches incoming messages to",
+      "src_name": "RabbitMQ Transport Implementation",
+      "dst_name": "Event Bus Abstraction Contracts",
       "evidence": "",
-      "key_edges": [],
+      "key_edges": [
+        {
+          "source": "src/EventBusRabbitMQ/RabbitMQEventBus.cs|src.EventBusRabbitMQ.RabbitMQEventBus.ProcessEvent(string eventName, string message)",
+          "target": "src/EventBus/Abstractions/IIntegrationEventHandler.cs|src.EventBus.Abstractions.IIntegrationEventHandler.IIntegrationEventHandler.Handle(IntegrationEvent event)",
+          "call_sites": [
+            {
+              "line": 206,
+              "column": 27
+            }
+          ],
+          "description": "Deserializes incoming broker messages and invokes registered integration event handlers."
+        }
+      ],
       "src_id": "7.2",
       "dst_id": "7.1",
       "is_static": true,
@@ -43090,23 +43668,11 @@
       ]
     },
     {
-      "relation": "subscribes to events on",
-      "src_name": "Extensions",
-      "dst_name": "EventBus",
+      "relation": "registers message broker event subscriptions",
+      "src_name": "Service Configuration and Identity",
+      "dst_name": "Event Bus Abstraction Contracts",
       "evidence": "",
-      "key_edges": [
-        {
-          "source": "src/Basket.API/Extensions/Extensions.cs|src.Basket.API.Extensions.Extensions.Extensions.AddApplicationServices(this IHostApplicationBuilder builder)",
-          "target": "src/EventBus/Extensions/EventBusBuilderExtensions.cs|src.EventBus.Extensions.EventBusBuilderExtensions.AddSubscription<T, TH>(this IEventBusBuilder eventBusBuilder)",
-          "call_sites": [
-            {
-              "line": 19,
-              "column": 17
-            }
-          ],
-          "description": "Registers event bus subscriptions for order started events"
-        }
-      ],
+      "key_edges": [],
       "src_id": "8.1",
       "dst_id": "7.1",
       "is_static": true,
@@ -43151,11 +43717,23 @@
       ]
     },
     {
-      "relation": "subscribes to events on",
-      "src_name": "Extensions",
-      "dst_name": "EventBusRabbitMQ",
+      "relation": "registers message broker event subscriptions",
+      "src_name": "Service Configuration and Identity",
+      "dst_name": "RabbitMQ Transport Implementation",
       "evidence": "",
-      "key_edges": [],
+      "key_edges": [
+        {
+          "source": "src/Basket.API/Extensions/Extensions.cs|src.Basket.API.Extensions.Extensions.Extensions.AddApplicationServices(this IHostApplicationBuilder builder)",
+          "target": "src/EventBusRabbitMQ/RabbitMqDependencyInjectionExtensions.cs|src.EventBusRabbitMQ.RabbitMqDependencyInjectionExtensions.AddRabbitMqEventBus(this IHostApplicationBuilder builder, string connectionName)",
+          "call_sites": [
+            {
+              "line": 18,
+              "column": 17
+            }
+          ],
+          "description": "Registers RabbitMQ event bus connectivity and subscriptions in the shopping cart service."
+        }
+      ],
       "src_id": "8.1",
       "dst_id": "7.2",
       "is_static": true,
@@ -43185,9 +43763,9 @@
       ]
     },
     {
-      "relation": "configures defaults from",
-      "src_name": "Extensions",
-      "dst_name": "eShop.ServiceDefaults",
+      "relation": "configures default authentication and hosting services",
+      "src_name": "Service Configuration and Identity",
+      "dst_name": "Microservice Cross-Cutting Defaults",
       "evidence": "",
       "key_edges": [
         {
@@ -43199,7 +43777,7 @@
               "column": 17
             }
           ],
-          "description": "Registers default authentication schemes from service defaults"
+          "description": "Applies shared authentication and service defaults to the basket service."
         }
       ],
       "src_id": "8.1",
@@ -43231,11 +43809,23 @@
       ]
     },
     {
-      "relation": "calls",
-      "src_name": "IntegrationEvents",
-      "dst_name": "Repositories",
+      "relation": "deletes basket in",
+      "src_name": "Order Integration Event Handling",
+      "dst_name": "Basket Redis Persistence",
       "evidence": "",
-      "key_edges": [],
+      "key_edges": [
+        {
+          "source": "src/Basket.API/IntegrationEvents/EventHandling/OrderStartedIntegrationEventHandler.cs|src.Basket.API.IntegrationEvents.EventHandling.OrderStartedIntegrationEventHandler.Handle(OrderStartedIntegrationEvent event)",
+          "target": "src/Basket.API/Repositories/IBasketRepository.cs|src.Basket.API.Repositories.IBasketRepository.DeleteBasketAsync(string id)",
+          "call_sites": [
+            {
+              "line": 14,
+              "column": 26
+            }
+          ],
+          "description": "Order handler deletes the customer basket from the repository on order start"
+        }
+      ],
       "src_id": "8.2",
       "dst_id": "8.5",
       "is_static": true,
@@ -43276,11 +43866,23 @@
       ]
     },
     {
-      "relation": "calls",
-      "src_name": "Loose files in src.Basket.API",
-      "dst_name": "Extensions",
+      "relation": "resolves identity from",
+      "src_name": "Basket Service API Host",
+      "dst_name": "Service Configuration and Identity",
       "evidence": "",
-      "key_edges": [],
+      "key_edges": [
+        {
+          "source": "src/Basket.API/Grpc/BasketService.cs|src.Basket.API.Grpc.BasketService.GetBasket(GetBasketRequest request, ServerCallContext context)",
+          "target": "src/Basket.API/Extensions/ServerCallContextIdentityExtensions.cs|src.Basket.API.Extensions.ServerCallContextIdentityExtensions.GetUserIdentity(this ServerCallContext context)",
+          "call_sites": [
+            {
+              "line": 15,
+              "column": 30
+            }
+          ],
+          "description": "Extracts user identity from the incoming gRPC call context"
+        }
+      ],
       "src_id": "8.3",
       "dst_id": "8.1",
       "is_static": true,
@@ -43354,11 +43956,23 @@
       ]
     },
     {
-      "relation": "calls",
-      "src_name": "Loose files in src.Basket.API",
-      "dst_name": "Model",
+      "relation": "instantiates and maps",
+      "src_name": "Basket Service API Host",
+      "dst_name": "Basket Domain Model",
       "evidence": "",
-      "key_edges": [],
+      "key_edges": [
+        {
+          "source": "src/Basket.API/Grpc/BasketService.cs|src.Basket.API.Grpc.BasketService.MapToCustomerBasket(string userId, UpdateBasketRequest customerBasketRequest)",
+          "target": "src/Basket.API/Model/CustomerBasket.cs|src.Basket.API.Model.CustomerBasket",
+          "call_sites": [
+            {
+              "line": 95,
+              "column": 28
+            }
+          ],
+          "description": "Maps gRPC update basket requests into customer basket domain objects"
+        }
+      ],
       "src_id": "8.3",
       "dst_id": "8.4",
       "is_static": true,
@@ -43399,11 +44013,23 @@
       ]
     },
     {
-      "relation": "calls",
-      "src_name": "Loose files in src.Basket.API",
-      "dst_name": "Repositories",
+      "relation": "queries and updates",
+      "src_name": "Basket Service API Host",
+      "dst_name": "Basket Redis Persistence",
       "evidence": "",
-      "key_edges": [],
+      "key_edges": [
+        {
+          "source": "src/Basket.API/Grpc/BasketService.cs|src.Basket.API.Grpc.BasketService.GetBasket(GetBasketRequest request, ServerCallContext context)",
+          "target": "src/Basket.API/Repositories/IBasketRepository.cs|src.Basket.API.Repositories.IBasketRepository.GetBasketAsync(string customerId)",
+          "call_sites": [
+            {
+              "line": 26,
+              "column": 37
+            }
+          ],
+          "description": "Queries and updates basket records via repository interface"
+        }
+      ],
       "src_id": "8.3",
       "dst_id": "8.5",
       "is_static": true,

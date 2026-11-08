@@ -1,6 +1,6 @@
 {
   "repository_name": ".codeboarding-target",
-  "timestamp": "2026-10-11T09:35:18.678119+00:00",
+  "timestamp": "2026-11-08T21:54:10.072253+00:00",
   "overall_score": 0.8729889589905363,
   "check_summaries": [
     {
@@ -116,24 +116,25 @@
       ],
       "check_type": "circular_dependencies",
       "cycles": [
-        "src.WebApp.Services -> src.WebAppComponents.Services -> src.WebApp.Services",
+        "src.WebAppComponents.Services -> src.WebApp.Services -> src.WebAppComponents.Services",
         "src.OrderProcessor.Extensions -> src.OrderProcessor -> src.OrderProcessor.Extensions",
-        "src.Identity.API.Quickstart.Account -> src.Identity.API.Quickstart -> src.Identity.API.Quickstart.Account",
+        "src.Identity.API.Quickstart -> src.Identity.API.Quickstart.Account -> src.Identity.API.Quickstart",
         "src.ClientApp.ViewModels.Base -> src.ClientApp.ViewModels -> src.ClientApp.ViewModels.Base",
-        "src.ClientApp.Animations -> src.ClientApp.Animations.Base -> src.ClientApp.Animations",
+        "src.ClientApp.Animations.Base -> src.ClientApp.Animations -> src.ClientApp.Animations.Base",
+        "src.ClientApp.Animations.Base -> src.ClientApp.Animations -> src.ClientApp.Helpers -> src.ClientApp.Animations.Base",
         "src.Catalog.API.Extensions -> src.Catalog.API -> src.Catalog.API.Extensions",
-        "src.Ordering.API.Application.IntegrationEvents.EventHandling -> src.Ordering.API.Application.Commands -> src.Ordering.API.Application.IntegrationEvents -> src.EventBus.Abstractions -> src.Ordering.API.Application.IntegrationEvents.EventHandling",
-        "src.Ordering.API.Application.IntegrationEvents.EventHandling -> src.Ordering.API.Application.Commands -> src.Ordering.API.Application.IntegrationEvents -> src.EventBusRabbitMQ -> src.EventBus.Abstractions -> src.Ordering.API.Application.IntegrationEvents.EventHandling",
-        "src.Ordering.API.Application.IntegrationEvents.EventHandling -> src.Ordering.API.Application.Commands -> src.Ordering.API.Extensions -> src.EventBusRabbitMQ -> src.EventBus.Abstractions -> src.Ordering.API.Application.IntegrationEvents.EventHandling",
-        "src.Ordering.API.Application.Commands -> src.Ordering.API.Extensions -> src.Ordering.API.Application.Commands",
-        "src.EventBusRabbitMQ -> src.EventBus.Abstractions -> src.Catalog.API.IntegrationEvents.EventHandling -> src.Catalog.API.IntegrationEvents -> src.EventBusRabbitMQ",
-        "src.EventBusRabbitMQ -> src.EventBus.Abstractions -> src.PaymentProcessor.IntegrationEvents.EventHandling -> src.EventBusRabbitMQ",
-        "src.EventBus.Abstractions -> src.Catalog.API.IntegrationEvents.EventHandling -> src.Catalog.API.IntegrationEvents -> src.EventBus.Abstractions",
-        "src.EventBus.Abstractions -> src.PaymentProcessor.IntegrationEvents.EventHandling -> src.EventBus.Abstractions",
-        "src.Ordering.Domain.AggregatesModel.OrderAggregate -> src.Ordering.Domain.SeedWork -> src.Ordering.Domain.AggregatesModel.OrderAggregate"
+        "src.Ordering.API.Application.IntegrationEvents -> src.EventBus.Abstractions -> src.Ordering.API.Application.IntegrationEvents.EventHandling -> src.Ordering.API.Application.Commands -> src.Ordering.API.Application.IntegrationEvents",
+        "src.Ordering.API.Application.IntegrationEvents -> src.EventBusRabbitMQ -> src.EventBus.Abstractions -> src.Ordering.API.Application.IntegrationEvents.EventHandling -> src.Ordering.API.Application.Commands -> src.Ordering.API.Application.IntegrationEvents",
+        "src.PaymentProcessor.IntegrationEvents.EventHandling -> src.EventBus.Abstractions -> src.PaymentProcessor.IntegrationEvents.EventHandling",
+        "src.PaymentProcessor.IntegrationEvents.EventHandling -> src.EventBusRabbitMQ -> src.EventBus.Abstractions -> src.PaymentProcessor.IntegrationEvents.EventHandling",
+        "src.Catalog.API.IntegrationEvents -> src.EventBus.Abstractions -> src.Catalog.API.IntegrationEvents.EventHandling -> src.Catalog.API.IntegrationEvents",
+        "src.Catalog.API.IntegrationEvents -> src.EventBusRabbitMQ -> src.EventBus.Abstractions -> src.Catalog.API.IntegrationEvents.EventHandling -> src.Catalog.API.IntegrationEvents",
+        "src.Ordering.API.Extensions -> src.EventBusRabbitMQ -> src.EventBus.Abstractions -> src.Ordering.API.Application.IntegrationEvents.EventHandling -> src.Ordering.API.Application.Commands -> src.Ordering.API.Extensions",
+        "src.Ordering.API.Extensions -> src.Ordering.API.Application.Commands -> src.Ordering.API.Extensions",
+        "src.Ordering.Domain.SeedWork -> src.Ordering.Domain.AggregatesModel.OrderAggregate -> src.Ordering.Domain.SeedWork"
       ],
       "packages_checked": 164,
-      "packages_in_cycles": 23
+      "packages_in_cycles": 24
     },
     {
       "check_name": "unused_code_diagnostics",
@@ -154,14 +155,7 @@
           "entities": [
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/Ordering.Infrastructure/GlobalUsings.cs",
-              "line_start": 4,
-              "line_end": 4,
-              "metric_value": 0.0
-            },
-            {
-              "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/Webhooks.API/Migrations/20230925222606_Initial.cs",
+              "file_path": "src/Catalog.API/Model/PaginatedItems.cs",
               "line_start": 1,
               "line_end": 1,
               "metric_value": 0.0
@@ -190,6 +184,13 @@
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
               "file_path": "src/Webhooks.API/Migrations/WebhooksContextModelSnapshot.cs",
+              "line_start": 3,
+              "line_end": 3,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Webhooks.API/Migrations/WebhooksContextModelSnapshot.cs",
               "line_start": 2,
               "line_end": 2,
               "metric_value": 0.0
@@ -217,7 +218,28 @@
             },
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/Webhooks.API/Migrations/WebhooksContextModelSnapshot.cs",
+              "file_path": "src/Webhooks.API/Migrations/20230925222606_Initial.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Webhooks.API/Migrations/20230925222606_Initial.Designer.cs",
+              "line_start": 6,
+              "line_end": 6,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Webhooks.API/Migrations/20230925222606_Initial.Designer.cs",
+              "line_start": 7,
+              "line_end": 7,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Webhooks.API/Migrations/20230925222606_Initial.Designer.cs",
               "line_start": 3,
               "line_end": 3,
               "metric_value": 0.0
@@ -238,27 +260,6 @@
             },
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/Webhooks.API/Migrations/20230925222606_Initial.Designer.cs",
-              "line_start": 6,
-              "line_end": 6,
-              "metric_value": 0.0
-            },
-            {
-              "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/Webhooks.API/Migrations/20230925222606_Initial.Designer.cs",
-              "line_start": 7,
-              "line_end": 7,
-              "metric_value": 0.0
-            },
-            {
-              "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/Webhooks.API/Migrations/20230925222606_Initial.Designer.cs",
-              "line_start": 3,
-              "line_end": 3,
-              "metric_value": 0.0
-            },
-            {
-              "entity_name": "[unused_import] Unnecessary using directive.",
               "file_path": "src/WebhookClient/Services/WebhookData.cs",
               "line_start": 1,
               "line_end": 1,
@@ -274,22 +275,15 @@
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
               "file_path": "src/WebAppComponents/Services/ICatalogService.cs",
-              "line_start": 1,
-              "line_end": 1,
+              "line_start": 2,
+              "line_end": 2,
               "metric_value": 0.0
             },
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
               "file_path": "src/WebAppComponents/Services/ICatalogService.cs",
-              "line_start": 2,
-              "line_end": 2,
-              "metric_value": 0.0
-            },
-            {
-              "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/WebApp/Program.cs",
-              "line_start": 2,
-              "line_end": 2,
+              "line_start": 1,
+              "line_end": 1,
               "metric_value": 0.0
             },
             {
@@ -297,6 +291,13 @@
               "file_path": "src/WebApp/Program.cs",
               "line_start": 1,
               "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/WebApp/Program.cs",
+              "line_start": 2,
+              "line_end": 2,
               "metric_value": 0.0
             },
             {
@@ -309,15 +310,15 @@
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
               "file_path": "src/Ordering.Infrastructure/Migrations/OrderingContextModelSnapshot.cs",
-              "line_start": 5,
-              "line_end": 5,
+              "line_start": 6,
+              "line_end": 6,
               "metric_value": 0.0
             },
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
               "file_path": "src/Ordering.Infrastructure/Migrations/OrderingContextModelSnapshot.cs",
-              "line_start": 6,
-              "line_end": 6,
+              "line_start": 3,
+              "line_end": 3,
               "metric_value": 0.0
             },
             {
@@ -330,8 +331,8 @@
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
               "file_path": "src/Ordering.Infrastructure/Migrations/OrderingContextModelSnapshot.cs",
-              "line_start": 3,
-              "line_end": 3,
+              "line_start": 5,
+              "line_end": 5,
               "metric_value": 0.0
             },
             {
@@ -372,6 +373,13 @@
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
               "file_path": "src/Ordering.Infrastructure/Migrations/20231026091055_Outbox.Designer.cs",
+              "line_start": 8,
+              "line_end": 8,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20231026091055_Outbox.Designer.cs",
               "line_start": 2,
               "line_end": 2,
               "metric_value": 0.0
@@ -388,20 +396,6 @@
               "file_path": "src/Ordering.Infrastructure/Migrations/20231026091055_Outbox.Designer.cs",
               "line_start": 3,
               "line_end": 3,
-              "metric_value": 0.0
-            },
-            {
-              "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/Ordering.Infrastructure/Migrations/20231026091055_Outbox.Designer.cs",
-              "line_start": 8,
-              "line_end": 8,
-              "metric_value": 0.0
-            },
-            {
-              "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/Ordering.Infrastructure/Migrations/20231021004633_FixOrderitemseqSchema.Designer.cs",
-              "line_start": 2,
-              "line_end": 2,
               "metric_value": 0.0
             },
             {
@@ -423,6 +417,13 @@
               "file_path": "src/Ordering.Infrastructure/Migrations/20231021004633_FixOrderitemseqSchema.Designer.cs",
               "line_start": 8,
               "line_end": 8,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20231021004633_FixOrderitemseqSchema.Designer.cs",
+              "line_start": 2,
+              "line_end": 2,
               "metric_value": 0.0
             },
             {
@@ -442,13 +443,6 @@
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
               "file_path": "src/Ordering.Infrastructure/Migrations/20230925222426_Initial.Designer.cs",
-              "line_start": 8,
-              "line_end": 8,
-              "metric_value": 0.0
-            },
-            {
-              "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/Ordering.Infrastructure/Migrations/20230925222426_Initial.Designer.cs",
               "line_start": 2,
               "line_end": 2,
               "metric_value": 0.0
@@ -458,6 +452,20 @@
               "file_path": "src/Ordering.Infrastructure/Migrations/20230925222426_Initial.Designer.cs",
               "line_start": 6,
               "line_end": 6,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/Migrations/20230925222426_Initial.Designer.cs",
+              "line_start": 8,
+              "line_end": 8,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Ordering.Infrastructure/GlobalUsings.cs",
+              "line_start": 4,
+              "line_end": 4,
               "metric_value": 0.0
             },
             {
@@ -484,15 +492,15 @@
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
               "file_path": "src/IntegrationEventLogEF/GlobalUsings.cs",
-              "line_start": 6,
-              "line_end": 6,
+              "line_start": 2,
+              "line_end": 2,
               "metric_value": 0.0
             },
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
               "file_path": "src/IntegrationEventLogEF/GlobalUsings.cs",
-              "line_start": 2,
-              "line_end": 2,
+              "line_start": 6,
+              "line_end": 6,
               "metric_value": 0.0
             },
             {
@@ -512,22 +520,15 @@
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
               "file_path": "src/Identity.API/Data/Migrations/ApplicationDbContextModelSnapshot.cs",
-              "line_start": 4,
-              "line_end": 4,
-              "metric_value": 0.0
-            },
-            {
-              "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/Identity.API/Data/Migrations/ApplicationDbContextModelSnapshot.cs",
-              "line_start": 7,
-              "line_end": 7,
-              "metric_value": 0.0
-            },
-            {
-              "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/Identity.API/Data/Migrations/ApplicationDbContextModelSnapshot.cs",
               "line_start": 3,
               "line_end": 3,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Identity.API/Data/Migrations/ApplicationDbContextModelSnapshot.cs",
+              "line_start": 4,
+              "line_end": 4,
               "metric_value": 0.0
             },
             {
@@ -549,6 +550,13 @@
               "file_path": "src/Identity.API/Data/Migrations/ApplicationDbContextModelSnapshot.cs",
               "line_start": 5,
               "line_end": 5,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Identity.API/Data/Migrations/ApplicationDbContextModelSnapshot.cs",
+              "line_start": 7,
+              "line_end": 7,
               "metric_value": 0.0
             },
             {
@@ -575,22 +583,8 @@
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
               "file_path": "src/Identity.API/Data/Migrations/20230925223402_InitialMigration.Designer.cs",
-              "line_start": 5,
-              "line_end": 5,
-              "metric_value": 0.0
-            },
-            {
-              "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/Identity.API/Data/Migrations/20230925223402_InitialMigration.Designer.cs",
               "line_start": 6,
               "line_end": 6,
-              "metric_value": 0.0
-            },
-            {
-              "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/Identity.API/Data/Migrations/20230925223402_InitialMigration.Designer.cs",
-              "line_start": 4,
-              "line_end": 4,
               "metric_value": 0.0
             },
             {
@@ -610,8 +604,22 @@
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
               "file_path": "src/Identity.API/Data/Migrations/20230925223402_InitialMigration.Designer.cs",
+              "line_start": 4,
+              "line_end": 4,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Identity.API/Data/Migrations/20230925223402_InitialMigration.Designer.cs",
               "line_start": 2,
               "line_end": 2,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Identity.API/Data/Migrations/20230925223402_InitialMigration.Designer.cs",
+              "line_start": 5,
+              "line_end": 5,
               "metric_value": 0.0
             },
             {
@@ -645,27 +653,20 @@
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
               "file_path": "src/HybridApp/Platforms/Tizen/Main.cs",
-              "line_start": 1,
-              "line_end": 1,
-              "metric_value": 0.0
-            },
-            {
-              "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/HybridApp/Platforms/Tizen/Main.cs",
-              "line_start": 2,
-              "line_end": 2,
-              "metric_value": 0.0
-            },
-            {
-              "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/HybridApp/Platforms/Tizen/Main.cs",
               "line_start": 3,
               "line_end": 3,
               "metric_value": 0.0
             },
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/HybridApp/Platforms/MacCatalyst/Program.cs",
+              "file_path": "src/HybridApp/Platforms/Tizen/Main.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/HybridApp/Platforms/Tizen/Main.cs",
               "line_start": 2,
               "line_end": 2,
               "metric_value": 0.0
@@ -675,6 +676,13 @@
               "file_path": "src/HybridApp/Platforms/MacCatalyst/Program.cs",
               "line_start": 1,
               "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/HybridApp/Platforms/MacCatalyst/Program.cs",
+              "line_start": 2,
+              "line_end": 2,
               "metric_value": 0.0
             },
             {
@@ -701,6 +709,13 @@
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
               "file_path": "src/HybridApp/Platforms/Android/MainActivity.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/HybridApp/Platforms/Android/MainActivity.cs",
               "line_start": 3,
               "line_end": 3,
               "metric_value": 0.0
@@ -710,13 +725,6 @@
               "file_path": "src/HybridApp/Platforms/Android/MainActivity.cs",
               "line_start": 2,
               "line_end": 2,
-              "metric_value": 0.0
-            },
-            {
-              "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/HybridApp/Platforms/Android/MainActivity.cs",
-              "line_start": 1,
-              "line_end": 1,
               "metric_value": 0.0
             },
             {
@@ -736,15 +744,15 @@
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
               "file_path": "src/ClientApp/Views/MauiAuthenticationBrowser.cs",
-              "line_start": 1,
-              "line_end": 1,
+              "line_start": 2,
+              "line_end": 2,
               "metric_value": 0.0
             },
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
               "file_path": "src/ClientApp/Views/MauiAuthenticationBrowser.cs",
-              "line_start": 2,
-              "line_end": 2,
+              "line_start": 1,
+              "line_end": 1,
               "metric_value": 0.0
             },
             {
@@ -960,15 +968,15 @@
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
               "file_path": "src/ClientApp/GlobalUsings.cs",
-              "line_start": 3,
-              "line_end": 3,
+              "line_start": 2,
+              "line_end": 2,
               "metric_value": 0.0
             },
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
               "file_path": "src/ClientApp/GlobalUsings.cs",
-              "line_start": 2,
-              "line_end": 2,
+              "line_start": 3,
+              "line_end": 3,
               "metric_value": 0.0
             },
             {
@@ -1022,9 +1030,9 @@
             },
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/Catalog.API/Model/PaginatedItems.cs",
-              "line_start": 1,
-              "line_end": 1,
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/CatalogContextModelSnapshot.cs",
+              "line_start": 3,
+              "line_end": 3,
               "metric_value": 0.0
             },
             {
@@ -1057,16 +1065,23 @@
             },
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/Catalog.API/Infrastructure/Migrations/CatalogContextModelSnapshot.cs",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231026091140_Outbox.cs",
+              "line_start": 1,
+              "line_end": 1,
+              "metric_value": 0.0
+            },
+            {
+              "entity_name": "[unused_import] Unnecessary using directive.",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231026091140_Outbox.Designer.cs",
               "line_start": 3,
               "line_end": 3,
               "metric_value": 0.0
             },
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231026091140_Outbox.cs",
-              "line_start": 1,
-              "line_end": 1,
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231026091140_Outbox.Designer.cs",
+              "line_start": 2,
+              "line_end": 2,
               "metric_value": 0.0
             },
             {
@@ -1092,14 +1107,7 @@
             },
             {
               "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231026091140_Outbox.Designer.cs",
-              "line_start": 3,
-              "line_end": 3,
-              "metric_value": 0.0
-            },
-            {
-              "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231026091140_Outbox.Designer.cs",
+              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231018163051_RemoveHiLoAndIndexCatalogName.Designer.cs",
               "line_start": 2,
               "line_end": 2,
               "metric_value": 0.0
@@ -1123,13 +1131,6 @@
               "file_path": "src/Catalog.API/Infrastructure/Migrations/20231018163051_RemoveHiLoAndIndexCatalogName.Designer.cs",
               "line_start": 5,
               "line_end": 5,
-              "metric_value": 0.0
-            },
-            {
-              "entity_name": "[unused_import] Unnecessary using directive.",
-              "file_path": "src/Catalog.API/Infrastructure/Migrations/20231018163051_RemoveHiLoAndIndexCatalogName.Designer.cs",
-              "line_start": 2,
-              "line_end": 2,
               "metric_value": 0.0
             },
             {
