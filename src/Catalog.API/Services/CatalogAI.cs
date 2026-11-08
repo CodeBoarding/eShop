@@ -42,7 +42,7 @@ public sealed class CatalogAI : ICatalogAI
 
             if (_logger.IsEnabled(LogLevel.Trace))
             {
-                _logger.LogTrace("Generated {EmbeddingsCount} embeddings in {ElapsedMilliseconds}s", results.Count, Stopwatch.GetElapsedTime(timestamp).TotalSeconds);
+                _logger.LogTrace("Generated {EmbeddingsCount} embeddings in {ElapsedMilliseconds}ms", results.Count, Stopwatch.GetElapsedTime(timestamp).TotalMilliseconds);
             }
 
             return results;
@@ -63,7 +63,7 @@ public sealed class CatalogAI : ICatalogAI
 
             if (_logger.IsEnabled(LogLevel.Trace))
             {
-                _logger.LogTrace("Generated embedding in {ElapsedMilliseconds}s: '{Text}'", Stopwatch.GetElapsedTime(timestamp).TotalSeconds, text);
+                _logger.LogTrace("Generated embedding in {ElapsedMilliseconds}ms: '{Text}'", Stopwatch.GetElapsedTime(timestamp).TotalMilliseconds, text);
             }
 
             return new Vector(embedding);
