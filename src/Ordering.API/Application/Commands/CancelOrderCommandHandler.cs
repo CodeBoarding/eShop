@@ -1,13 +1,15 @@
-﻿namespace eShop.Ordering.API.Application.Commands;
+namespace eShop.Ordering.API.Application.Commands;
 
 // Regular CommandHandler
 public class CancelOrderCommandHandler : IRequestHandler<CancelOrderCommand, bool>
 {
     private readonly IOrderRepository _orderRepository;
+    private readonly IOrderingIntegrationEventService _events;
 
-    public CancelOrderCommandHandler(IOrderRepository orderRepository)
+    public CancelOrderCommandHandler(IOrderRepository orderRepository, IOrderingIntegrationEventService events)
     {
         _orderRepository = orderRepository;
+        _events = events;
     }
 
     /// <summary>
@@ -24,7 +26,11 @@ public class CancelOrderCommandHandler : IRequestHandler<CancelOrderCommand, boo
             return false;
         }
 
-        orderToUpdate.SetCancelledStatus();
+        if (orderToUpdate.RequestItemReservationCancellation())
+        {
+            await _events.AddAndSaveEventAsync(
+                new eShop.ItemReservation.Contracts.ItemReservationReleaseRequestedIntegrationEvent(command.OrderNumber));
+        }
         return await _orderRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
     }
 }

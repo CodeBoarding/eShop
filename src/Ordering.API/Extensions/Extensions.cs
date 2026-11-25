@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+using FluentValidation;
+using eShop.ItemReservation.Contracts;
 
 internal static class Extensions
 {
@@ -24,6 +25,7 @@ internal static class Extensions
         services.AddTransient<IIntegrationEventLogService, IntegrationEventLogService<OrderingContext>>();
 
         services.AddTransient<IOrderingIntegrationEventService, OrderingIntegrationEventService>();
+        services.AddHostedService<OrderingOutboxWorker>();
 
         builder.AddRabbitMqEventBus("eventbus")
                .AddEventBusSubscriptions();
@@ -53,9 +55,10 @@ internal static class Extensions
     private static void AddEventBusSubscriptions(this IEventBusBuilder eventBus)
     {
         eventBus.AddSubscription<GracePeriodConfirmedIntegrationEvent, GracePeriodConfirmedIntegrationEventHandler>();
-        eventBus.AddSubscription<OrderStockConfirmedIntegrationEvent, OrderStockConfirmedIntegrationEventHandler>();
-        eventBus.AddSubscription<OrderStockRejectedIntegrationEvent, OrderStockRejectedIntegrationEventHandler>();
-        eventBus.AddSubscription<OrderPaymentFailedIntegrationEvent, OrderPaymentFailedIntegrationEventHandler>();
-        eventBus.AddSubscription<OrderPaymentSucceededIntegrationEvent, OrderPaymentSucceededIntegrationEventHandler>();
+        eventBus.AddSubscription<ItemsReservedIntegrationEvent, ItemsReservedIntegrationEventHandler>();
+        eventBus.AddSubscription<ItemReservationCompletedIntegrationEvent, ItemReservationCompletedIntegrationEventHandler>();
+        eventBus.AddSubscription<ItemReservationReleasedIntegrationEvent, ItemReservationReleasedIntegrationEventHandler>();
+        eventBus.AddSubscription<ItemReservationRejectedIntegrationEvent, ItemReservationRejectedIntegrationEventHandler>();
+        eventBus.AddSubscription<ItemReservationPaymentReviewRequiredIntegrationEvent, ItemReservationPaymentReviewRequiredIntegrationEventHandler>();
     }
 }

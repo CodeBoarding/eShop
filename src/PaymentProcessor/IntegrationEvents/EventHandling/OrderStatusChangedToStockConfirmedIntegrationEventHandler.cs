@@ -1,4 +1,4 @@
-﻿namespace eShop.PaymentProcessor.IntegrationEvents.EventHandling;
+namespace eShop.PaymentProcessor.IntegrationEvents.EventHandling;
 
 public class OrderStatusChangedToStockConfirmedIntegrationEventHandler(
     IEventBus eventBus,
@@ -10,6 +10,9 @@ public class OrderStatusChangedToStockConfirmedIntegrationEventHandler(
     {
         logger.LogInformation("Handling integration event: {IntegrationEventId} - ({@IntegrationEvent})", @event.Id, @event);
 
+        var payment = options.CurrentValue;
+        await Task.Delay(TimeSpan.FromSeconds(payment.DelaySeconds));
+
         IntegrationEvent orderPaymentIntegrationEvent;
 
         // Business feature comment:
@@ -18,7 +21,7 @@ public class OrderStatusChangedToStockConfirmedIntegrationEventHandler(
         // Instead of a real payment we just take the env. var to simulate the payment 
         // The payment can be successful or it can fail
 
-        if (options.CurrentValue.PaymentSucceeded)
+        if (payment.PaymentSucceeded)
         {
             orderPaymentIntegrationEvent = new OrderPaymentSucceededIntegrationEvent(@event.OrderId);
         }

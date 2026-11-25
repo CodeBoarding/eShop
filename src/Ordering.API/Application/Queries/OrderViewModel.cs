@@ -1,4 +1,4 @@
-﻿namespace eShop.Ordering.API.Application.Queries;
+namespace eShop.Ordering.API.Application.Queries;
 
 public record Orderitem
 {
@@ -13,6 +13,8 @@ public record Order
     public int OrderNumber { get; init; }
     public DateTime Date { get; init; }
     public string Status { get; init; }
+    public DateTimeOffset? ItemReservationExpiresAt { get; init; }
+    public bool ItemReservationCancellationRequested { get; init; }
     public string Description { get; init; }
     public string Street { get; init; }
     public string City { get; init; }
@@ -25,9 +27,12 @@ public record Order
 
 public record OrderSummary
 {
+    public string Description { get; init; }
     public int OrderNumber { get; init; }
     public DateTime Date { get; init; }
     public string Status { get; init; }
+    public DateTimeOffset? ItemReservationExpiresAt { get; init; }
+    public bool ItemReservationCancellationRequested { get; init; }
     public double Total { get; init; }
 }
 

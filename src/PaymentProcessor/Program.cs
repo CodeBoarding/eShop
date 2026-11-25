@@ -1,4 +1,4 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
@@ -6,7 +6,7 @@ builder.AddRabbitMqEventBus("EventBus")
     .AddSubscription<OrderStatusChangedToStockConfirmedIntegrationEvent, OrderStatusChangedToStockConfirmedIntegrationEventHandler>();
 
 builder.Services.AddOptions<PaymentOptions>()
-    .BindConfiguration(nameof(PaymentOptions));
+    .BindConfiguration(nameof(PaymentOptions)).ValidateDataAnnotations().ValidateOnStart();
 
 var app = builder.Build();
 

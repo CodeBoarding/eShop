@@ -1,4 +1,6 @@
-﻿using eShop.Catalog.API.Services;
+using eShop.Catalog.API.Services;
+using eShop.Catalog.API.Reservations;
+using eShop.ItemReservation.Contracts;
 
 public static class Extensions
 {
@@ -30,7 +32,16 @@ public static class Extensions
 
         builder.AddRabbitMqEventBus("eventbus")
                .AddSubscription<OrderStatusChangedToAwaitingValidationIntegrationEvent, OrderStatusChangedToAwaitingValidationIntegrationEventHandler>()
-               .AddSubscription<OrderStatusChangedToPaidIntegrationEvent, OrderStatusChangedToPaidIntegrationEventHandler>();
+               .AddSubscription<OrderPaymentSucceededIntegrationEvent, CompleteItemReservationOnPaymentHandler>()
+               .AddSubscription<OrderPaymentFailedIntegrationEvent, ReleaseItemReservationOnPaymentFailureHandler>()
+               .AddSubscription<ItemReservationReleaseRequestedIntegrationEvent, ReleaseItemReservationOnCancellationHandler>();
+
+        builder.Services.AddSingleton(TimeProvider.System);
+        builder.Services.AddOptions<ItemReservationOptions>().BindConfiguration("ItemReservation")
+            .ValidateDataAnnotations().ValidateOnStart();
+        builder.Services.AddScoped<ItemReservationService>();
+        builder.Services.AddScoped<ReservationOutboxDispatcher>();
+        builder.Services.AddHostedService<ItemReservationWorker>();
 
         builder.Services.AddOptions<CatalogOptions>()
             .BindConfiguration(nameof(CatalogOptions));

@@ -1,4 +1,4 @@
-﻿namespace eShop.Ordering.UnitTests.Application;
+namespace eShop.Ordering.UnitTests.Application;
 
 using Microsoft.AspNetCore.Http.HttpResults;
 using eShop.Ordering.API.Application.Queries;
@@ -19,6 +19,9 @@ public class OrdersWebApiTest
         _orderQueriesMock = Substitute.For<IOrderQueries>();
         _identityServiceMock = Substitute.For<IIdentityService>();
         _loggerMock = Substitute.For<ILogger<OrderServices>>();
+        _identityServiceMock.GetUserIdentity().Returns("buyer");
+        _orderQueriesMock.GetOrdersFromUserAsync("buyer").Returns(
+            Task.FromResult<IEnumerable<OrderSummary>>([new OrderSummary { OrderNumber = 1, Status = "StockConfirmed" }]));
     }
 
     [TestMethod]
@@ -34,6 +37,15 @@ public class OrdersWebApiTest
 
         // Assert
         Assert.IsInstanceOfType<Ok>(result.Result);
+    }
+
+    [TestMethod]
+    public async Task Cancel_order_owned_by_someone_else_is_rejected()
+    {
+        var services = new OrderServices(_mediatorMock, _orderQueriesMock, _identityServiceMock, _loggerMock);
+        var result = await OrdersApi.CancelOrderAsync(Guid.NewGuid(), new CancelOrderCommand(999), services);
+        Assert.IsInstanceOfType<BadRequest<string>>(result.Result);
+        await _mediatorMock.DidNotReceive().Send(Arg.Any<IdentifiedCommand<CancelOrderCommand, bool>>(), default);
     }
 
     [TestMethod]
