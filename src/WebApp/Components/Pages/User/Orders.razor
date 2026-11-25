@@ -1,4 +1,4 @@
-﻿@page "/user/orders"
+@page "/user/orders"
 @attribute [Authorize]
 @attribute [StreamRendering]
 @inject OrderingService OrderingService
@@ -49,8 +49,13 @@ else
                 </div>
                 <div class="order-status">
                     <span class="status @order.Status.ToLower()">
-                        @order.Status
+                        @(order.Status == "StockConfirmed" ? "Items reserved" : order.Status == "PaymentReviewRequired" ? "Payment review needed" : order.Status)
                     </span>
+                    <ItemReservationStatus Order="order" />
+                    @if (order.Status is "Submitted" or "AwaitingValidation" or "StockConfirmed" && !order.ItemReservationCancellationRequested)
+                    {
+                        <a href="@($"/user/orders/{order.OrderNumber}/cancel")">Cancel order</a>
+                    }
                 </div>
             </li>
         }

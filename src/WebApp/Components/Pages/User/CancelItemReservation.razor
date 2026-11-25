@@ -1,0 +1,26 @@
+@page "/user/orders/{OrderNumber:int}/cancel"
+@attribute [Authorize]
+@inject OrderingService OrderingService
+@inject NavigationManager Nav
+
+<PageTitle>Cancel order | AdventureWorks</PageTitle>
+<SectionContent SectionName="page-header-title">Cancel order</SectionContent>
+<p>Request cancellation of order @OrderNumber and release its reserved items.</p>
+<p>If payment has already completed, the order cannot be cancelled here.</p>
+@if (error is not null) { <p role="alert">@error</p> }
+<EditForm Model="model" FormName="cancel-item-reservation" OnValidSubmit="CancelAsync" Enhance>
+    <button class="button button-primary" type="submit">Request cancellation</button>
+    <a href="/user/orders">Back to orders</a>
+</EditForm>
+
+@code {
+    [Parameter] public int OrderNumber { get; set; }
+    private readonly object model = new();
+    private string? error;
+    private async Task CancelAsync()
+    {
+        try { await OrderingService.CancelOrder(OrderNumber); }
+        catch (HttpRequestException) { error = "We couldn’t request cancellation. Refresh your orders and try again."; return; }
+        Nav.NavigateTo("/user/orders");
+    }
+}

@@ -1,4 +1,4 @@
-﻿@page "/checkout"
+@page "/checkout"
 @using System.Globalization
 @using System.ComponentModel.DataAnnotations
 @inject BasketState Basket
@@ -9,6 +9,7 @@
 <SectionContent SectionName="page-header-title">Checkout</SectionContent>
 
 <div class='checkout'>
+    <p>We’ll reserve available items while your payment is processed. Your orders page shows when the item reservation expires.</p>
     <EditForm EditContext="@editContext" FormName="checkout" OnSubmit="@HandleSubmitAsync" Enhance>
         <DataAnnotationsValidator />
         <div class="form">

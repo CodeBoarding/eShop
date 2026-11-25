@@ -1,4 +1,4 @@
-﻿using eShop.AppHost;
+using eShop.AppHost;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
@@ -44,13 +44,25 @@ var orderingApi = builder.AddProject<Projects.Ordering_API>("ordering-api")
     .WithHttpHealthCheck("/health")
     .WithEnvironment("Identity__Url", identityEndpoint);
 
-builder.AddProject<Projects.OrderProcessor>("order-processor")
+var orderProcessor = builder.AddProject<Projects.OrderProcessor>("order-processor")
     .WithReference(rabbitMq).WaitFor(rabbitMq)
     .WithReference(orderDb)
     .WaitFor(orderingApi); // wait for the orderingApi to be ready because that contains the EF migrations
 
-builder.AddProject<Projects.PaymentProcessor>("payment-processor")
+var paymentProcessor = builder.AddProject<Projects.PaymentProcessor>("payment-processor")
     .WithReference(rabbitMq).WaitFor(rabbitMq);
+
+// Explicit local-demo overrides. Defaults retain ten-minute item reservations.
+var reservationDemo = builder.Configuration["ItemReservationDemo"];
+if (!string.IsNullOrWhiteSpace(reservationDemo))
+{
+    var settings = ItemReservationDemoSettings.For(reservationDemo);
+    catalogApi.WithEnvironment("ItemReservation__DurationSeconds", settings.DurationSeconds.ToString());
+    paymentProcessor.WithEnvironment("PaymentOptions__DelaySeconds", settings.PaymentDelaySeconds.ToString())
+        .WithEnvironment("PaymentOptions__PaymentSucceeded", settings.PaymentSucceeded.ToString());
+    orderProcessor.WithEnvironment("BackgroundTaskOptions__GracePeriodTime", "1")
+        .WithEnvironment("BackgroundTaskOptions__CheckUpdateTime", "1");
+}
 
 var webHooksApi = builder.AddProject<Projects.Webhooks_API>("webhooks-api")
     .WithReference(rabbitMq).WaitFor(rabbitMq)
