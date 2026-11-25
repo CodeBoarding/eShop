@@ -54,6 +54,6 @@ metadata['curation'] = provenance
 (review / 'metadata.json').write_text(json.dumps(metadata, indent=2) + '\n')
 guide_path = review / 'review_guide.json'
 guide = json.loads(guide_path.read_text())
-guide['summary'] = 'CURATED DEMO FINDINGS · ' + guide['summary']
+guide['summary'] = 'Checkout reserves items for ten minutes, completes reservations on timely payment, releases them on cancellation, payment failure or expiry, and displays reservation status and deadlines.'
 guide_path.write_text(json.dumps(guide, indent=2) + '\n')
 print('Prepared three labelled curated findings; original findings and graphs preserved.')
