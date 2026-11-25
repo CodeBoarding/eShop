@@ -1,4 +1,4 @@
-﻿namespace eShop.Ordering.API.Application.Queries;
+namespace eShop.Ordering.API.Application.Queries;
 
 public class OrderQueries(OrderingContext context)
     : IOrderQueries
@@ -17,6 +17,8 @@ public class OrderQueries(OrderingContext context)
             OrderNumber = order.Id,
             Date = order.OrderDate,
             Description = order.Description,
+            ItemReservationExpiresAt = order.ItemReservationExpiresAt,
+            ItemReservationCancellationRequested = order.ItemReservationCancellationRequested,
             City = order.Address.City,
             Country = order.Address.Country,
             State = order.Address.State,
@@ -41,6 +43,9 @@ public class OrderQueries(OrderingContext context)
             .Select(o => new OrderSummary
             {
                 OrderNumber = o.Id,
+                Description = o.Description,
+                ItemReservationExpiresAt = o.ItemReservationExpiresAt,
+                ItemReservationCancellationRequested = o.ItemReservationCancellationRequested,
                 Date = o.OrderDate,
                 Status = o.OrderStatus.ToString(),
                 Total =(double) o.OrderItems.Sum(oi => oi.UnitPrice* oi.Units)

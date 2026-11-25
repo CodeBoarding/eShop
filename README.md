@@ -154,3 +154,7 @@ The sample catalog data is defined in [catalog.json](https://github.com/dotnet/e
 ## eShop on Azure
 
 For a version of this app configured for deployment on Azure, please view [the eShop on Azure](https://github.com/Azure-Samples/eShopOnAzure) repo.
+
+## Item reservation review demo
+
+A cross-service checkout example for reviewing agent-written code: [run the scenarios and inspect the architecture](docs/item-reservation/README.md). The [presenter guide](docs/item-reservation/presenter-guide.md) connects the same PR to four approaches to review.
