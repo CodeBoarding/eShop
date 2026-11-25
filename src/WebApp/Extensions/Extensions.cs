@@ -1,4 +1,4 @@
-﻿using eShop.Basket.API.Grpc;
+using eShop.Basket.API.Grpc;
 using eShop.WebApp.Services.OrderStatus.IntegrationEvents;
 using eShop.WebAppComponents.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -42,6 +42,8 @@ public static class Extensions
 
     public static void AddEventBusSubscriptions(this IEventBusBuilder eventBus)
     {
+        eventBus.AddSubscription<eShop.ItemReservation.Contracts.ItemReservationOrderUpdatedIntegrationEvent,
+            eShop.WebApp.Services.OrderStatus.IntegrationEvents.EventHandling.ItemReservationOrderUpdatedIntegrationEventHandler>();
         eventBus.AddSubscription<OrderStatusChangedToAwaitingValidationIntegrationEvent, OrderStatusChangedToAwaitingValidationIntegrationEventHandler>();
         eventBus.AddSubscription<OrderStatusChangedToPaidIntegrationEvent, OrderStatusChangedToPaidIntegrationEventHandler>();
         eventBus.AddSubscription<OrderStatusChangedToStockConfirmedIntegrationEvent, OrderStatusChangedToStockConfirmedIntegrationEventHandler>();

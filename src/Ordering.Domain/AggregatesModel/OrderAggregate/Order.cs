@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace eShop.Ordering.Domain.AggregatesModel.OrderAggregate;
 
@@ -18,6 +18,8 @@ public class Order
     public OrderStatus OrderStatus { get; private set; }
     
     public string Description { get; private set; }
+    public DateTimeOffset? ItemReservationExpiresAt { get; private set; }
+    public bool ItemReservationCancellationRequested { get; private set; }
 
     // Draft orders have this set to true. Currently we don't check anywhere the draft status of an Order, but we could do it if needed
 #pragma warning disable CS0414 // The field 'Order._isDraft' is assigned but its value is never used
@@ -112,8 +114,39 @@ public class Order
             AddDomainEvent(new OrderStatusChangedToStockConfirmedDomainEvent(Id));
 
             OrderStatus = OrderStatus.StockConfirmed;
-            Description = "All the items were confirmed with available stock.";
+            Description = "Items are reserved while payment is processed.";
         }
+    }
+
+    public void SetItemsReserved(DateTimeOffset expiresAt)
+    {
+        if (OrderStatus != OrderStatus.AwaitingValidation) return;
+        ItemReservationExpiresAt = expiresAt;
+        // A cancellation request already in flight must not start a new payment.
+        if (!ItemReservationCancellationRequested) SetStockConfirmedStatus();
+    }
+
+    public bool RequestItemReservationCancellation()
+    {
+        if (OrderStatus is OrderStatus.Paid or OrderStatus.Shipped or OrderStatus.Cancelled or OrderStatus.PaymentReviewRequired
+            || ItemReservationCancellationRequested) return false;
+        ItemReservationCancellationRequested = true;
+        Description = "Cancellation requested; waiting for the item reservation outcome.";
+        return true;
+    }
+
+    public void SetItemReservationReleased(string reason)
+    {
+        if (OrderStatus is OrderStatus.Paid or OrderStatus.Shipped or OrderStatus.Cancelled or OrderStatus.PaymentReviewRequired) return;
+        SetCancelledStatus();
+        Description = reason;
+    }
+
+    public void SetItemReservationPaymentReviewRequired(string reason)
+    {
+        if (OrderStatus is OrderStatus.Paid or OrderStatus.Shipped or OrderStatus.PaymentReviewRequired) return;
+        OrderStatus = OrderStatus.PaymentReviewRequired;
+        Description = reason;
     }
 
     public void SetPaidStatus()
@@ -142,7 +175,7 @@ public class Order
     public void SetCancelledStatus()
     {
         if (OrderStatus == OrderStatus.Paid ||
-            OrderStatus == OrderStatus.Shipped)
+            OrderStatus == OrderStatus.Shipped || OrderStatus == OrderStatus.PaymentReviewRequired)
         {
             StatusChangeException(OrderStatus.Cancelled);
         }

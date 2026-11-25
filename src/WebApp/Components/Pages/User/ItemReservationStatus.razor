@@ -1,0 +1,32 @@
+<div class="item-reservation" aria-label="Item reservation">
+    @if (Order.Status == "StockConfirmed")
+    {
+        <strong>Item reservation</strong>
+        @if (Order.ItemReservationExpiresAt is { } expires)
+        {
+            <p>Reserved until <time datetime="@expires.ToString("O")">@expires.UtcDateTime.ToString("HH:mm:ss 'UTC'")</time>.</p>
+        }
+        <p>@(Order.ItemReservationCancellationRequested ? "Cancellation requested. Waiting for confirmation." : "Payment is being processed.")</p>
+    }
+    else if (Order.Status == "PaymentReviewRequired")
+    {
+        <strong>Payment needs review</strong>
+        <p>The item reservation has ended. We need to check your payment before fulfilling this order.</p>
+    }
+    else if (Order.Status == "Cancelled")
+    {
+        <p>@Order.Description</p>
+    }
+    else if (Order.Status is "Paid" or "Shipped")
+    {
+        <p>Item reservation completed.</p>
+    }
+    else
+    {
+        <p>@(Order.ItemReservationCancellationRequested ? "Cancellation requested." : "Waiting for item reservation.")</p>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired] public OrderRecord Order { get; set; } = default!;
+}

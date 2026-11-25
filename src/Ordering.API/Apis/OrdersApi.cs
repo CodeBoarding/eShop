@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Http.HttpResults;
 using CardType = eShop.Ordering.API.Application.Queries.CardType;
 using Order = eShop.Ordering.API.Application.Queries.Order;
 
@@ -28,6 +28,13 @@ public static class OrdersApi
         {
             return TypedResults.BadRequest("Empty GUID is not valid for request ID");
         }
+
+        var ownedOrders = await services.Queries.GetOrdersFromUserAsync(services.IdentityService.GetUserIdentity());
+        var ownedOrder = ownedOrders.SingleOrDefault(x => x.OrderNumber == command.OrderNumber);
+        if (ownedOrder is null)
+            return TypedResults.BadRequest("Order is not available for cancellation.");
+        if (ownedOrder.Status is "Paid" or "Shipped" or "PaymentReviewRequired")
+            return TypedResults.BadRequest("This order can no longer be cancelled.");
 
         var requestCancelOrder = new IdentifiedCommand<CancelOrderCommand, bool>(command, requestId);
 

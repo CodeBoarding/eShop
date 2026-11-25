@@ -1,4 +1,4 @@
-﻿namespace eShop.WebApp.Services;
+namespace eShop.WebApp.Services;
 
 public class OrderingService(HttpClient httpClient)
 {
@@ -7,6 +7,15 @@ public class OrderingService(HttpClient httpClient)
     public Task<OrderRecord[]> GetOrders()
     {
         return httpClient.GetFromJsonAsync<OrderRecord[]>(remoteServiceBaseUrl)!;
+    }
+
+    public async Task CancelOrder(int orderNumber)
+    {
+        using var request = new HttpRequestMessage(HttpMethod.Put, remoteServiceBaseUrl + "cancel");
+        request.Headers.Add("x-requestid", Guid.NewGuid().ToString());
+        request.Content = JsonContent.Create(new { OrderNumber = orderNumber });
+        using var response = await httpClient.SendAsync(request);
+        response.EnsureSuccessStatusCode();
     }
 
     public Task CreateOrder(CreateOrderRequest request, Guid requestId)
@@ -22,4 +31,7 @@ public record OrderRecord(
     int OrderNumber,
     DateTime Date,
     string Status,
-    decimal Total);
+    decimal Total,
+    string? Description = null,
+    DateTimeOffset? ItemReservationExpiresAt = null,
+    bool ItemReservationCancellationRequested = false);

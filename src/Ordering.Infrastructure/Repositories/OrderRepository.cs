@@ -1,4 +1,4 @@
-﻿namespace eShop.Ordering.Infrastructure.Repositories;
+namespace eShop.Ordering.Infrastructure.Repositories;
 
 public class OrderRepository
     : IOrderRepository
@@ -20,6 +20,10 @@ public class OrderRepository
 
     public async Task<Order> GetAsync(int orderId)
     {
+        if (_context.HasActiveTransaction)
+        {
+            await _context.Database.ExecuteSqlInterpolatedAsync($"SELECT pg_advisory_xact_lock(7317, {orderId})");
+        }
         var order = await _context.Orders.FindAsync(orderId);
 
         if (order != null)

@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace eShop.Ordering.Domain.AggregatesModel.OrderAggregate;
 
@@ -10,5 +10,6 @@ public enum OrderStatus
     StockConfirmed = 3,
     Paid = 4,
     Shipped = 5,
-    Cancelled = 6
+    Cancelled = 6,
+    PaymentReviewRequired = 7
 }
