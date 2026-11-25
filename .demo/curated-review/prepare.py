@@ -14,7 +14,7 @@ shutil.copyfile(architecture, review / 'original_architecture.json')
 def finding(id, severity, title, impact, fact, fix, file, line, change, components, expand, edges=()):
     return dict(id=id, source='model', kind='Curated demo finding',
                 riskKind='Customer action can fail', severity=severity,
-                title='[Curated demo] ' + title, impact=impact, fact=fact, fix=fix,
+                title=title, impact=impact, fact=fact, fix=fix,
                 anchors=dict(code=dict(file=file, line=line), flow=dict(change=change),
                              map=dict(components=components, expand=expand, edges=list(edges))))
 
