@@ -18,6 +18,10 @@ internal static class Extensions
         });
         builder.EnrichNpgsqlDbContext<OrderingContext>();
 
+        // Orders are priced from the catalog's current prices, not from what the client sends.
+        builder.AddKeyedNpgsqlDataSource("catalogdb");
+        services.AddScoped<ICatalogPrices, CatalogPrices>();
+
         services.AddMigration<OrderingContext, OrderingContextSeed>();
 
         // Add the integration services that consume the DbContext

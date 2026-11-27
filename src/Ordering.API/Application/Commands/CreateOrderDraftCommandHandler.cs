@@ -4,19 +4,21 @@ using eShop.Ordering.API.Extensions;
 using eShop.Ordering.Domain.AggregatesModel.OrderAggregate;
 
 // Regular CommandHandler
-public class CreateOrderDraftCommandHandler
+public class CreateOrderDraftCommandHandler(ICatalogPrices catalogPrices)
     : IRequestHandler<CreateOrderDraftCommand, OrderDraftDTO>
 {
-    public Task<OrderDraftDTO> Handle(CreateOrderDraftCommand message, CancellationToken cancellationToken)
+    public async Task<OrderDraftDTO> Handle(CreateOrderDraftCommand message, CancellationToken cancellationToken)
     {
         var order = Order.NewDraft();
-        var orderItems = message.Items.Select(i => i.ToOrderItemDTO());
+        var orderItems = message.Items.Select(i => i.ToOrderItemDTO()).ToList();
+        var prices = await catalogPrices.GetPricesAsync(orderItems.Select(item => item.ProductId), cancellationToken);
         foreach (var item in orderItems)
         {
-            order.AddOrderItem(item.ProductId, item.ProductName, item.UnitPrice, item.Discount, item.PictureUrl, item.Units);
+            var unitPrice = prices.TryGetValue(item.ProductId, out var current) ? current : item.UnitPrice;
+            order.AddOrderItem(item.ProductId, item.ProductName, unitPrice, item.Discount, item.PictureUrl, item.Units);
         }
 
-        return Task.FromResult(OrderDraftDTO.FromOrder(order));
+        return OrderDraftDTO.FromOrder(order);
     }
 }
 
