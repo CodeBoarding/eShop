@@ -10,7 +10,7 @@ namespace eShop.Catalog.FunctionalTests;
 
 public sealed class CatalogApiTests : IClassFixture<CatalogApiFixture>
 {
-    private readonly WebApplicationFactory<Program> _webApplicationFactory;
+    private readonly WebApplicationFactory<CatalogItem> _webApplicationFactory;
     private readonly JsonSerializerOptions _jsonSerializerOptions = new(JsonSerializerDefaults.Web);
 
     public CatalogApiTests(CatalogApiFixture fixture)
@@ -42,6 +42,72 @@ public sealed class CatalogApiTests : IClassFixture<CatalogApiFixture>
         Assert.Equal(5, result.Data.Count());
         Assert.Equal(0, result.PageIndex);
         Assert.Equal(5, result.PageSize);
+    }
+
+    [Theory]
+    [InlineData(1.0)]
+    [InlineData(2.0)]
+    public async Task BasketPreviewUsesBasketCodeWithoutModifyingCatalog(double version)
+    {
+        using var client = CreateHttpClient(new ApiVersion(version));
+        var cancellationToken = TestContext.Current.CancellationToken;
+        var item = await client.GetFromJsonAsync<CatalogItem>("/api/catalog/items/2", cancellationToken);
+
+        using var response = await client.GetAsync("/api/catalog/items/2/basket-preview?quantity=3", cancellationToken);
+
+        response.EnsureSuccessStatusCode();
+        using var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync(cancellationToken));
+        var preview = json.RootElement;
+        Assert.Equal(2, preview.GetProperty("productId").GetInt32());
+        Assert.Equal(item.Name, preview.GetProperty("productName").GetString());
+        Assert.Equal(3, preview.GetProperty("quantity").GetInt32());
+        Assert.Equal(item.Price, preview.GetProperty("unitPrice").GetDecimal());
+        Assert.Equal(item.Price * 3, preview.GetProperty("totalPrice").GetDecimal());
+        var unchanged = await client.GetFromJsonAsync<CatalogItem>("/api/catalog/items/2", cancellationToken);
+        Assert.Equal(item.AvailableStock, unchanged.AvailableStock);
+        Assert.Equal(item.Price, unchanged.Price);
+    }
+
+    [Theory]
+    [InlineData(1.0)]
+    [InlineData(2.0)]
+    public async Task BasketPreviewDefaultsToOneItem(double version)
+    {
+        using var client = CreateHttpClient(new ApiVersion(version));
+        using var response = await client.GetAsync("/api/catalog/items/2/basket-preview", TestContext.Current.CancellationToken);
+
+        response.EnsureSuccessStatusCode();
+        using var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken));
+        Assert.Equal(1, json.RootElement.GetProperty("quantity").GetInt32());
+        Assert.Equal(json.RootElement.GetProperty("unitPrice").GetDecimal(), json.RootElement.GetProperty("totalPrice").GetDecimal());
+    }
+
+    [Theory]
+    [InlineData(1.0, 0)]
+    [InlineData(1.0, -1)]
+    [InlineData(2.0, 0)]
+    [InlineData(2.0, -1)]
+    public async Task BasketPreviewReturnsBasketValidationError(double version, int quantity)
+    {
+        using var client = CreateHttpClient(new ApiVersion(version));
+        using var response = await client.GetAsync($"/api/catalog/items/2/basket-preview?quantity={quantity}", TestContext.Current.CancellationToken);
+
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        using var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken));
+        Assert.Equal("Invalid number of units", json.RootElement.GetProperty("detail").GetString());
+    }
+
+    [Theory]
+    [InlineData(1.0, 0, HttpStatusCode.BadRequest)]
+    [InlineData(2.0, 0, HttpStatusCode.BadRequest)]
+    [InlineData(1.0, int.MaxValue, HttpStatusCode.NotFound)]
+    [InlineData(2.0, int.MaxValue, HttpStatusCode.NotFound)]
+    public async Task BasketPreviewRejectsInvalidOrMissingProduct(double version, int id, HttpStatusCode expected)
+    {
+        using var client = CreateHttpClient(new ApiVersion(version));
+        using var response = await client.GetAsync($"/api/catalog/items/{id}/basket-preview?quantity=3", TestContext.Current.CancellationToken);
+
+        Assert.Equal(expected, response.StatusCode);
     }
 
     [Theory]
