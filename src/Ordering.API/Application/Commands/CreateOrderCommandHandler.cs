@@ -11,19 +11,22 @@ public class CreateOrderCommandHandler
     private readonly IMediator _mediator;
     private readonly IOrderingIntegrationEventService _orderingIntegrationEventService;
     private readonly ILogger<CreateOrderCommandHandler> _logger;
+    private readonly ICatalogPrices _catalogPrices;
 
     // Using DI to inject infrastructure persistence Repositories
     public CreateOrderCommandHandler(IMediator mediator,
         IOrderingIntegrationEventService orderingIntegrationEventService,
         IOrderRepository orderRepository,
         IIdentityService identityService,
-        ILogger<CreateOrderCommandHandler> logger)
+        ILogger<CreateOrderCommandHandler> logger,
+        ICatalogPrices catalogPrices)
     {
         _orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(orderRepository));
         _identityService = identityService ?? throw new ArgumentNullException(nameof(identityService));
         _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         _orderingIntegrationEventService = orderingIntegrationEventService ?? throw new ArgumentNullException(nameof(orderingIntegrationEventService));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _catalogPrices = catalogPrices ?? throw new ArgumentNullException(nameof(catalogPrices));
     }
 
     public async Task<bool> Handle(CreateOrderCommand message, CancellationToken cancellationToken)
@@ -39,9 +42,12 @@ public class CreateOrderCommandHandler
         var address = new Address(message.Street, message.City, message.State, message.Country, message.ZipCode);
         var order = new Order(message.UserId, message.UserName, address, message.CardTypeId, message.CardNumber, message.CardSecurityNumber, message.CardHolderName, message.CardExpiration);
 
+        // Price each line from the catalog, so a client cannot submit its own unit price.
+        var prices = await _catalogPrices.GetPricesAsync(message.OrderItems.Select(item => item.ProductId), cancellationToken);
         foreach (var item in message.OrderItems)
         {
-            order.AddOrderItem(item.ProductId, item.ProductName, item.UnitPrice, item.Discount, item.PictureUrl, item.Units);
+            var unitPrice = prices.TryGetValue(item.ProductId, out var current) ? current : item.UnitPrice;
+            order.AddOrderItem(item.ProductId, item.ProductName, unitPrice, item.Discount, item.PictureUrl, item.Units);
         }
 
         _logger.LogInformation("Creating Order - Order: {@Order}", order);
