@@ -1,4 +1,4 @@
-﻿namespace eShop.Catalog.API.Infrastructure.EntityConfigurations;
+namespace eShop.Catalog.API.Infrastructure.EntityConfigurations;
 
 class CatalogItemEntityTypeConfiguration
     : IEntityTypeConfiguration<CatalogItem>
@@ -20,5 +20,7 @@ class CatalogItemEntityTypeConfiguration
             .WithMany();
 
         builder.HasIndex(ci => ci.Name);
+        // Existing catalog editing must not overwrite a quantity read before a reservation.
+        builder.Property(ci => ci.AvailableStock).IsConcurrencyToken();
     }
 }

@@ -1,31 +1,28 @@
-﻿namespace eShop.IntegrationEventLogEF.Services;
+namespace eShop.IntegrationEventLogEF.Services;
 
 public class IntegrationEventLogService<TContext> : IIntegrationEventLogService, IDisposable
     where TContext : DbContext
 {
     private volatile bool _disposedValue;
     private readonly TContext _context;
-    private readonly Type[] _eventTypes;
 
     public IntegrationEventLogService(TContext context)
     {
         _context = context;
-        _eventTypes = Assembly.Load(Assembly.GetEntryAssembly().FullName)
-            .GetTypes()
-            .Where(t => t.Name.EndsWith(nameof(IntegrationEvent)))
-            .ToArray();
     }
 
     public async Task<IEnumerable<IntegrationEventLogEntry>> RetrieveEventLogsPendingToPublishAsync(Guid transactionId)
     {
         var result = await _context.Set<IntegrationEventLogEntry>()
-            .Where(e => e.TransactionId == transactionId && e.State == EventStateEnum.NotPublished)
+            .Where(e => e.TransactionId == transactionId && e.State != EventStateEnum.Published)
             .ToListAsync();
 
         if (result.Count != 0)
         {
             return result.OrderBy(o => o.CreationTime)
-                .Select(e => e.DeserializeJsonContent(_eventTypes.FirstOrDefault(t => t.Name == e.EventTypeShortName)));
+                .Select(e => e.DeserializeJsonContent(AppDomain.CurrentDomain.GetAssemblies()
+                    .Select(a => a.GetType(e.EventTypeName)).FirstOrDefault(t => t is not null)
+                    ?? throw new InvalidOperationException($"Unknown integration event {e.EventTypeName}")));
         }
 
         return [];

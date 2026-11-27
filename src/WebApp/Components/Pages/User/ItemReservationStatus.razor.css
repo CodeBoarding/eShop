@@ -1,0 +1,3 @@
+.item-reservation { margin-top: .65rem; font-size: .8rem; line-height: 1.5; color: var(--color-ink-2); min-width: 12rem; }
+.item-reservation p { margin: .2rem 0; }
+.item-reservation strong { color: var(--color-ink); }

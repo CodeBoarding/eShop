@@ -1,4 +1,4 @@
-﻿namespace eShop.EventBusRabbitMQ;
+namespace eShop.EventBusRabbitMQ;
 
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +37,7 @@ public sealed class RabbitMQEventBus(
             logger.LogTrace("Creating RabbitMQ channel to publish event: {EventId} ({EventName})", @event.Id, routingKey);
         }
 
-        using var channel = (await _rabbitMQConnection?.CreateChannelAsync()) ?? throw new InvalidOperationException("RabbitMQ connection is not open");
+        using var channel = (await _rabbitMQConnection?.CreateChannelAsync(new CreateChannelOptions(publisherConfirmationsEnabled: true, publisherConfirmationTrackingEnabled: true))) ?? throw new InvalidOperationException("RabbitMQ connection is not open");
 
         if (logger.IsEnabled(LogLevel.Trace))
         {
@@ -172,11 +172,13 @@ public sealed class RabbitMQEventBus(
             logger.LogWarning(ex, "Error Processing message \"{Message}\"", message);
 
             activity.SetExceptionTags(ex);
+            // Temporary database failures must not acknowledge and lose a lifecycle command.
+            // This sample uses backoff/requeue; deployments need bounded retries and a DLQ.
+            await Task.Delay(TimeSpan.FromSeconds(1));
+            await _consumerChannel.BasicNackAsync(eventArgs.DeliveryTag, multiple: false, requeue: true);
+            return;
         }
 
-        // Even on exception we take the message off the queue.
-        // in a REAL WORLD app this should be handled with a Dead Letter Exchange (DLX). 
-        // For more information see: https://www.rabbitmq.com/dlx.html
         await _consumerChannel.BasicAckAsync(eventArgs.DeliveryTag, multiple: false);
     }
 
