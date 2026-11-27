@@ -45,12 +45,15 @@ jobs:
       id-token: write       # mint a GitHub OIDC token for the free hosted tier (write is the only level for id-token)
       actions: read         # let a repeat review download the analysis an earlier run published, instead of re-deriving the whole PR
     steps:
-      - uses: CodeBoarding/CodeBoarding-action@v1
+      # Test of merge risk in licensing (licensing-aws #76, CodeBoarding-action #181): the Action's
+      # branch against the dev service. Only pull requests into test/merge-risk-base run this.
+      - uses: CodeBoarding/CodeBoarding-action@feat/merge-risk-checklist
         with:
           codeboarding_analysis_location: in_place
           # Billed to the CodeBoarding license in the CODEBOARDING_LICENSE secret.
           llm: license
           license_key: ${{ secrets.CODEBOARDING_LICENSE }}
+          review_guide_url: https://grui7mcfjbptmq5e5ymwsxji4e0bplap.lambda-url.us-east-1.on.aws/
 
   sync:
     if: github.event_name == 'push'
