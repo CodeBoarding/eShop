@@ -30,7 +30,10 @@ concurrency:
 
 jobs:
   review:
+    # Evaluation base: CodeBoarding's review does not run on pull requests into test/eval-base, so
+    # other reviewers see them first. Their base moves to test/merge-risk-base to run ours.
     if: >
+      false &&
       (github.event_name == 'pull_request' && github.event.action != 'closed' &&
        github.event.pull_request.head.repo.full_name == github.repository) ||
       (github.event_name == 'issue_comment' && github.event.issue.pull_request != null &&
